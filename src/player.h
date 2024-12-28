@@ -26,4 +26,5 @@ class Player
         int framesSpeed;
         int frameWidth;
         unsigned int numFrames;
+        enum Direction { LEFT, RIGHT } direction;
 };

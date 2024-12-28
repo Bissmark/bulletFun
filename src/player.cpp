@@ -34,7 +34,7 @@ void Player::Update()
     frameRec.x = (float)currentFrame * (float)currentTexture.width / numFrames;
 
     // Draw the player with the current texture and frame
-    DrawTextureRec(currentTexture, frameRec, playerPosition, WHITE);
+    //DrawTextureRec(currentTexture, frameRec, playerPosition, WHITE);
 }
 
 void Player::Move()
@@ -44,10 +44,12 @@ void Player::Move()
     if (IsKeyDown(KEY_D)) {
         playerPosition.x += speedX;
         isMoving = true;
+        direction = RIGHT;
     }
     if (IsKeyDown(KEY_A)) {
         playerPosition.x -= speedX;
         isMoving = true;
+        direction = LEFT;
     }
     if (IsKeyDown(KEY_W)) {
         playerPosition.y -= speedY;
@@ -79,13 +81,26 @@ void Player::Move()
             numFrames = 4;
             frameWidth = playerIdle.width / numFrames;
         }
-        
-        currentFrame = 0;
-        frameRec.x = 0;
+
+        ++framesCounter;
+
+        if (framesCounter >= (60 / framesSpeed)) {
+            framesCounter = 0;
+            ++currentFrame;
+            currentFrame %= numFrames;
+            frameRec.x = (float)frameWidth * currentFrame;
+        }
     }
 }
 
 void Player::Draw() const
 {
-    DrawTextureRec(playerIdle, frameRec, playerPosition, WHITE);
+    if (direction == RIGHT) {
+        DrawTextureRec(currentTexture, frameRec, playerPosition, WHITE);
+    } else {
+        // Flip the texture horizontally for left direction
+        Rectangle flippedFrameRec = frameRec;
+        flippedFrameRec.width = -frameRec.width;
+        DrawTextureRec(currentTexture, flippedFrameRec, playerPosition, WHITE);
+    }
 }
