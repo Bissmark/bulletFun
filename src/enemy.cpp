@@ -93,7 +93,7 @@ void Enemy::Attack(float deltaTime)
 
 void Enemy::Draw() const
 {   if (direction == RIGHT) {
-        DrawTextureRec(enemyIdle, frameRec, enemyPosition, WHITE);
+        DrawTextureRec(currentTexture, frameRec, enemyPosition, WHITE);
     } else {
         Rectangle flippedFrameRec = frameRec;
         flippedFrameRec.width = -frameRec.width;
