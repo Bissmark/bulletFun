@@ -12,8 +12,8 @@ int main()
     
     InitWindow(screenWidth, screenHeight, "2D Game");
 
-    Enemy enemy;
     Player player;
+    Enemy enemy(player);
 
     SetTargetFPS(60);
     
@@ -21,6 +21,7 @@ int main()
     {
         player.Move();
         player.Update();
+        enemy.Move();
         enemy.Update();
 
         BeginDrawing();

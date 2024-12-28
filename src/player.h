@@ -5,9 +5,11 @@ class Player
 {
     public: 
         Player();
+        Vector2 playerPosition;
         void Update();
         void Move();
         void Draw() const;
+        void Fire();
 
     private:
         int healthPoints;
@@ -20,11 +22,11 @@ class Player
         Texture2D playerWalk;
         Texture2D currentTexture;
         Rectangle frameRec;
-        Vector2 playerPosition;
         int currentFrame;
         int framesCounter;
         int framesSpeed;
         int frameWidth;
         unsigned int numFrames;
         enum Direction { LEFT, RIGHT } direction;
+        void UpdateFrame();
 };
