@@ -24,4 +24,6 @@ class Player
         int currentFrame;
         int framesCounter;
         int framesSpeed;
+        int frameWidth;
+        unsigned int numFrames;
 };

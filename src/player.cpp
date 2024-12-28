@@ -1,4 +1,5 @@
 #include "player.h"
+#include <iostream>
 
 Player::Player()
     : x(100)
@@ -13,20 +14,27 @@ Player::Player()
     currentFrame = 0;
 
     framesCounter = 0;
-    framesSpeed = 8;
+    framesSpeed = 5;
+
+    numFrames = 4;
+    frameWidth = playerIdle.width / numFrames;
 
     playerIdle = LoadTexture("src/Spritesheet/player/Idle.png");
     playerWalk = LoadTexture("src/Spritesheet/player/Walk.png");
 
     currentTexture = playerIdle;
 
-    frameRec = { 0.0f, 0.0f, (float)playerIdle.width / 6, (float)playerIdle.height };
+    frameRec = { 0.0f, 0.0f, (float)playerIdle.width / numFrames, (float)playerIdle.height };
     playerPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
 }
 
 void Player::Update()
 {
+    // Update the frame rectangle to the current frame
+    frameRec.x = (float)currentFrame * (float)currentTexture.width / numFrames;
 
+    // Draw the player with the current texture and frame
+    DrawTextureRec(currentTexture, frameRec, playerPosition, WHITE);
 }
 
 void Player::Move()
@@ -34,61 +42,46 @@ void Player::Move()
     bool isMoving = false;
 
     if (IsKeyDown(KEY_D)) {
-        playerPosition.x += 5;
-        //frameRec.y = 0;
-
-        ++framesCounter;
-
-        if (framesCounter >= (60 / framesSpeed)) {
-            framesCounter = 0;
-            currentFrame++;
-
-            if (currentFrame > 5) currentFrame = 0;
-
-            frameRec.x = (float)currentFrame * (float)playerIdle.width / 6;
-        }
+        playerPosition.x += speedX;
+        isMoving = true;
     }
     if (IsKeyDown(KEY_A)) {
-        playerPosition.x -= 5;
-
-        ++framesCounter;
-
-        if (framesCounter >= (60 / framesSpeed)) {
-            framesCounter = 0;
-            currentFrame++;
-
-            if (currentFrame > 5) currentFrame = 0;
-
-            frameRec.x = (float)currentFrame * (float)playerIdle.width / 6;
-        }
+        playerPosition.x -= speedX;
+        isMoving = true;
     }
     if (IsKeyDown(KEY_W)) {
-        playerPosition.y -= 5;
-
-        ++framesCounter;
-
-        if (framesCounter >= (60 / framesSpeed)) {
-            framesCounter = 0;
-            currentFrame++;
-
-            if (currentFrame > 5) currentFrame = 0;
-
-            frameRec.x = (float)currentFrame * (float)playerIdle.width / 6;
-        }
+        playerPosition.y -= speedY;
+        isMoving = true;
     }
     if (IsKeyDown(KEY_S)) {
-        playerPosition.y += 5;
+        playerPosition.y += speedY;
+        isMoving = true;
+    }
+
+    if (isMoving) {
+        if (currentTexture.id != playerWalk.id) {
+            currentTexture = playerWalk;
+            numFrames = 6;
+            frameWidth = playerWalk.width / numFrames;
+        }
 
         ++framesCounter;
 
         if (framesCounter >= (60 / framesSpeed)) {
             framesCounter = 0;
-            currentFrame++;
-
-            if (currentFrame > 5) currentFrame = 0;
-
-            frameRec.x = (float)currentFrame * (float)playerIdle.width / 6;
+            ++currentFrame;
+            currentFrame %= numFrames;
+            frameRec.x = (float)frameWidth * currentFrame;
         }
+    } else {
+        if (currentTexture.id != playerIdle.id) {
+            currentTexture = playerIdle;
+            numFrames = 4;
+            frameWidth = playerIdle.width / numFrames;
+        }
+        
+        currentFrame = 0;
+        frameRec.x = 0;
     }
 }
 

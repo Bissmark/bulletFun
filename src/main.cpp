@@ -15,35 +15,19 @@ int main()
     Enemy enemy;
     Player player;
 
-    int currentFrame = 0;
-
-    int framesCounter = 0;
-    int framesSpeed = 8;
-
     SetTargetFPS(60);
     
     while (!WindowShouldClose())
     {
         player.Move();
+        player.Update();
         enemy.Update();
-        
-        // ++framesCounter;
-
-        // if (framesCounter >= (60 / framesSpeed)) {
-        //     framesCounter = 0;
-        //     currentFrame++;
-
-        //     if (currentFrame > 5) currentFrame = 0;
-
-        //     //frameRec.x = (float)currentFrame * (float)playerIdle.width / 6;
-        // }
 
         BeginDrawing();
             ClearBackground(RAYWHITE);
 
             enemy.Draw();
             player.Draw();
-            //DrawTextureRec(playerIdle, frameRec, playerPosition, WHITE);  // Draw part of the texture
         EndDrawing();
     }
     
