@@ -7,6 +7,7 @@ Player::Player()
     , speedX(5)
     , speedY(5)
     , radius(15)
+    , healthPoints(100)
 {
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
@@ -100,4 +101,6 @@ void Player::Draw() const
         flippedFrameRec.width = -frameRec.width;
         DrawTextureRec(currentTexture, flippedFrameRec, playerPosition, WHITE);
     }
+
+    DrawText(TextFormat("Health: %i", healthPoints), 10, 10, 20, RED);
 }

@@ -6,18 +6,18 @@ class Player
     public: 
         Player();
         Vector2 playerPosition;
+        int healthPoints;
+        int radius;
         void Update();
         void Move();
         void Draw() const;
         void Fire();
 
     private:
-        int healthPoints;
         int x;
         int y;
         int speedX;
         int speedY;
-        int radius;
         Texture2D playerIdle;
         Texture2D playerWalk;
         Texture2D currentTexture;

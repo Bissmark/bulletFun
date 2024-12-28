@@ -19,10 +19,13 @@ int main()
     
     while (!WindowShouldClose())
     {
+        float deltaTime = GetFrameTime();
+
         player.Move();
         player.Update();
         enemy.Move();
         enemy.Update();
+        enemy.Attack(deltaTime);
 
         BeginDrawing();
             ClearBackground(RAYWHITE);

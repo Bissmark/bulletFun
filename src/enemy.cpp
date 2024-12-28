@@ -1,8 +1,9 @@
 #include "enemy.h"
 #include "player.h"
 #include <iostream>
+#include <raymath.h>
 
-Enemy::Enemy(Player& player) : player(player)
+Enemy::Enemy(Player& player) : player(player), timeSinceLastAttack(0.0f)
 {
     currentFrame = 0;
 
@@ -35,14 +36,17 @@ void Enemy::Move()
         enemyPosition.x += speedX;
         isMoving = true;
         direction = RIGHT;
-    } else if (player.playerPosition.x < enemyPosition.x) {
+    }
+    if (player.playerPosition.x < enemyPosition.x) {
         enemyPosition.x -= speedX;
         isMoving = true;
         direction = LEFT;
-    } else if (player.playerPosition.y > enemyPosition.y) {
+    }
+    if (player.playerPosition.y > enemyPosition.y) {
         enemyPosition.y += speedY;
         isMoving = true;
-    } else if (player.playerPosition.y < enemyPosition.y) {
+    }
+    if (player.playerPosition.y < enemyPosition.y) {
         enemyPosition.y -= speedY;
         isMoving = true;
     }
@@ -73,6 +77,17 @@ void Enemy::UpdateFrame()
         ++currentFrame;
         currentFrame %= numFrames;
         frameRec.x = (float)frameWidth * currentFrame;
+    }
+}
+
+void Enemy::Attack(float deltaTime)
+{
+    timeSinceLastAttack += deltaTime;
+
+    float distance = Vector2Distance(player.playerPosition, enemyPosition);
+    if (distance < player.radius + radius && timeSinceLastAttack > 1.0f) {
+        player.healthPoints -= 10;
+        timeSinceLastAttack = 0.0f;
     }
 }
 

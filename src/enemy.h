@@ -9,7 +9,7 @@ class Enemy
         void Update();
         void Move();
         void Draw() const;
-        void Attack();
+        void Attack(float deltaTime);
 
     private:
         int healthPoints;
@@ -30,5 +30,6 @@ class Enemy
         unsigned int numFrames;
         enum Direction { LEFT, RIGHT } direction;
         Player& player;
+        float timeSinceLastAttack; // Time since the last attack
         void UpdateFrame();
 };
