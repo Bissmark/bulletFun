@@ -1,6 +1,7 @@
 #include <raylib.h>
 #include "enemy.h"
 #include "player.h"
+#include "enemySpawner.h"
 #include <raymath.h>
 #include <cmath>
 
@@ -15,6 +16,7 @@ int main()
     InitWindow(screenWidth, screenHeight, "2D Game");
 
     Player player;
+    EnemySpawner enemySpawner(player, 5, 2);
     Enemy enemy(player);
 
     Camera2D camera = { 0 };
@@ -31,16 +33,22 @@ int main()
 
         player.Move();
         player.Update();
-        enemy.Move();
-        enemy.Update();
-        enemy.Attack(deltaTime);
+        enemySpawner.Update(deltaTime);
+        // enemy.Move();
+        // enemy.Update();
+        // enemy.Attack(deltaTime);
 
         camera.target = Vector2Lerp(camera.target, player.playerPosition, 0.1f);
 
+        // float screenWidth = GetScreenWidth();
+        // float screenHeight = GetScreenHeight();
+        // camera.offset = (Vector2){screenWidth / 2.0f, screenHeight / 2.0f};
+
         BeginDrawing();
             ClearBackground(RAYWHITE);
+            DrawText(TextFormat("Health: %i", player.healthPoints), 10, 10, 20, RED);
             BeginMode2D(camera);
-                enemy.Draw();
+                enemySpawner.Draw();
                 player.Draw();
             EndMode2D();    
         EndDrawing();

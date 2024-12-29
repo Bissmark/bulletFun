@@ -92,11 +92,16 @@ void Enemy::Attack(float deltaTime)
 }
 
 void Enemy::Draw() const
-{   if (direction == RIGHT) {
+{   
+    if (direction == RIGHT) {
         DrawTextureRec(currentTexture, frameRec, enemyPosition, WHITE);
     } else {
         Rectangle flippedFrameRec = frameRec;
         flippedFrameRec.width = -frameRec.width;
         DrawTextureRec(currentTexture, flippedFrameRec, enemyPosition, WHITE);
     }
+
+    // Draw Health Bar above enemy
+    //DrawRectangle(enemyPosition.x - 20, enemyPosition.y - 20, 40, 5, RED);
+    //DrawRectangle(enemyPosition.x - 20, enemyPosition.y - 20, ((float)healthPoints / 100), 5, GREEN);
 }
