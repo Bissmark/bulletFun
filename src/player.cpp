@@ -31,6 +31,10 @@ Player::Player()
 void Player::Update()
 {
     frameRec.x = (float)currentFrame * (float)currentTexture.width / numFrames;
+
+    for (auto& bullet : bullets) {
+        bullet.Move();
+    }
 }
 
 void Player::Move()
@@ -87,7 +91,13 @@ void Player::UpdateFrame()
 
 void Player::Fire()
 {
-    
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        bullets.push_back(Bullet(playerPosition, 5, BLUE));
+    }
+
+    // for (auto& bullet : bullets) {
+    //     bullet.Update();
+    // }
 }
 
 void Player::Draw() const
@@ -101,5 +111,7 @@ void Player::Draw() const
         DrawTextureRec(currentTexture, flippedFrameRec, playerPosition, WHITE);
     }
 
-    
+    for (auto& bullet : bullets) {
+        bullet.Draw();
+    }
 }

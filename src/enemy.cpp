@@ -3,18 +3,17 @@
 #include <iostream>
 #include <raymath.h>
 
-Enemy::Enemy(Player& player) : player(player), timeSinceLastAttack(0.0f)
+Enemy::Enemy(Player& player) : player(player), timeSinceLastAttack(0.0f), hitPlayer(false)
 {
     currentFrame = 0;
-
     framesCounter = 0;
     framesSpeed = 5;
-
     speedX = 2;
     speedY = 2;
-
     numFrames = 4;
     frameWidth = enemyIdle.width / numFrames;
+
+    health = 100;
     
     enemyIdle = LoadTexture("src/Spritesheet/enemy/Idle.png");
     enemyWalk = LoadTexture("src/Spritesheet/enemy/Walk.png");
@@ -85,10 +84,30 @@ void Enemy::Attack(float deltaTime)
     timeSinceLastAttack += deltaTime;
 
     float distance = Vector2Distance(player.playerPosition, enemyPosition);
-    if (distance < player.radius + radius && timeSinceLastAttack > 1.0f) {
+    if (distance < player.radius && timeSinceLastAttack > 1.0f) {
         player.healthPoints -= 10;
+        health -= 10;
         timeSinceLastAttack = 0.0f;
+        hitPlayer = true;
+    } else {
+        hitPlayer = false;
     }
+
+    if (health <= 0) {
+        Destroy();
+    }
+}
+
+// bool Enemy::isDestroyed() const
+// {
+//     return health <= 0;
+// }
+
+
+void Enemy::Destroy()
+{
+    UnloadTexture(enemyIdle);
+    UnloadTexture(enemyWalk);
 }
 
 void Enemy::Draw() const
@@ -102,6 +121,22 @@ void Enemy::Draw() const
     }
 
     // Draw Health Bar above enemy
-    //DrawRectangle(enemyPosition.x - 20, enemyPosition.y - 20, 40, 5, RED);
-    //DrawRectangle(enemyPosition.x - 20, enemyPosition.y - 20, ((float)healthPoints / 100), 5, GREEN);
+    float healthBarWidth = 40.0f;
+    //float healthBarPercentage = (float)health / maxHealth;
+    //float greenBarWidth = healthBarWidth * healthBarPercentage;
+
+    // DrawRectangle(enemyPosition.x - 20, enemyPosition.y - 20, healthBarWidth, 5, RED);
+    // for (int i = 0; i < player.healthPoints; i += 10) {
+    //     if (hitPlayer) {
+    //         player.healthPoints -= 10;
+    //         DrawRectangle(enemyPosition.x - 20 + i, enemyPosition.y - 20, greenBarWidth, 5, GREEN);
+    //     }
+    // }
+
+    for (int i = 0; i < health; i += 10) {
+        DrawRectangleRec({ enemyPosition.x - 20 + i, enemyPosition.y - 20, 5, 5 }, RED);
+        if (hitPlayer) {
+            DrawRectangleRec({ enemyPosition.x - 20 + i, enemyPosition.y - 20, 5, 5 }, GREEN);
+        }
+    }
 }

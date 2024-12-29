@@ -5,9 +5,6 @@
 #include <raymath.h>
 #include <cmath>
 
-#define MAX_FRAME_SPEED     15
-#define MIN_FRAME_SPEED      1
-
 int main() 
 {
     constexpr int screenWidth = 800;
@@ -17,7 +14,7 @@ int main()
 
     Player player;
     EnemySpawner enemySpawner(player, 5, 2);
-    Enemy enemy(player);
+    // Enemy enemy(player);
 
     Camera2D camera = { 0 };
     camera.target = player.playerPosition;
@@ -33,16 +30,10 @@ int main()
 
         player.Move();
         player.Update();
+        player.Fire();
         enemySpawner.Update(deltaTime);
-        // enemy.Move();
-        // enemy.Update();
-        // enemy.Attack(deltaTime);
 
         camera.target = Vector2Lerp(camera.target, player.playerPosition, 0.1f);
-
-        // float screenWidth = GetScreenWidth();
-        // float screenHeight = GetScreenHeight();
-        // camera.offset = (Vector2){screenWidth / 2.0f, screenHeight / 2.0f};
 
         BeginDrawing();
             ClearBackground(RAYWHITE);

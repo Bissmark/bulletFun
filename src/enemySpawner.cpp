@@ -1,6 +1,7 @@
 #include "enemySpawner.h"
 #include "player.h"
 #include <raymath.h>
+#include <algorithm>
 
 EnemySpawner::EnemySpawner(Player& player, int maxEnemies, int spawnRate)
     : player(player)
@@ -17,10 +18,7 @@ void EnemySpawner::Update(float deltaTime)
     ++framesCounter;
     spawnCounter += deltaTime;
 
-    if (framesCounter >= 60) {
-        framesCounter = 0;
-        //CheckCollision();
-    }
+    
 
     if (spawnCounter >= spawnRate && currentEnemies < maxEnemies) {
         spawnCounter = 0.0f;
@@ -31,6 +29,12 @@ void EnemySpawner::Update(float deltaTime)
         enemy.Move();
         enemy.Update();
         enemy.Attack(deltaTime);
+
+        // if (enemy.isDestroyed()) {
+        //     enemies.erase(std::remove_if(enemies.begin(), enemies.end(), [](const Enemy& enemy) { return enemy.isDestroyed(); }), enemies.end());
+        //     --currentEnemies;
+        //     //DestroyEnemy();
+        // }
     }
 }
 
@@ -44,7 +48,6 @@ void EnemySpawner::Draw() const
 void EnemySpawner::SpawnEnemy()
 {
     enemies.emplace_back(player);
-    enemies.back().Draw();
     ++currentEnemies;
 }
 

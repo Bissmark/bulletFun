@@ -11,7 +11,6 @@ class EnemySpawner
         void Draw() const;
         void SpawnEnemy();
         void DestroyEnemy();
-        void CheckCollision();
 
     private:
         Player& player;

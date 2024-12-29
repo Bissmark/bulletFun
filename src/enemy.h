@@ -10,26 +10,26 @@ class Enemy
         void Move();
         void Draw() const;
         void Attack(float deltaTime);
+        void Destroy();
 
     private:
-        int healthPoints;
-        int x;
-        int y;
-        int speedX;
-        int speedY;
-        int radius;
+        Player& player;
+        Vector2 enemyPosition;
         Texture2D enemyIdle;
         Texture2D enemyWalk;
         Texture2D currentTexture;
         Rectangle frameRec;
-        Vector2 enemyPosition;
         int currentFrame;
         int framesCounter;
         int framesSpeed;
         int frameWidth;
-        unsigned int numFrames;
+        int speedX;
+        int speedY;
+        int radius;
+        int numFrames;
+        float timeSinceLastAttack;
+        bool hitPlayer;
+        int health;
         enum Direction { LEFT, RIGHT } direction;
-        Player& player;
-        float timeSinceLastAttack; // Time since the last attack
         void UpdateFrame();
 };
