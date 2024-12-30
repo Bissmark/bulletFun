@@ -1,7 +1,7 @@
 #pragma once
 #include <raylib.h>
-#include "bullet.h"
 #include <vector>
+#include "bullet.h"
 
 class Player
 {

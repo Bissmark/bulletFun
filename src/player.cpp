@@ -1,4 +1,5 @@
 #include "player.h"
+#include "bullet.h"
 #include <iostream>
 #include <raymath.h>
 
@@ -31,7 +32,7 @@ Player::Player()
 
 void Player::Update()
 {
-    //frameRec.x = (float)currentFrame * (float)currentTexture.width / numFrames;
+    frameRec.x = (float)currentFrame * (float)currentTexture.width / numFrames;
 
     for (auto& bullet : bullets) {
         bullet.Move();

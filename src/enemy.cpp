@@ -13,6 +13,7 @@ Enemy::Enemy(Player& player) : player(player), timeSinceLastAttack(0.0f), hitPla
     numFrames = 4;
     frameWidth = enemyIdle.width / numFrames;
 
+    radius = 15;
     health = 100;
     
     enemyIdle = LoadTexture("src/Spritesheet/enemy/Idle.png");
@@ -25,6 +26,20 @@ Enemy::Enemy(Player& player) : player(player), timeSinceLastAttack(0.0f), hitPla
 void Enemy::Update()
 {
     frameRec.x = (float)currentFrame * (float)currentTexture.width / numFrames;
+
+    // Check for bullet collisions with this enemy
+    for (auto it = player.bullets.begin(); it != player.bullets.end(); ) {
+
+        if (it->Collision(*this)) {
+            std::cout << "Bullet collided with enemy!" << std::endl;
+            // Handle collision (e.g., reduce enemy health, destroy bullet, etc.)
+
+            health -= 10; // Example: reduce enemy health
+            it = player.bullets.erase(it); // Remove the bullet
+        } else {
+            ++it;
+        }
+    }
 }
 
 void Enemy::Move()
