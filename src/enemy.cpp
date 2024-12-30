@@ -93,9 +93,9 @@ void Enemy::Attack(float deltaTime)
         hitPlayer = false;
     }
 
-    if (health <= 0) {
-        Destroy();
-    }
+    // if (health <= 0) {
+    //     Destroy();
+    // }
 }
 
 // bool Enemy::isDestroyed() const

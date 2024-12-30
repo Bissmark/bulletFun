@@ -1,5 +1,6 @@
 #include "player.h"
 #include <iostream>
+#include <raymath.h>
 
 Player::Player()
     : healthPoints(100)
@@ -16,11 +17,11 @@ Player::Player()
     framesCounter = 0;
     framesSpeed = 5;
 
-    numFrames = 4;
-    frameWidth = playerIdle.width / numFrames;
-
     playerIdle = LoadTexture("src/Spritesheet/player/Idle.png");
     playerWalk = LoadTexture("src/Spritesheet/player/Walk.png");
+
+    numFrames = 4;
+    frameWidth = playerIdle.width / numFrames;
 
     currentTexture = playerIdle;
 
@@ -30,7 +31,7 @@ Player::Player()
 
 void Player::Update()
 {
-    frameRec.x = (float)currentFrame * (float)currentTexture.width / numFrames;
+    //frameRec.x = (float)currentFrame * (float)currentTexture.width / numFrames;
 
     for (auto& bullet : bullets) {
         bullet.Move();
@@ -92,12 +93,10 @@ void Player::UpdateFrame()
 void Player::Fire()
 {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-        bullets.push_back(Bullet(playerPosition, 5, BLUE));
+        Vector2 mousePosition = GetMousePosition();
+        Vector2 direction = Vector2Subtract(mousePosition, playerPosition);
+        bullets.push_back(Bullet(playerPosition, direction, 5, BLUE));
     }
-
-    // for (auto& bullet : bullets) {
-    //     bullet.Update();
-    // }
 }
 
 void Player::Draw() const
