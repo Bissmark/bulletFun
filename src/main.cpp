@@ -3,6 +3,7 @@
 #include "player.h"
 #include "enemySpawner.h"
 #include "background.h"
+#include "powerup.h"
 #include <raymath.h>
 #include <cmath>
 #include <iostream>
@@ -17,6 +18,7 @@ int main()
     Player player;
     EnemySpawner enemySpawner(player, 5, 2);
     Background background;
+    Powerup powerup;
 
     Camera2D camera = { 0 };
     camera.target = player.playerPosition;
@@ -48,6 +50,7 @@ int main()
                 background.Draw();
                 enemySpawner.Draw();
                 player.Draw();
+                powerup.Draw();
             EndMode2D();    
             DrawText(TextFormat("Health: %i", player.healthPoints), 10, 10, 20, RED);
             DrawText(TextFormat("Player Position: (%.2f, %.2f)", player.playerPosition.x, player.playerPosition.y), 10, 30, 20, RED);

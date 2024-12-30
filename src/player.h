@@ -8,8 +8,8 @@ class Player
     public: 
         Player();
         Vector2 playerPosition;
-        int healthPoints;
         int radius;
+        int healthPoints;
         void Update();
         void Move();
         void Draw() const;
@@ -17,13 +17,13 @@ class Player
         std::vector<Bullet> bullets;
 
     private:
-        int speedX;
-        int speedY;
         Texture2D playerIdle;
         Texture2D playerWalk;
         Texture2D currentTexture;
         Rectangle frameRec;
         Rectangle boxCollision;
+        int speedX;
+        int speedY;
         int currentFrame;
         int framesCounter;
         int framesSpeed;

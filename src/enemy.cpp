@@ -113,16 +113,12 @@ void Enemy::Attack(float deltaTime)
     // }
 }
 
-// bool Enemy::isDestroyed() const
-// {
-//     return health <= 0;
-// }
-
 
 void Enemy::Destroy()
 {
-    UnloadTexture(enemyIdle);
-    UnloadTexture(enemyWalk);
+
+    //UnloadTexture(enemyIdle);
+    //UnloadTexture(enemyWalk);
 }
 
 void Enemy::Draw() const
@@ -134,19 +130,6 @@ void Enemy::Draw() const
         flippedFrameRec.width = -frameRec.width;
         DrawTextureRec(currentTexture, flippedFrameRec, enemyPosition, WHITE);
     }
-
-    // Draw Health Bar above enemy
-    float healthBarWidth = 40.0f;
-    //float healthBarPercentage = (float)health / maxHealth;
-    //float greenBarWidth = healthBarWidth * healthBarPercentage;
-
-    // DrawRectangle(enemyPosition.x - 20, enemyPosition.y - 20, healthBarWidth, 5, RED);
-    // for (int i = 0; i < player.healthPoints; i += 10) {
-    //     if (hitPlayer) {
-    //         player.healthPoints -= 10;
-    //         DrawRectangle(enemyPosition.x - 20 + i, enemyPosition.y - 20, greenBarWidth, 5, GREEN);
-    //     }
-    // }
 
     for (int i = 0; i < health; i += 10) {
         DrawRectangleRec({ enemyPosition.x - 20 + i, enemyPosition.y - 20, 5, 5 }, RED);
