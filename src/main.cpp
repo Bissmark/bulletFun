@@ -37,6 +37,7 @@ int main()
         player.Fire();
         player.Move();
         player.Update();
+        powerup.Update(player);
         enemySpawner.Update(deltaTime);
 
         Vector2 playerMovement = Vector2Subtract(player.playerPosition, previousPosition);
@@ -49,8 +50,8 @@ int main()
             BeginMode2D(camera);
                 background.Draw();
                 enemySpawner.Draw();
-                player.Draw();
                 powerup.Draw();
+                player.Draw();
             EndMode2D();    
             DrawText(TextFormat("Health: %i", player.healthPoints), 10, 10, 20, RED);
             DrawText(TextFormat("Player Position: (%.2f, %.2f)", player.playerPosition.x, player.playerPosition.y), 10, 30, 20, RED);

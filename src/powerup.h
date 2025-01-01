@@ -1,15 +1,17 @@
 #pragma once
 #include <raylib.h>
 
+class Player;
+
 class Powerup
 {
     public:
         Powerup();
         Vector2 powerupPosition;
         int radius;
-        void Update();
+        void Update(Player& player);
         void Draw() const;
-        void CheckCollision();
+        void CheckCollision(Player& player);
         void Respawn();
         bool isActive;
         bool isCollected;
