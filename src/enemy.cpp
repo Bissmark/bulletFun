@@ -11,6 +11,7 @@ Enemy::Enemy(Player& player) : player(player), timeSinceLastAttack(0.0f), hitPla
     speedX = 2;
     speedY = 2;
     numFrames = 4;
+    maxHealth = 100;
     frameWidth = enemyIdle.width / numFrames;
 
     radius = 15;
@@ -131,10 +132,17 @@ void Enemy::Draw() const
         DrawTextureRec(currentTexture, flippedFrameRec, enemyPosition, WHITE);
     }
 
-    for (int i = 0; i < health; i += 10) {
-        DrawRectangleRec({ enemyPosition.x - 20 + i, enemyPosition.y - 20, 5, 5 }, RED);
-        if (hitPlayer) {
-            DrawRectangleRec({ enemyPosition.x - 20 + i, enemyPosition.y - 20, 5, 5 }, GREEN);
-        }
-    }
+    //float healthPercentage = (float)health / maxHealth;
+
+    // Draw health bar
+    float healthPercentage = (float)health / maxHealth;
+    float barWidth = 50.0f; // Width of the health bar
+    float barHeight = 5.0f; // Height of the health bar
+    Vector2 barPosition = { enemyPosition.x, enemyPosition.y - 10.0f }; // Position of the health bar above the enemy
+
+    // Draw the background of the health bar (max health)
+    DrawRectangle(barPosition.x, barPosition.y, barWidth, barHeight, RED);
+
+    // Draw the current health bar
+    DrawRectangle(barPosition.x, barPosition.y, barWidth * healthPercentage, barHeight, GREEN);
 }

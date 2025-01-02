@@ -30,6 +30,7 @@ class Enemy
         int speedX;
         int speedY;
         int numFrames;
+        int maxHealth;
         float timeSinceLastAttack;
         bool hitPlayer;
         enum Direction { LEFT, RIGHT } direction;
