@@ -22,11 +22,15 @@ Enemy::Enemy(Player& player) : player(player), timeSinceLastAttack(0.0f), hitPla
 
     frameRec = { 0.0f, 0.0f, (float)enemyIdle.width / numFrames, (float)enemyIdle.height };
     enemyPosition = { (float)GetScreenWidth() / 3, (float)GetScreenHeight() / 3 };
+    boxCollision = { enemyPosition.x, enemyPosition.y, (float)enemyIdle.width / numFrames, (float)enemyIdle.height };
 }
 
 void Enemy::Update()
 {
     frameRec.x = (float)currentFrame * (float)currentTexture.width / numFrames;
+
+    boxCollision.x = enemyPosition.x;
+    boxCollision.y = enemyPosition.y;
 
     // Check for bullet collisions with this enemy
     for (auto it = player.bullets.begin(); it != player.bullets.end(); ) {
@@ -37,6 +41,7 @@ void Enemy::Update()
 
             health -= 10; // Example: reduce enemy health
             it = player.bullets.erase(it); // Remove the bullet
+            Destroy();
         } else {
             ++it;
         }
@@ -117,9 +122,9 @@ void Enemy::Attack(float deltaTime)
 
 void Enemy::Destroy()
 {
-
-    //UnloadTexture(enemyIdle);
-    //UnloadTexture(enemyWalk);
+    if (health <= 0) {
+        // Destroy the enemy
+    }
 }
 
 void Enemy::Draw() const

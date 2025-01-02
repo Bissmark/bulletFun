@@ -11,6 +11,7 @@ class Enemy
         Vector2 enemyPosition;
         int radius;
         int health;
+        Rectangle boxCollision;
         void Update();
         void Move();
         void Draw() const;

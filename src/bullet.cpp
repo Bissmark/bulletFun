@@ -16,15 +16,16 @@ void Bullet::Move()
 {
     position.x += direction.x * speed;
     position.y += direction.y * speed;
-
-    //Collision(player, enemy);
 }
 
 bool Bullet::Collision(Enemy& enemy)
 {
-    // Check if bullet collides with enemy
-    float distance = Vector2Distance(position, enemy.enemyPosition);
-    return distance < enemy.radius;
+    Rectangle bulletCollision = { position.x, position.y, 5, 5 };
+
+    if (CheckCollisionRecs(bulletCollision, enemy.boxCollision)) {
+        return true;
+    }
+    return false;
 }
 
 void Bullet::Draw() const
