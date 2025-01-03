@@ -36,9 +36,6 @@ void Enemy::Update()
     for (auto it = player.bullets.begin(); it != player.bullets.end(); ) {
 
         if (it->Collision(*this)) {
-            std::cout << "Bullet collided with enemy!" << std::endl;
-            // Handle collision (e.g., reduce enemy health, destroy bullet, etc.)
-
             health -= 10; // Example: reduce enemy health
             it = player.bullets.erase(it); // Remove the bullet
             Destroy();
@@ -107,7 +104,7 @@ void Enemy::Attack(float deltaTime)
     float distance = Vector2Distance(player.playerPosition, enemyPosition);
     if (distance < player.radius && timeSinceLastAttack > 1.0f) {
         player.healthPoints -= 10;
-        health -= 10;
+        //health -= 10;
         timeSinceLastAttack = 0.0f;
         hitPlayer = true;
     } else {
@@ -124,6 +121,9 @@ void Enemy::Destroy()
 {
     if (health <= 0) {
         // Destroy the enemy
+        //UnloadTexture(enemyIdle);
+        //UnloadTexture(enemyWalk);
+        player.experiencePoints += 10;
     }
 }
 

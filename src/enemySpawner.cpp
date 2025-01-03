@@ -18,8 +18,6 @@ void EnemySpawner::Update(float deltaTime)
     ++framesCounter;
     spawnCounter += deltaTime;
 
-    
-
     if (spawnCounter >= spawnRate && currentEnemies < maxEnemies) {
         spawnCounter = 0.0f;
         SpawnEnemy();
@@ -29,13 +27,10 @@ void EnemySpawner::Update(float deltaTime)
         enemy.Move();
         enemy.Update();
         enemy.Attack(deltaTime);
-
-        // if (enemy.isDestroyed()) {
-        //     enemies.erase(std::remove_if(enemies.begin(), enemies.end(), [](const Enemy& enemy) { return enemy.isDestroyed(); }), enemies.end());
-        //     --currentEnemies;
-        //     //DestroyEnemy();
-        // }
     }
+
+    // Update the current number of enemies
+    currentEnemies = enemies.size();
 }
 
 void EnemySpawner::Draw() const
@@ -58,32 +53,3 @@ void EnemySpawner::DestroyEnemy()
         --currentEnemies;
     }
 }
-
-// void EnemySpawner::CheckCollision()
-// {
-//     CheckPlayerCollision();
-//     CheckBulletCollision();
-// }
-
-// void EnemySpawner::CheckPlayerCollision()
-// {
-//     for (auto& enemy : enemies) {
-//         float distance = Vector2Distance(enemy.enemyPosition, enemy.player.playerPosition);
-//         if (distance < enemy.radius + enemy.player.radius) {
-//             enemy.player.healthPoints -= 10;
-//         }
-//     }
-// }
-
-// void EnemySpawner::CheckBulletCollision()
-// {
-//     for (auto& enemy : enemies) {
-//         for (auto& bullet : enemy.bullets) {
-//             float distance = Vector2Distance(bullet.bulletPosition, enemy.enemyPosition);
-//             if (distance < bullet.radius + enemy.radius) {
-//                 bullet.isAlive = false;
-//                 enemy.healthPoints -= 10;
-//             }
-//         }
-//     }
-// }

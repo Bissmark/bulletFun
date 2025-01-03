@@ -20,9 +20,12 @@ void Bullet::Move()
 
 bool Bullet::Collision(Enemy& enemy)
 {
-    Rectangle bulletCollision = { position.x, position.y, 5, 5 };
+    Rectangle bulletCollision = { position.x, position.y, enemy.radius, enemy.radius };
 
     if (CheckCollisionRecs(bulletCollision, enemy.boxCollision)) {
+        if (enemy.health <= 0) {
+            enemy.Destroy();
+        }
         return true;
     }
     return false;

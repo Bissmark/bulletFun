@@ -53,9 +53,12 @@ int main()
                 powerup.Draw();
                 player.Draw();
             EndMode2D();    
+                player.DrawExp();
             DrawText(TextFormat("Health: %i", player.healthPoints), 10, 10, 20, RED);
             DrawText(TextFormat("Player Position: (%.2f, %.2f)", player.playerPosition.x, player.playerPosition.y), 10, 30, 20, RED);
             DrawText(TextFormat("Player Movement: (%.2f, %.2f)", playerMovement.x, playerMovement.y), 10, 50, 20, RED);
+            DrawText(TextFormat("Experience: %i", player.experiencePoints), 10, 70, 20, RED);
+            DrawText(TextFormat("%i", player.level), 30, screenHeight - 50, 30, WHITE);
         EndDrawing();
     }
     

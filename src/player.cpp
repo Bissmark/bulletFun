@@ -10,13 +10,14 @@ Player::Player()
     , radius(15)
     , boxCollision({ 0 })
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     currentFrame = 0;
 
     framesCounter = 0;
     framesSpeed = 5;
+
+    level = 1;
+    experiencePoints = 0;
+    maxExperiencePoints = 100;
 
     playerIdle = LoadTexture("src/Spritesheet/player/Idle.png");
     playerWalk = LoadTexture("src/Spritesheet/player/Walk.png");
@@ -37,6 +38,8 @@ void Player::Update()
     for (auto& bullet : bullets) {
         bullet.Move();
     }
+
+    LevelUp();
 }
 
 void Player::Move()
@@ -100,6 +103,15 @@ void Player::Fire()
     }
 }
 
+void Player::LevelUp()
+{
+    if (experiencePoints >= maxExperiencePoints) {
+        experiencePoints = 0;
+        maxExperiencePoints *= 2;
+        ++level;
+    }
+}
+
 void Player::Draw() const
 {
     if (direction == RIGHT) {
@@ -114,4 +126,18 @@ void Player::Draw() const
     for (auto& bullet : bullets) {
         bullet.Draw();
     }
+}
+
+void Player::DrawExp() const
+{
+    float expPercentage = (float)experiencePoints / maxExperiencePoints;
+    float barWidth = 650.0f;
+    float barHeight = 15.0f;
+    Vector2 barPosition = { screenWidth / 10.0f, screenHeight - 40.0f };
+
+    // Draw background of the exp bar
+    DrawRectangle(barPosition.x, barPosition.y, barWidth, barHeight, GRAY);
+
+    // Draw the exp bar
+    DrawRectangle(barPosition.x, barPosition.y, barWidth * expPercentage, barHeight, GOLD);
 }

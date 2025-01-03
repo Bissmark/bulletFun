@@ -10,10 +10,15 @@ class Player
         Vector2 playerPosition;
         int radius;
         int healthPoints;
+        int experiencePoints;
+        int maxExperiencePoints;
+        int level;
         void Update();
         void Move();
         void Draw() const;
         void Fire();
+        void LevelUp();
+        void DrawExp() const;
         std::vector<Bullet> bullets;
 
     private:
@@ -30,6 +35,8 @@ class Player
         int frameWidth;
         int currentEnemiesKilled;
         unsigned int numFrames;
+        const int screenWidth = GetScreenWidth();
+        const int screenHeight = GetScreenHeight();
         enum Direction { LEFT, RIGHT } direction;
         void UpdateFrame();
 };
