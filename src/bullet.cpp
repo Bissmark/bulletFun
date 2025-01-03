@@ -7,7 +7,7 @@
 Bullet::Bullet(Vector2 position, Vector2 direction, float speed, Color color)
 {
     this->position = position;
-    this->direction = Vector2Normalize(direction);
+    this->direction = direction;
     this->speed = speed;
     this->color = color;
 }
@@ -20,7 +20,7 @@ void Bullet::Move()
 
 bool Bullet::Collision(Enemy& enemy)
 {
-    Rectangle bulletCollision = { position.x, position.y, enemy.radius, enemy.radius };
+    Rectangle bulletCollision = { position.x - 2.5f, position.y - 2.5f, 5.0f, 5.0f };
 
     if (CheckCollisionRecs(bulletCollision, enemy.boxCollision)) {
         if (enemy.health <= 0) {

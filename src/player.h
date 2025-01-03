@@ -16,7 +16,7 @@ class Player
         void Update();
         void Move();
         void Draw() const;
-        void Fire();
+        void Fire(const Camera2D& camera);
         void LevelUp();
         void DrawExp() const;
         std::vector<Bullet> bullets;

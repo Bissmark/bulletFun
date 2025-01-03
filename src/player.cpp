@@ -28,7 +28,7 @@ Player::Player()
     currentTexture = playerIdle;
 
     frameRec = { 0.0f, 0.0f, (float)playerIdle.width / numFrames, (float)playerIdle.height };
-    playerPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    playerPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
 }
 
 void Player::Update()
@@ -94,11 +94,19 @@ void Player::UpdateFrame()
     }
 }
 
-void Player::Fire()
+void Player::Fire(const Camera2D& camera)
 {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         Vector2 mousePosition = GetMousePosition();
-        Vector2 direction = Vector2Subtract(mousePosition, playerPosition);
+        std::cout << "Mouse Position: (" << mousePosition.x << ", " << mousePosition.y << ")" << std::endl;
+
+        // Convert player position to screen space
+        Vector2 screenPlayerPosition = GetWorldToScreen2D(playerPosition, camera);
+        std::cout << "Screen Player Position: (" << screenPlayerPosition.x << ", " << screenPlayerPosition.y << ")" << std::endl;
+
+        Vector2 direction = Vector2Subtract(mousePosition, screenPlayerPosition);
+        std::cout << "Direction: (" << direction.x << ", " << direction.y << ")" << std::endl;
+        direction = Vector2Normalize(direction);
         bullets.push_back(Bullet(playerPosition, direction, 5, BLUE));
     }
 }
@@ -108,7 +116,7 @@ void Player::LevelUp()
     if (experiencePoints >= maxExperiencePoints) {
         experiencePoints = 0;
         maxExperiencePoints *= 2;
-        ++level;
+        level++;
     }
 }
 

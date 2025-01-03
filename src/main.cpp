@@ -32,15 +32,12 @@ int main()
     {
         float deltaTime = GetFrameTime();
 
-        Vector2 previousPosition = player.playerPosition;
-
-        player.Fire();
+        player.Fire(camera);
         player.Move();
         player.Update();
         powerup.Update(player);
-        enemySpawner.Update(deltaTime);
+        //enemySpawner.Update(deltaTime);
 
-        Vector2 playerMovement = Vector2Subtract(player.playerPosition, previousPosition);
         background.Update(player.playerPosition);
 
         camera.target = Vector2Lerp(camera.target, player.playerPosition, 0.1f);
@@ -49,14 +46,13 @@ int main()
             ClearBackground(RAYWHITE);
             BeginMode2D(camera);
                 background.Draw();
-                enemySpawner.Draw();
+                //enemySpawner.Draw();
                 powerup.Draw();
                 player.Draw();
             EndMode2D();    
                 player.DrawExp();
             DrawText(TextFormat("Health: %i", player.healthPoints), 10, 10, 20, RED);
             DrawText(TextFormat("Player Position: (%.2f, %.2f)", player.playerPosition.x, player.playerPosition.y), 10, 30, 20, RED);
-            DrawText(TextFormat("Player Movement: (%.2f, %.2f)", playerMovement.x, playerMovement.y), 10, 50, 20, RED);
             DrawText(TextFormat("Experience: %i", player.experiencePoints), 10, 70, 20, RED);
             DrawText(TextFormat("%i", player.level), 30, screenHeight - 50, 30, WHITE);
         EndDrawing();
