@@ -1,7 +1,10 @@
 #pragma once
 #include <vector>
+#include <memory>
 #include "enemy.h"
 #include "player.h"
+
+class Player;
 
 class EnemySpawner
 {
@@ -11,10 +14,10 @@ class EnemySpawner
         void Draw() const;
         void SpawnEnemy();
         void DestroyEnemy();
+        Player& player;
 
     private:
-        Player& player;
-        std::vector<Enemy> enemies;
+        std::vector<std::unique_ptr<Enemy>> enemies;
         int maxEnemies;
         int spawnRate;
         int currentEnemies;

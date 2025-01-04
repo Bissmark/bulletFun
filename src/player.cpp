@@ -141,7 +141,7 @@ void Player::DrawExp() const
     float expPercentage = (float)experiencePoints / maxExperiencePoints;
     float barWidth = 650.0f;
     float barHeight = 15.0f;
-    Vector2 barPosition = { screenWidth / 10.0f, screenHeight - 40.0f };
+    Vector2 barPosition = { GetScreenWidth() / 10.0f, GetScreenHeight() - 40.0f };
 
     // Draw background of the exp bar
     DrawRectangle(barPosition.x, barPosition.y, barWidth, barHeight, GRAY);

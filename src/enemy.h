@@ -8,6 +8,8 @@ class Enemy
 {
     public: 
         Enemy(Player& player);
+        Enemy(const Enemy&) = delete;              // Disallow copying
+        Enemy& operator=(const Enemy&) = delete;   // Disallow assignment
         Vector2 enemyPosition;
         int radius;
         int health;
@@ -16,7 +18,7 @@ class Enemy
         void Move();
         void Draw() const;
         void Attack(float deltaTime);
-        void Destroy();
+        bool Destroy();
 
     private:
         Player& player;

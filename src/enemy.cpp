@@ -117,14 +117,18 @@ void Enemy::Attack(float deltaTime)
 }
 
 
-void Enemy::Destroy()
+bool Enemy::Destroy()
 {
     if (health <= 0) {
         // Destroy the enemy
         //UnloadTexture(enemyIdle);
         //UnloadTexture(enemyWalk);
         player.experiencePoints += 10;
+
+        return true;
     }
+
+    return false;
 }
 
 void Enemy::Draw() const

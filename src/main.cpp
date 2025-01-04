@@ -36,7 +36,7 @@ int main()
         player.Move();
         player.Update();
         powerup.Update(player);
-        //enemySpawner.Update(deltaTime);
+        enemySpawner.Update(deltaTime);
 
         background.Update(player.playerPosition);
 
@@ -46,7 +46,7 @@ int main()
             ClearBackground(RAYWHITE);
             BeginMode2D(camera);
                 background.Draw();
-                //enemySpawner.Draw();
+                enemySpawner.Draw();
                 powerup.Draw();
                 player.Draw();
             EndMode2D();    

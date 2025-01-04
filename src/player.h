@@ -35,8 +35,6 @@ class Player
         int frameWidth;
         int currentEnemiesKilled;
         unsigned int numFrames;
-        const int screenWidth = GetScreenWidth();
-        const int screenHeight = GetScreenHeight();
         enum Direction { LEFT, RIGHT } direction;
         void UpdateFrame();
 };

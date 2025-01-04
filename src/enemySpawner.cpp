@@ -24,11 +24,20 @@ void EnemySpawner::Update(float deltaTime)
     }
 
     for (auto& enemy : enemies) {
-        enemy.Move();
-        enemy.Update();
-        enemy.Attack(deltaTime);
+        enemy->Move();
+        enemy->Update();
+        enemy->Attack(deltaTime);
     }
 
+    for (auto it = enemies.begin(); it != enemies.end(); ) {
+        (*it)->Update(); // Call the enemy's update method
+        
+        if ((*it)->Destroy()) { // Check if the enemy should be destroyed
+            it = enemies.erase(it); // Remove the enemy from the vector
+        } else {
+            ++it; // Move to the next enemy
+        }
+    }
     // Update the current number of enemies
     currentEnemies = enemies.size();
 }
@@ -36,13 +45,13 @@ void EnemySpawner::Update(float deltaTime)
 void EnemySpawner::Draw() const
 {
     for (const auto& enemy : enemies) {
-        enemy.Draw();
+        enemy->Draw();
     }
 }
 
 void EnemySpawner::SpawnEnemy()
 {
-    enemies.emplace_back(player);
+    enemies.emplace_back(std::make_unique<Enemy>(player));
     ++currentEnemies;
 }
 
@@ -50,6 +59,5 @@ void EnemySpawner::DestroyEnemy()
 {
     if (!enemies.empty()) {
         enemies.pop_back();
-        --currentEnemies;
     }
 }
