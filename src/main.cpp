@@ -32,13 +32,15 @@ int main()
     {
         float deltaTime = GetFrameTime();
 
-        player.Fire(camera);
-        player.Move();
-        player.Update();
-        powerup.Update(player);
-        enemySpawner.Update(deltaTime);
+        if (!player.gamePaused) {
+            player.Fire(camera);
+            player.Move();
+            player.Update();
+            powerup.Update(player);
+            enemySpawner.Update(deltaTime);
 
-        background.Update(player.playerPosition);
+            background.Update(player.playerPosition);
+        }
 
         camera.target = Vector2Lerp(camera.target, player.playerPosition, 0.1f);
 
@@ -51,6 +53,7 @@ int main()
                 player.Draw();
             EndMode2D();    
                 player.DrawExp();
+                player.DrawLevelUpBox();
             DrawText(TextFormat("Health: %i", player.healthPoints), 10, 10, 20, RED);
             DrawText(TextFormat("Elapsed Time: %i seconds", (int)player.elapsedTime), 10, 50, 20, RED);
             DrawText(TextFormat("Player Position: (%.2f, %.2f)", player.playerPosition.x, player.playerPosition.y), 10, 30, 20, RED);

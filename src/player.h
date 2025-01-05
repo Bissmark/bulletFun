@@ -15,12 +15,14 @@ class Player
         int level;
         int attackSpeed;
         double elapsedTime;
+        bool gamePaused;
         void Update();
         void Move();
         void Draw() const;
         void Fire(const Camera2D& camera);
         void LevelUp();
         void DrawExp() const;
+        void DrawLevelUpBox();
         std::vector<Bullet> bullets;
 
     private:
@@ -37,6 +39,7 @@ class Player
         int frameWidth;
         int currentEnemiesKilled;
         unsigned int numFrames;
+        bool leveledUp;
         enum Direction { LEFT, RIGHT } direction;
         double startTime;
         void UpdateFrame();
