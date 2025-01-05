@@ -13,6 +13,8 @@ class Player
         int experiencePoints;
         int maxExperiencePoints;
         int level;
+        int attackSpeed;
+        double elapsedTime;
         void Update();
         void Move();
         void Draw() const;
@@ -36,5 +38,7 @@ class Player
         int currentEnemiesKilled;
         unsigned int numFrames;
         enum Direction { LEFT, RIGHT } direction;
+        double startTime;
         void UpdateFrame();
+
 };

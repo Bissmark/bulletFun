@@ -9,6 +9,9 @@ Player::Player()
     , speedY(5)
     , radius(15)
     , boxCollision({ 0 })
+    , currentEnemiesKilled(0)
+    , startTime(GetTime())
+    , elapsedTime(0.0)
 {
     currentFrame = 0;
 
@@ -18,6 +21,7 @@ Player::Player()
     level = 1;
     experiencePoints = 0;
     maxExperiencePoints = 100;
+    attackSpeed = 5;
 
     playerIdle = LoadTexture("src/Spritesheet/player/Idle.png");
     playerWalk = LoadTexture("src/Spritesheet/player/Walk.png");
@@ -40,6 +44,8 @@ void Player::Update()
     }
 
     LevelUp();
+
+    elapsedTime = GetTime() - startTime;
 }
 
 void Player::Move()
@@ -98,16 +104,10 @@ void Player::Fire(const Camera2D& camera)
 {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         Vector2 mousePosition = GetMousePosition();
-        std::cout << "Mouse Position: (" << mousePosition.x << ", " << mousePosition.y << ")" << std::endl;
-
-        // Convert player position to screen space
         Vector2 screenPlayerPosition = GetWorldToScreen2D(playerPosition, camera);
-        std::cout << "Screen Player Position: (" << screenPlayerPosition.x << ", " << screenPlayerPosition.y << ")" << std::endl;
-
         Vector2 direction = Vector2Subtract(mousePosition, screenPlayerPosition);
-        std::cout << "Direction: (" << direction.x << ", " << direction.y << ")" << std::endl;
         direction = Vector2Normalize(direction);
-        bullets.push_back(Bullet(playerPosition, direction, 5, BLUE));
+        bullets.push_back(Bullet(playerPosition, direction, attackSpeed, BLUE));
     }
 }
 

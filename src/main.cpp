@@ -52,6 +52,7 @@ int main()
             EndMode2D();    
                 player.DrawExp();
             DrawText(TextFormat("Health: %i", player.healthPoints), 10, 10, 20, RED);
+            DrawText(TextFormat("Elapsed Time: %i seconds", (int)player.elapsedTime), 10, 50, 20, RED);
             DrawText(TextFormat("Player Position: (%.2f, %.2f)", player.playerPosition.x, player.playerPosition.y), 10, 30, 20, RED);
             DrawText(TextFormat("Experience: %i", player.experiencePoints), 10, 70, 20, RED);
             DrawText(TextFormat("%i", player.level), 30, screenHeight - 50, 30, WHITE);

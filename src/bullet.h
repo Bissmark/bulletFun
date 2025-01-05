@@ -4,7 +4,8 @@
 class Player;
 class Enemy;
 
-class Bullet {
+class Bullet 
+{
     public:
         Vector2 position;
         Vector2 direction;
