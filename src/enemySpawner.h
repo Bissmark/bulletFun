@@ -2,7 +2,6 @@
 #include <vector>
 #include <memory>
 #include "enemy.h"
-#include "player.h"
 
 class Player;
 
@@ -14,13 +13,16 @@ class EnemySpawner
         void Draw() const;
         void SpawnEnemy();
         void DestroyEnemy();
-        Player& player;
 
     private:
+        Player& player;
         std::vector<std::unique_ptr<Enemy>> enemies;
         int maxEnemies;
         int spawnRate;
         int currentEnemies;
         int framesCounter;
         float spawnCounter;
+
+        enum EnemyType { ARCHER, SLIME, MAGE, WARRIOR, GRUNT };
+        std::unique_ptr<Enemy> CreateEnemy(EnemyType type);
 };

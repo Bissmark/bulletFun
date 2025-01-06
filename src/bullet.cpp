@@ -23,6 +23,7 @@ bool Bullet::Collision(Enemy& enemy)
     Rectangle bulletCollision = { position.x - 2.5f, position.y - 2.5f, 5.0f, 5.0f };
 
     if (CheckCollisionRecs(bulletCollision, enemy.boxCollision)) {
+        enemy.health -= 10;
         if (enemy.health <= 0) {
             enemy.Destroy();
         }

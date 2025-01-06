@@ -33,16 +33,16 @@ void Enemy::Update()
     boxCollision.y = enemyPosition.y;
 
     // Check for bullet collisions with this enemy
-    for (auto it = player.bullets.begin(); it != player.bullets.end(); ) {
+    // for (auto it = player.bullets.begin(); it != player.bullets.end(); ) {
 
-        if (it->Collision(*this)) {
-            health -= 10; // Example: reduce enemy health
-            it = player.bullets.erase(it); // Remove the bullet
-            Destroy();
-        } else {
-            ++it;
-        }
-    }
+    //     if (it->Collision(*this)) {
+    //         health -= 10; // Example: reduce enemy health
+    //         it = player.bullets.erase(it); // Remove the bullet
+    //         Destroy();
+    //     } else {
+    //         ++it;
+    //     }
+    // }
 }
 
 void Enemy::Move()
@@ -104,30 +104,20 @@ void Enemy::Attack(float deltaTime)
     float distance = Vector2Distance(player.playerPosition, enemyPosition);
     if (distance < player.radius && timeSinceLastAttack > 1.0f) {
         player.healthPoints -= 10;
-        //health -= 10;
         timeSinceLastAttack = 0.0f;
         hitPlayer = true;
     } else {
         hitPlayer = false;
     }
-
-    // if (health <= 0) {
-    //     Destroy();
-    // }
 }
 
 
 bool Enemy::Destroy()
 {
     if (health <= 0) {
-        // Destroy the enemy
-        //UnloadTexture(enemyIdle);
-        //UnloadTexture(enemyWalk);
         player.experiencePoints += 10;
-
         return true;
     }
-
     return false;
 }
 
@@ -140,8 +130,6 @@ void Enemy::Draw() const
         flippedFrameRec.width = -frameRec.width;
         DrawTextureRec(currentTexture, flippedFrameRec, enemyPosition, WHITE);
     }
-
-    //float healthPercentage = (float)health / maxHealth;
 
     // Draw health bar
     float healthPercentage = (float)health / maxHealth;

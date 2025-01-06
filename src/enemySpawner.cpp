@@ -1,5 +1,7 @@
 #include "enemySpawner.h"
 #include "player.h"
+#include "archer.h"
+#include "grunt.h"
 #include <raymath.h>
 #include <algorithm>
 
@@ -31,6 +33,15 @@ void EnemySpawner::Update(float deltaTime)
 
     for (auto it = enemies.begin(); it != enemies.end(); ) {
         (*it)->Update(); // Call the enemy's update method
+
+         // Check for bullet collisions with this enemy
+        for (auto bulletIt = player.bullets.begin(); bulletIt != player.bullets.end(); ) {
+            if (bulletIt->Collision(**it)) {
+                bulletIt = player.bullets.erase(bulletIt); // Remove the bullet
+            } else {
+                ++bulletIt;
+            }
+        }
         
         if ((*it)->Destroy()) { // Check if the enemy should be destroyed
             it = enemies.erase(it); // Remove the enemy from the vector
@@ -51,7 +62,8 @@ void EnemySpawner::Draw() const
 
 void EnemySpawner::SpawnEnemy()
 {
-    enemies.emplace_back(std::make_unique<Enemy>(player));
+    EnemyType type = static_cast<EnemyType>(GetRandomValue(0, 3));
+    enemies.emplace_back(CreateEnemy(type));
     ++currentEnemies;
 }
 
@@ -59,5 +71,23 @@ void EnemySpawner::DestroyEnemy()
 {
     if (!enemies.empty()) {
         enemies.pop_back();
+    }
+}
+
+std::unique_ptr<Enemy> EnemySpawner::CreateEnemy(EnemyType type)
+{
+    switch (type) {
+        case ARCHER:
+            return std::make_unique<Archer>(player);
+        case SLIME:
+            //return std::make_unique<Slime>(player);
+        case MAGE:
+            //return std::make_unique<Mage>(player);
+        case WARRIOR:
+            //return std::make_unique<Warrior>(player);
+        case GRUNT:
+            return std::make_unique<Grunt>(player);
+        default:
+            return nullptr;
     }
 }

@@ -10,17 +10,18 @@ class Enemy
         Enemy(Player& player);
         Enemy(const Enemy&) = delete;              // Disallow copying
         Enemy& operator=(const Enemy&) = delete;   // Disallow assignment
+        virtual ~Enemy() = default;
         Vector2 enemyPosition;
         int radius;
         int health;
         Rectangle boxCollision;
-        void Update();
+        virtual void Update();
         void Move();
-        void Draw() const;
-        void Attack(float deltaTime);
+        virtual void Draw() const;
+        virtual void Attack(float deltaTime);
         bool Destroy();
 
-    private:
+    protected:
         Player& player;
         Texture2D enemyIdle;
         Texture2D enemyWalk;
