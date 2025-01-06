@@ -2,6 +2,7 @@
 #include "player.h"
 #include "archer.h"
 #include "grunt.h"
+#include "slime.h"
 #include <raymath.h>
 #include <algorithm>
 
@@ -27,12 +28,12 @@ void EnemySpawner::Update(float deltaTime)
 
     for (auto& enemy : enemies) {
         enemy->Move();
-        enemy->Update();
+        enemy->Update(deltaTime);
         enemy->Attack(deltaTime);
     }
 
     for (auto it = enemies.begin(); it != enemies.end(); ) {
-        (*it)->Update(); // Call the enemy's update method
+        (*it)->Update(deltaTime); // Call the enemy's update method
 
          // Check for bullet collisions with this enemy
         for (auto bulletIt = player.bullets.begin(); bulletIt != player.bullets.end(); ) {
@@ -80,7 +81,7 @@ std::unique_ptr<Enemy> EnemySpawner::CreateEnemy(EnemyType type)
         case ARCHER:
             return std::make_unique<Archer>(player);
         case SLIME:
-            //return std::make_unique<Slime>(player);
+            return std::make_unique<Slime>(player);
         case MAGE:
             //return std::make_unique<Mage>(player);
         case WARRIOR:

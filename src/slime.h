@@ -1,16 +1,14 @@
 #pragma once
 #include "enemy.h"
 
-class Grunt : public Enemy
+class Slime : public Enemy
 {
     public:
-        Grunt(Player& player);
+        Slime(Player& player);
         void Update(float deltaTime) override;
         void Draw() const override;
         void Attack(float deltaTime) override;
 
     private:
-        Texture2D idleTexture;
-        Texture2D walkTexture;
         Texture2D currentTexture;
 };

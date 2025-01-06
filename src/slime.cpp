@@ -1,9 +1,9 @@
-#include "archer.h"
+#include "slime.h"
 #include "player.h"
 #include <raymath.h>
 #include <iostream>
 
-Archer::Archer(Player& player) : Enemy(player)
+Slime::Slime(Player& player) : Enemy(player)
 {
     currentTexture = LoadTexture("src/Spritesheet/enemy/Idle.png");
     numFrames = 4;
@@ -11,19 +11,19 @@ Archer::Archer(Player& player) : Enemy(player)
     frameRec = { 0.0f, 0.0f, (float)currentTexture.width / numFrames, (float)currentTexture.height };
 }
 
-void Archer::Update(float deltaTime)
+void Slime::Update(float deltaTime)
 {
     Enemy::Update(deltaTime);
 
     UpdateFrame();
 }
 
-void Archer::Draw() const
+void Slime::Draw() const
 {
     Enemy::Draw();
 }
 
-void Archer::Attack(float deltaTime)
+void Slime::Attack(float deltaTime)
 {
     Enemy::Attack(deltaTime);
 }

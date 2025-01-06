@@ -25,7 +25,7 @@ Enemy::Enemy(Player& player) : player(player), timeSinceLastAttack(0.0f), hitPla
     boxCollision = { enemyPosition.x, enemyPosition.y, (float)enemyIdle.width / numFrames, (float)enemyIdle.height };
 }
 
-void Enemy::Update()
+void Enemy::Update(float deltaTime)
 {
     frameRec.x = (float)currentFrame * (float)currentTexture.width / numFrames;
 
