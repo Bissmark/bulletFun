@@ -24,5 +24,5 @@ class EnemySpawner
         float spawnCounter;
 
         enum EnemyType { ARCHER, SLIME, MAGE, WARRIOR, GRUNT };
-        std::unique_ptr<Enemy> CreateEnemy(EnemyType type);
+        std::unique_ptr<Enemy> CreateEnemy(EnemyType type, Vector2 position);
 };

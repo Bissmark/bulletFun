@@ -3,7 +3,7 @@
 #include <raymath.h>
 #include <iostream>
 
-Slime::Slime(Player& player) : Enemy(player)
+Slime::Slime(Player& player, Vector2 position) : Enemy(player, position)
 {
     currentTexture = LoadTexture("src/Spritesheet/enemy/Idle.png");
     numFrames = 4;

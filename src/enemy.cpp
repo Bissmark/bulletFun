@@ -3,13 +3,13 @@
 #include <iostream>
 #include <raymath.h>
 
-Enemy::Enemy(Player& player) : player(player), timeSinceLastAttack(0.0f), hitPlayer(false)
+Enemy::Enemy(Player& player, Vector2 position) : player(player), enemyPosition(position), timeSinceLastAttack(0.0f), hitPlayer(false)
 {
     currentFrame = 0;
     framesCounter = 0;
     framesSpeed = 5;
-    speedX = 2;
-    speedY = 2;
+    speedX = 50;
+    speedY = 50;
     numFrames = 4;
     maxHealth = 100;
     frameWidth = enemyIdle.width / numFrames;
@@ -19,52 +19,43 @@ Enemy::Enemy(Player& player) : player(player), timeSinceLastAttack(0.0f), hitPla
     
     enemyIdle = LoadTexture("src/Spritesheet/enemy/Idle.png");
     enemyWalk = LoadTexture("src/Spritesheet/enemy/Walk.png");
+    currentTexture = enemyIdle;
 
     frameRec = { 0.0f, 0.0f, (float)enemyIdle.width / numFrames, (float)enemyIdle.height };
-    enemyPosition = { (float)GetScreenWidth() / 3, (float)GetScreenHeight() / 3 };
+    //enemyPosition = { (float)GetScreenWidth() / 3, (float)GetScreenHeight() / 3 };
     boxCollision = { enemyPosition.x, enemyPosition.y, (float)enemyIdle.width / numFrames, (float)enemyIdle.height };
 }
 
 void Enemy::Update(float deltaTime)
 {
+    Move(deltaTime);
+
     frameRec.x = (float)currentFrame * (float)currentTexture.width / numFrames;
 
     boxCollision.x = enemyPosition.x;
     boxCollision.y = enemyPosition.y;
-
-    // Check for bullet collisions with this enemy
-    // for (auto it = player.bullets.begin(); it != player.bullets.end(); ) {
-
-    //     if (it->Collision(*this)) {
-    //         health -= 10; // Example: reduce enemy health
-    //         it = player.bullets.erase(it); // Remove the bullet
-    //         Destroy();
-    //     } else {
-    //         ++it;
-    //     }
-    // }
 }
 
-void Enemy::Move()
+void Enemy::Move(float deltaTime)
 {
     bool isMoving = false;
 
     if (player.playerPosition.x > enemyPosition.x) {
-        enemyPosition.x += speedX;
+        enemyPosition.x += speedX * deltaTime;
         isMoving = true;
         direction = RIGHT;
     }
     if (player.playerPosition.x < enemyPosition.x) {
-        enemyPosition.x -= speedX;
+        enemyPosition.x -= speedX * deltaTime;
         isMoving = true;
         direction = LEFT;
     }
     if (player.playerPosition.y > enemyPosition.y) {
-        enemyPosition.y += speedY;
+        enemyPosition.y += speedY * deltaTime;
         isMoving = true;
     }
     if (player.playerPosition.y < enemyPosition.y) {
-        enemyPosition.y -= speedY;
+        enemyPosition.y -= speedY * deltaTime;
         isMoving = true;
     }
 

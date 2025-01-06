@@ -4,7 +4,7 @@
 class Archer : public Enemy
 {
     public:
-        Archer(Player& player);
+        Archer(Player& player, Vector2 position);
         void Update(float deltaTime) override;
         void Draw() const override;
         void Attack(float deltaTime) override;

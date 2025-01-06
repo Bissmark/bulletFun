@@ -27,7 +27,6 @@ void EnemySpawner::Update(float deltaTime)
     }
 
     for (auto& enemy : enemies) {
-        enemy->Move();
         enemy->Update(deltaTime);
         enemy->Attack(deltaTime);
     }
@@ -64,7 +63,8 @@ void EnemySpawner::Draw() const
 void EnemySpawner::SpawnEnemy()
 {
     EnemyType type = static_cast<EnemyType>(GetRandomValue(0, 3));
-    enemies.emplace_back(CreateEnemy(type));
+    Vector2 position = { (float)GetRandomValue(0, GetScreenWidth()), (float)GetRandomValue(0, GetScreenHeight()) };
+    enemies.emplace_back(CreateEnemy(type, position));
     ++currentEnemies;
 }
 
@@ -75,19 +75,19 @@ void EnemySpawner::DestroyEnemy()
     }
 }
 
-std::unique_ptr<Enemy> EnemySpawner::CreateEnemy(EnemyType type)
+std::unique_ptr<Enemy> EnemySpawner::CreateEnemy(EnemyType type, Vector2 position)
 {
     switch (type) {
         case ARCHER:
-            return std::make_unique<Archer>(player);
+            return std::make_unique<Archer>(player, position);
         case SLIME:
-            return std::make_unique<Slime>(player);
+            return std::make_unique<Slime>(player, position);
         case MAGE:
             //return std::make_unique<Mage>(player);
         case WARRIOR:
             //return std::make_unique<Warrior>(player);
         case GRUNT:
-            return std::make_unique<Grunt>(player);
+            return std::make_unique<Grunt>(player, position);
         default:
             return nullptr;
     }

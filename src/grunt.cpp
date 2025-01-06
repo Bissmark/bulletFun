@@ -3,7 +3,7 @@
 #include <raymath.h>
 #include <iostream>
 
-Grunt::Grunt(Player& player) : Enemy(player)
+Grunt::Grunt(Player& player, Vector2 position) : Enemy(player, position)
 {
     idleTexture = LoadTexture("src/Spritesheet/enemy/bardIdle.png");
     walkTexture = LoadTexture("src/Spritesheet/enemy/bardWalk.png");
@@ -15,51 +15,7 @@ Grunt::Grunt(Player& player) : Enemy(player)
 
 void Grunt::Update(float deltaTime)
 {
-    bool isMoving = false;
-
-    // Update position and check if the enemy is moving
-    if (player.playerPosition.x > enemyPosition.x) {
-        enemyPosition.x += speedX * deltaTime;
-        isMoving = true;
-        direction = RIGHT;
-    }
-    if (player.playerPosition.x < enemyPosition.x) {
-        enemyPosition.x -= speedX * deltaTime;
-        isMoving = true;
-        direction = LEFT;
-    }
-    if (player.playerPosition.y > enemyPosition.y) {
-        enemyPosition.y += speedY * deltaTime;
-        isMoving = true;
-    }
-    if (player.playerPosition.y < enemyPosition.y) {
-        enemyPosition.y -= speedY * deltaTime;
-        isMoving = true;
-    }
-
-    // Switch between idle and walk animations
-    if (isMoving) {
-        if (currentTexture.id != walkTexture.id) {
-            currentTexture = walkTexture;
-            numFrames = 6; // Assuming walk animation has 6 frames
-            frameWidth = currentTexture.width / numFrames;
-        }
-    } else {
-        if (currentTexture.id != idleTexture.id) {
-            currentTexture = idleTexture;
-            numFrames = 4; // Assuming idle animation has 4 frames
-            frameWidth = currentTexture.width / numFrames;
-        }
-    }
-
-    // Update the frame rectangle for animation
-    frameRec.x = (float)currentFrame * frameWidth;
-    frameRec.width = (float)frameWidth;
-    frameRec.height = (float)currentTexture.height;
-
     Enemy::Update(deltaTime);
-
-    UpdateFrame();
 }
 
 void Grunt::Draw() const

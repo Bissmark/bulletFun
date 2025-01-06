@@ -4,7 +4,7 @@
 class Grunt : public Enemy
 {
     public:
-        Grunt(Player& player);
+        Grunt(Player& player, Vector2 position);
         void Update(float deltaTime) override;
         void Draw() const override;
         void Attack(float deltaTime) override;
@@ -13,4 +13,5 @@ class Grunt : public Enemy
         Texture2D idleTexture;
         Texture2D walkTexture;
         Texture2D currentTexture;
+        int startingMaxHealth = 50;
 };

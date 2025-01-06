@@ -7,7 +7,7 @@ class Bullet;
 class Enemy
 {
     public: 
-        Enemy(Player& player);
+        Enemy(Player& player, Vector2 position);
         virtual ~Enemy() = default;
         Enemy(const Enemy&) = delete;              // Disallow copying
         Enemy& operator=(const Enemy&) = delete;   // Disallow assignment
@@ -16,9 +16,9 @@ class Enemy
         int health;
         Rectangle boxCollision;
         virtual void Update(float deltaTime) = 0;
-        void Move();
         virtual void Draw() const;
         virtual void Attack(float deltaTime) = 0;
+        void Move(float deltaTime);
         bool Destroy();
 
     protected:
