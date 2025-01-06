@@ -22,7 +22,6 @@ Enemy::Enemy(Player& player, Vector2 position) : player(player), enemyPosition(p
     currentTexture = enemyIdle;
 
     frameRec = { 0.0f, 0.0f, (float)enemyIdle.width / numFrames, (float)enemyIdle.height };
-    //enemyPosition = { (float)GetScreenWidth() / 3, (float)GetScreenHeight() / 3 };
     boxCollision = { enemyPosition.x, enemyPosition.y, (float)enemyIdle.width / numFrames, (float)enemyIdle.height };
 }
 

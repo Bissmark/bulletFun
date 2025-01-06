@@ -9,6 +9,9 @@ Slime::Slime(Player& player, Vector2 position) : Enemy(player, position)
     numFrames = 4;
     frameWidth = currentTexture.width / numFrames;
     frameRec = { 0.0f, 0.0f, (float)currentTexture.width / numFrames, (float)currentTexture.height };
+
+    maxHealth = 50;
+    health = maxHealth;
 }
 
 void Slime::Update(float deltaTime)
