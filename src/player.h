@@ -23,6 +23,9 @@ class Player
         void LevelUp();
         void DrawExp() const;
         void DrawLevelUpBox();
+        float critChance;
+        float critDamage;
+        int baseDamage;
         std::vector<Bullet> bullets;
 
     private:

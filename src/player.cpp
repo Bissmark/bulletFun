@@ -24,6 +24,10 @@ Player::Player()
     maxExperiencePoints = 100;
     attackSpeed = 5;
 
+    baseDamage = 10;
+    critChance = 5.0f;
+    critDamage = 2;
+
     playerIdle = LoadTexture("src/Spritesheet/player/Idle.png");
     playerWalk = LoadTexture("src/Spritesheet/player/Walk.png");
 
@@ -110,7 +114,7 @@ void Player::Fire(const Camera2D& camera)
         Vector2 screenPlayerPosition = GetWorldToScreen2D(playerPosition, camera);
         Vector2 direction = Vector2Subtract(mousePosition, screenPlayerPosition);
         direction = Vector2Normalize(direction);
-        bullets.push_back(Bullet(playerPosition, direction, attackSpeed, BLUE));
+        bullets.push_back(Bullet(playerPosition, direction, attackSpeed, BLUE, this));
     }
 }
 
