@@ -13,10 +13,10 @@ class EnemySpawner
         void Draw() const;
         void SpawnEnemy();
         void DestroyEnemy();
+        std::vector<std::unique_ptr<Enemy>> enemies;
 
     private:
         Player& player;
-        std::vector<std::unique_ptr<Enemy>> enemies;
         int maxEnemies;
         int spawnRate;
         int currentEnemies;

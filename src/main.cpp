@@ -33,9 +33,10 @@ int main()
         float deltaTime = GetFrameTime();
 
         if (!player.gamePaused) {
-            player.Fire(camera);
+            //player.Fire(camera);
             player.Move();
             player.Update();
+            player.AutoAttack(enemySpawner.enemies, deltaTime);
             powerup.Update(player);
             enemySpawner.Update(deltaTime);
 

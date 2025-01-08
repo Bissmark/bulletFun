@@ -1,7 +1,9 @@
 #include "player.h"
 #include "bullet.h"
+#include "enemy.h"
 #include <iostream>
 #include <raymath.h>
+#include <limits>
 
 Player::Player()
     : healthPoints(100)
@@ -22,7 +24,7 @@ Player::Player()
     level = 1;
     experiencePoints = 0;
     maxExperiencePoints = 100;
-    attackSpeed = 5;
+    attackSpeed = 1;
 
     baseDamage = 10;
     critChance = 5.0f;
@@ -107,14 +109,48 @@ void Player::UpdateFrame()
     }
 }
 
-void Player::Fire(const Camera2D& camera)
+// void Player::Fire(const Camera2D& camera)
+// {
+//     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+//         Vector2 mousePosition = GetMousePosition();
+//         Vector2 screenPlayerPosition = GetWorldToScreen2D(playerPosition, camera);
+//         Vector2 direction = Vector2Subtract(mousePosition, screenPlayerPosition);
+//         direction = Vector2Normalize(direction);
+//         bullets.push_back(Bullet(playerPosition, direction, attackSpeed, BLUE, this));
+//     }
+// }
+
+Enemy* Player::FindClosestEnemy(std::vector<std::unique_ptr<Enemy>>& enemies)
 {
-    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-        Vector2 mousePosition = GetMousePosition();
-        Vector2 screenPlayerPosition = GetWorldToScreen2D(playerPosition, camera);
-        Vector2 direction = Vector2Subtract(mousePosition, screenPlayerPosition);
-        direction = Vector2Normalize(direction);
-        bullets.push_back(Bullet(playerPosition, direction, attackSpeed, BLUE, this));
+    Enemy* closestEnemy = nullptr;
+    float closestDistance = std::numeric_limits<float>::max();
+
+    for (auto& enemy : enemies) {
+        float distance = Vector2Distance(playerPosition, enemy->enemyPosition);
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            closestEnemy = enemy.get();
+        }
+    }
+
+    return closestEnemy;
+}
+
+void Player::AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime)
+{
+    static float timeSinceLastAttack = 0.0f;
+    timeSinceLastAttack += deltaTime;
+
+    const float bulletSpeed = 5.0f;
+
+    if (timeSinceLastAttack >= 1.0f / attackSpeed) {
+        Enemy* closestEnemy = FindClosestEnemy(enemies);
+        if (closestEnemy) {
+            Vector2 direction = Vector2Subtract(closestEnemy->enemyPosition, playerPosition);
+            direction = Vector2Normalize(direction);
+            bullets.push_back(Bullet(playerPosition, direction, bulletSpeed, BLUE, this));
+        }
+        timeSinceLastAttack = 0.0f;
     }
 }
 

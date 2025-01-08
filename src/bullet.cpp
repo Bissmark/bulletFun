@@ -20,8 +20,8 @@ bool Bullet::Collision(Enemy& enemy)
 
     if (CheckCollisionRecs(bulletCollision, enemy.boxCollision)) {
         int damage = player->baseDamage;
-        if (GetRandomValue(1, 100) <= player->critChance) { // 5% chance for critical hit
-            damage *= 2; // Critical hit deals double damage
+        if (GetRandomValue(1, 100) <= player->critChance) {
+            damage *= 2;
         }
         std::cout << "Player base damage: " << damage << std::endl;
         enemy.health -= damage;

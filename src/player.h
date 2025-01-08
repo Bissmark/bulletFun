@@ -1,6 +1,7 @@
 #pragma once
 #include <raylib.h>
 #include <vector>
+#include <memory>
 #include "bullet.h"
 
 class Player
@@ -20,6 +21,7 @@ class Player
         void Move();
         void Draw() const;
         void Fire(const Camera2D& camera);
+        void AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime);
         void LevelUp();
         void DrawExp() const;
         void DrawLevelUpBox();
@@ -46,5 +48,6 @@ class Player
         enum Direction { LEFT, RIGHT } direction;
         double startTime;
         void UpdateFrame();
+        Enemy* FindClosestEnemy(std::vector<std::unique_ptr<Enemy>>& enemies);
 
 };
