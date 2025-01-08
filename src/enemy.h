@@ -19,6 +19,7 @@ class Enemy
         virtual void Draw() const;
         virtual void Attack(float deltaTime) = 0;
         void Move(float deltaTime);
+        bool CheckCollisionWithOtherEnemy(const Enemy& other) const;
         bool Destroy();
 
     protected:

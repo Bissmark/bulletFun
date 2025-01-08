@@ -87,6 +87,11 @@ void Enemy::UpdateFrame()
     }
 }
 
+bool Enemy::CheckCollisionWithOtherEnemy(const Enemy& other) const
+{
+    return CheckCollisionRecs(boxCollision, other.boxCollision);
+}
+
 void Enemy::Attack(float deltaTime)
 {
     timeSinceLastAttack += deltaTime;

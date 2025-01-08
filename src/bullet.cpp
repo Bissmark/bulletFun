@@ -36,7 +36,5 @@ bool Bullet::Collision(Enemy& enemy)
 void Bullet::Draw() const
 {
     float angle = atan2f(direction.y, direction.x) * (180.0f / PI);
-
-    // DrawCircleV(position, 5, color);
     DrawTextureEx(arrowTexture, position, angle, 0.1f, WHITE);
 }

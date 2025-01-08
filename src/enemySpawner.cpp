@@ -42,6 +42,16 @@ void EnemySpawner::Update(float deltaTime)
                 ++bulletIt;
             }
         }
+
+        for (auto& otherEnemy : enemies) {
+            if (otherEnemy.get() != it->get() && (*it)->CheckCollisionWithOtherEnemy(*otherEnemy)) {
+                // Adjust position to avoid stacking
+                Vector2 direction = Vector2Subtract((*it)->enemyPosition, otherEnemy->enemyPosition);
+                direction = Vector2Normalize(direction);
+                (*it)->enemyPosition.x += direction.x * 10.0f * deltaTime;
+                (*it)->enemyPosition.y += direction.y * 10.0f * deltaTime;
+            }
+        }
         
         if ((*it)->Destroy()) { // Check if the enemy should be destroyed
             it = enemies.erase(it); // Remove the enemy from the vector
