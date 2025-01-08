@@ -6,6 +6,7 @@
 
 Bullet::Bullet(Vector2 position, Vector2 direction, float speed, Color color, Player* player) : position(position), direction(direction), speed(speed), color(color), player(player)
 {
+    arrowTexture = LoadTexture("src/Spritesheet/Arrow.png");
 }
 
 void Bullet::Move()
@@ -23,7 +24,6 @@ bool Bullet::Collision(Enemy& enemy)
         if (GetRandomValue(1, 100) <= player->critChance) {
             damage *= 2;
         }
-        std::cout << "Player base damage: " << damage << std::endl;
         enemy.health -= damage;
         if (enemy.health <= 0) {
             enemy.Destroy();
@@ -35,5 +35,8 @@ bool Bullet::Collision(Enemy& enemy)
 
 void Bullet::Draw() const
 {
-    DrawCircleV(position, 5, color);
+    float angle = atan2f(direction.y, direction.x) * (180.0f / PI);
+
+    // DrawCircleV(position, 5, color);
+    DrawTextureEx(arrowTexture, position, angle, 0.1f, WHITE);
 }

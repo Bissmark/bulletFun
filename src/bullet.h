@@ -13,6 +13,7 @@ class Bullet
         bool Collision(Enemy& enemy);
 
     private:
+        Texture2D arrowTexture;
         Vector2 position;
         Vector2 direction;
         float speed;
