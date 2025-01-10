@@ -3,6 +3,7 @@
 #include <vector>
 #include <memory>
 #include "bullet.h"
+#include "slash.h"
 
 class Player
 {
@@ -22,7 +23,6 @@ class Player
         void Move();
         void Draw() const;
         void Fire(const Camera2D& camera);
-        void Slash();
         void AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime);
         void LevelUp();
         void DrawExp() const;

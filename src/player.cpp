@@ -1,6 +1,7 @@
 #include "player.h"
 #include "bullet.h"
 #include "enemy.h"
+#include "slash.h"
 #include <iostream>
 #include <raymath.h>
 #include <limits>
@@ -142,6 +143,7 @@ void Player::AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float delt
     timeSinceLastAttack += deltaTime;
 
     const float bulletSpeed = 5.0f;
+    const float slashRadius = 50.0f;
 
     if (timeSinceLastAttack >= 1.0f / attackSpeed) {
         Enemy* closestEnemy = FindClosestEnemy(enemies);
@@ -157,7 +159,19 @@ void Player::AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float delt
                     bullets.push_back(Bullet(playerPosition, direction, bulletSpeed, BLUE, this));
                     break;
                 case PlayerType::WARRIOR:
-                    bullets.push_back(Bullet(playerPosition, direction, bulletSpeed, BLUE, this));
+                    Slash slash(playerPosition, slashRadius, this);
+                    for (auto& enemy : enemies) {
+                        if (slash.Collision(*enemy)) {
+                            int damage = baseDamage;
+                            if (GetRandomValue(1, 100) <= critChance) {
+                                damage *= critDamage;
+                            }
+                            enemy->health -= damage;
+                            if (enemy->health <= 0) {
+                                enemy->Destroy();
+                            }
+                        }
+                    }
                     break;
             }
         }
