@@ -8,7 +8,7 @@ class Player;
 class EnemySpawner
 {
     public:
-        EnemySpawner(Player& player, int maxEnemies, int spawnRate);
+        EnemySpawner(Player& player, int spawnRate);
         void Update(float deltaTime);
         void Draw() const;
         void SpawnEnemy();

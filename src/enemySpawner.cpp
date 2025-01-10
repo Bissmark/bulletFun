@@ -6,9 +6,9 @@
 #include <raymath.h>
 #include <algorithm>
 
-EnemySpawner::EnemySpawner(Player& player, int maxEnemies, int spawnRate)
+EnemySpawner::EnemySpawner(Player& player, int spawnRate)
     : player(player)
-    , maxEnemies(maxEnemies)
+    , maxEnemies(10)
     , spawnRate(spawnRate)
     , currentEnemies(0)
     , framesCounter(0)
@@ -21,6 +21,8 @@ void EnemySpawner::Update(float deltaTime)
     ++framesCounter;
     spawnCounter += deltaTime;
 
+    maxEnemies = std::max(10, player.level * 2);
+    
     if (spawnCounter >= spawnRate && currentEnemies < maxEnemies) {
         spawnCounter = 0.0f;
         SpawnEnemy();

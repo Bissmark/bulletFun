@@ -148,7 +148,18 @@ void Player::AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float delt
         if (closestEnemy) {
             Vector2 direction = Vector2Subtract(closestEnemy->enemyPosition, playerPosition);
             direction = Vector2Normalize(direction);
-            bullets.push_back(Bullet(playerPosition, direction, bulletSpeed, BLUE, this));
+            
+            switch (playerType) {
+                case PlayerType::ARCHER:
+                    bullets.push_back(Bullet(playerPosition, direction, bulletSpeed, BLUE, this));
+                    break;
+                case PlayerType::MAGE:
+                    bullets.push_back(Bullet(playerPosition, direction, bulletSpeed, BLUE, this));
+                    break;
+                case PlayerType::WARRIOR:
+                    bullets.push_back(Bullet(playerPosition, direction, bulletSpeed, BLUE, this));
+                    break;
+            }
         }
         timeSinceLastAttack = 0.0f;
     }
@@ -196,7 +207,6 @@ void Player::DrawLevelUpBox()
                 if (CheckCollisionPointRec(mousePosition, { (float)smallBoxX, (float)smallBoxY, (float)smallBoxWidth, (float)smallBoxHeight })) {
                     leveledUp = false;
                     gamePaused = false;
-                    std::cout << "Upgrade box " << i + 1 << " clicked!" << std::endl;
                 }
             }
         }

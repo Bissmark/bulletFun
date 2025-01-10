@@ -4,6 +4,7 @@
 #include "enemySpawner.h"
 #include "background.h"
 #include "powerup.h"
+#include "characterSelection.h"
 #include <raymath.h>
 #include <cmath>
 #include <iostream>
@@ -16,9 +17,10 @@ int main()
     InitWindow(screenWidth, screenHeight, "2D Game");
 
     Player player;
-    EnemySpawner enemySpawner(player, 5, 2);
+    EnemySpawner enemySpawner(player, 2);
     Background background;
     Powerup powerup;
+    CharacterSelection characterSelection(player);
 
     Camera2D camera = { 0 };
     camera.target = player.playerPosition;
@@ -28,38 +30,49 @@ int main()
 
     SetTargetFPS(60);
     
+    bool characterSelected = false;
+
     while (!WindowShouldClose())
     {
         float deltaTime = GetFrameTime();
 
-        if (!player.gamePaused) {
-            //player.Fire(camera);
-            player.Move();
-            player.Update();
-            player.AutoAttack(enemySpawner.enemies, deltaTime);
-            powerup.Update(player);
-            enemySpawner.Update(deltaTime);
+        if (!characterSelected) {
+            characterSelection.Update();
+            if (characterSelection.IsCharacterSelected()) {
+                characterSelected = true;
+                player.playerType = characterSelection.GetSelectedPlayerType();
+            }
+        } else {
+            if (!player.gamePaused) {
+                player.Move();
+                player.Update();
+                player.AutoAttack(enemySpawner.enemies, deltaTime);
+                powerup.Update(player);
+                enemySpawner.Update(deltaTime);
 
-            background.Update(player.playerPosition);
+                background.Update(player.playerPosition);
+            }
+
+            camera.target = Vector2Lerp(camera.target, player.playerPosition, 0.1f);
         }
-
-        camera.target = Vector2Lerp(camera.target, player.playerPosition, 0.1f);
 
         BeginDrawing();
             ClearBackground(RAYWHITE);
-            BeginMode2D(camera);
-                background.Draw();
-                enemySpawner.Draw();
-                powerup.Draw();
-                player.Draw();
-            EndMode2D();    
+            if (!characterSelected) {
+                characterSelection.Draw();
+            } else {
+                BeginMode2D(camera);
+                    background.Draw();
+                    enemySpawner.Draw();
+                    powerup.Draw();
+                    player.Draw();
+                EndMode2D();
                 player.DrawExp();
                 player.DrawLevelUpBox();
-            DrawText(TextFormat("Health: %i", player.healthPoints), 10, 10, 20, RED);
-            DrawText(TextFormat("Elapsed Time: %i seconds", (int)player.elapsedTime), 10, 50, 20, RED);
-            //DrawText(TextFormat("Player Position: (%.2f, %.2f)", player.playerPosition.x, player.playerPosition.y), 10, 30, 20, RED);
-            //DrawText(TextFormat("Experience: %i", player.experiencePoints), 10, 70, 20, RED);
-            DrawText(TextFormat("%i", player.level), 30, screenHeight - 50, 30, WHITE);
+                DrawText(TextFormat("Health: %i", player.healthPoints), 10, 10, 20, RED);
+                DrawText(TextFormat("Elapsed Time: %i seconds", (int)player.elapsedTime), 10, 50, 20, RED);
+                DrawText(TextFormat("%i", player.level), 30, screenHeight - 50, 30, WHITE);
+            }
         EndDrawing();
     }
     
