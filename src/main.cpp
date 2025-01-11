@@ -5,6 +5,7 @@
 #include "background.h"
 #include "powerup.h"
 #include "characterSelection.h"
+#include "tilemap.h"
 #include <raymath.h>
 #include <cmath>
 #include <iostream>
@@ -21,16 +22,21 @@ int main()
     Background background;
     Powerup powerup;
     CharacterSelection characterSelection(player);
+    Tilemap tilemap(200, 150, 32);
 
+    SetTargetFPS(60);
+    
+    bool characterSelected = false;
+    int currentLevel = 1;
+
+    tilemap.Generate(currentLevel);
+    player.playerPosition = tilemap.GetCenterPosition();
+    
     Camera2D camera = { 0 };
     camera.target = player.playerPosition;
     camera.offset = (Vector2){ screenWidth / 2, screenHeight / 2 };
     camera.rotation = 0.0f;
     camera.zoom = 1.0f;
-
-    SetTargetFPS(60);
-    
-    bool characterSelected = false;
 
     while (!WindowShouldClose())
     {
@@ -62,7 +68,8 @@ int main()
                 characterSelection.Draw();
             } else {
                 BeginMode2D(camera);
-                    background.Draw();
+                    tilemap.Draw();
+                    //background.Draw();
                     enemySpawner.Draw();
                     powerup.Draw();
                     player.Draw();

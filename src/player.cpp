@@ -159,7 +159,7 @@ void Player::AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float delt
                     bullets.push_back(Bullet(playerPosition, direction, bulletSpeed, BLUE, this));
                     break;
                 case PlayerType::WARRIOR:
-                    Slash slash(playerPosition, slashRadius, this);
+                    Slash slash(playerPosition, direction, slashRadius, this);
                     for (auto& enemy : enemies) {
                         if (slash.Collision(*enemy)) {
                             int damage = baseDamage;
