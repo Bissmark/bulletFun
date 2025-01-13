@@ -22,7 +22,7 @@ int main()
     Background background;
     Powerup powerup;
     CharacterSelection characterSelection(player);
-    Tilemap tilemap(200, 150, 32);
+    Tilemap tilemap(16, 32);
 
     SetTargetFPS(60);
     
@@ -56,7 +56,7 @@ int main()
                 powerup.Update(player);
                 enemySpawner.Update(deltaTime);
 
-                background.Update(player.playerPosition);
+                //background.Update(player.playerPosition);
             }
 
             camera.target = Vector2Lerp(camera.target, player.playerPosition, 0.1f);
@@ -68,7 +68,7 @@ int main()
                 characterSelection.Draw();
             } else {
                 BeginMode2D(camera);
-                    tilemap.Draw();
+                    tilemap.Draw(player.playerPosition);
                     //background.Draw();
                     enemySpawner.Draw();
                     powerup.Draw();

@@ -1,9 +1,10 @@
 #include "tilemap.h"
 #include <raymath.h>
 #include <cstdlib>
+#include <unordered_map>
 
-Tilemap::Tilemap(int width, int height, int tileSize)
-    : width(width), height(height), tileSize(tileSize)
+Tilemap::Tilemap(int chunkSize, int tileSize)
+    : chunkSize(chunkSize), tileSize(tileSize)
 {
 }
 
@@ -15,22 +16,7 @@ Tilemap::~Tilemap()
 void Tilemap::Generate(int level)
 {
     LoadTextures(level);
-
-    tiles.clear();
-    for (int y = 0; y < height; ++y) {
-        for (int x = 0; x < width; ++x) {
-            Tile tile;
-            tile.position = { (float)x * tileSize, (float)y * tileSize };
-            // if (rand() % 10 < 2) { // 20% chance to be a wall
-            //     tile.texture = wallTexture;
-            //     tile.isWalkable = false;
-            // } else {
-                 tile.texture = floorTexture;
-                 tile.isWalkable = true;
-            // }
-            tiles.push_back(tile);
-        }
-    }
+    chunks.clear();
 }
 
 void Tilemap::LoadTextures(int level)
@@ -53,15 +39,53 @@ void Tilemap::LoadTextures(int level)
     }
 }
 
-Vector2 Tilemap::GetCenterPosition() const
+void Tilemap::LoadChunk(int chunkX, int chunkY)
 {
-    return { (float)(width * tileSize) / 2, (float)(height * tileSize) / 2 };
+    Vector2 chunkPos = { (float)chunkX, (float)chunkY };
+    if (chunks.find(chunkPos) != chunks.end()) return;
+
+    Chunk chunk;
+    for (int y = 0; y < chunkSize; ++y) {
+        for (int x = 0; x < chunkSize; ++x) {
+            Tile tile;
+            tile.position = { (float)(chunkX * chunkSize + x) * tileSize, (float)(chunkY * chunkSize + y) * tileSize };
+            tile.texture = floorTexture;
+            tile.isWalkable = true;
+            chunk.tiles.push_back(tile);
+        }
+    }
+    chunks[chunkPos] = chunk;
 }
 
-void Tilemap::Draw() const
+void Tilemap::UnloadChunk(int chunkX, int chunkY)
 {
-    for (const auto& tile : tiles) {
-        DrawTexture(tile.texture, tile.position.x, tile.position.y, WHITE);
+    Vector2 chunkPos = { (float)chunkX, (float)chunkY };
+    chunks.erase(chunkPos);
+}
+
+Vector2 Tilemap::GetCenterPosition() const
+{
+    return { (float)(chunkSize * tileSize) / 2, (float)(chunkSize * tileSize) / 2 };
+}
+
+void Tilemap::Draw(const Vector2& playerPosition) const
+{
+    int playerChunkX = (int)(playerPosition.x / (chunkSize * tileSize));
+    int playerChunkY = (int)(playerPosition.y / (chunkSize * tileSize));
+
+    for (int y = -1; y <= 1; ++y) {
+        for (int x = -1; x <= 1; ++x) {
+            int chunkX = playerChunkX + x;
+            int chunkY = playerChunkY + y;
+            Vector2 chunkPos = { (float)chunkX, (float)chunkY };
+            if (chunks.find(chunkPos) == chunks.end()) {
+                const_cast<Tilemap*>(this)->LoadChunk(chunkX, chunkY);
+            }
+            const Chunk& chunk = chunks.at(chunkPos);
+            for (const auto& tile : chunk.tiles) {
+                DrawTexture(tile.texture, tile.position.x, tile.position.y, WHITE);
+            }
+        }
     }
 }
 
@@ -69,4 +93,5 @@ void Tilemap::Unload()
 {
     UnloadTexture(floorTexture);
     UnloadTexture(wallTexture);
+    chunks.clear();
 }

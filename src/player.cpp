@@ -16,6 +16,7 @@ Player::Player()
     , startTime(GetTime())
     , elapsedTime(0.0)
     , gamePaused(false)
+    , auraDmg(50.0f, 10, RED)
 {
     currentFrame = 0;
 
@@ -56,6 +57,8 @@ void Player::Update()
     LevelUp();
 
     elapsedTime = GetTime() - startTime;
+
+    auraDmg.Update(*this);
 }
 
 void Player::Move()
@@ -177,6 +180,10 @@ void Player::AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float delt
         }
         timeSinceLastAttack = 0.0f;
     }
+
+    for (auto& enemy : enemies) {
+        auraDmg.Collision(playerPosition, *enemy);
+    }
 }
 
 void Player::LevelUp()
@@ -241,6 +248,8 @@ void Player::Draw() const
     for (auto& bullet : bullets) {
         bullet.Draw();
     }
+
+    auraDmg.Draw(*this);
 }
 
 void Player::DrawExp() const
