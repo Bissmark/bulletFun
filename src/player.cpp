@@ -17,6 +17,7 @@ Player::Player()
     , elapsedTime(0.0)
     , gamePaused(false)
     , auraDmg(50.0f, 10, RED)
+    , flamethrower(20.0f, 100.0f, 30, 1, RED)
 {
     currentFrame = 0;
 
@@ -58,7 +59,8 @@ void Player::Update()
 
     elapsedTime = GetTime() - startTime;
 
-    auraDmg.Update(*this);
+    //auraDmg.Update(*this);
+    flamethrower.Update(*this);
 }
 
 void Player::Move()
@@ -181,8 +183,13 @@ void Player::AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float delt
         timeSinceLastAttack = 0.0f;
     }
 
+    // for (auto& enemy : enemies) {
+    //     auraDmg.Collision(playerPosition, *enemy);
+    // }
+
+    // Check for flamethrower collisions
     for (auto& enemy : enemies) {
-        auraDmg.Collision(playerPosition, *enemy);
+        flamethrower.Collision(*this, *enemy);
     }
 }
 
@@ -249,7 +256,8 @@ void Player::Draw() const
         bullet.Draw();
     }
 
-    auraDmg.Draw(*this);
+    //auraDmg.Draw(*this);
+    flamethrower.Draw(*this);
 }
 
 void Player::DrawExp() const

@@ -5,6 +5,7 @@
 #include "bullet.h"
 #include "slash.h"
 #include "auraDmg.h"
+#include "flamethrower.h"
 
 class Player
 {
@@ -54,4 +55,5 @@ class Player
         void UpdateFrame();
         Enemy* FindClosestEnemy(std::vector<std::unique_ptr<Enemy>>& enemies);
         AuraDmg auraDmg;
+        Flamethrower flamethrower;
 };
