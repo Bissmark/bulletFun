@@ -9,11 +9,11 @@ class SkillPickup
         SkillPickup();
         void Update(Player& player);
         void Draw() const;
-        void CheckCollision(Player& player);
 
     private:
+        void CheckCollision(Player& player);
         Vector2 skillPosition;
         Rectangle boxCollision;
         bool isActive;
-        enum Skills { Flamethrower, Ring };
+        enum class SkillType { Flamethrower, Ring } skillType;
 };

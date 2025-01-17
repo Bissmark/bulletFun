@@ -1,6 +1,4 @@
 #include "flamethrower.h"
-#include "player.h"
-#include "enemy.h"
 #include <raymath.h>
 #include <cmath>
 
@@ -33,7 +31,7 @@ void Flamethrower::Draw(const Player& player) const
     }
 }
 
-bool Flamethrower::Collision(const Player& player, Enemy& enemy)
+bool Flamethrower::CheckCollision(const Player& player, Enemy& enemy)
 {
     Vector2 centerPosition = { player.playerPosition.x + (player.frameRec.width / 2) + 5, player.playerPosition.y + player.frameRec.height / 2 };
 

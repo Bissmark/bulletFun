@@ -1,6 +1,6 @@
 #include "auraDmg.h"
-#include "player.h"
-#include "enemy.h"
+// #include "player.h"
+// #include "enemy.h"
 #include <raymath.h>
 
 AuraDmg::AuraDmg(float radius, int baseDamage, Color color)
@@ -14,9 +14,9 @@ void AuraDmg::Update(const Player& player)
 
 }
 
-bool AuraDmg::Collision(const Vector2& playerPosition, Enemy& enemy)
+bool AuraDmg::CheckCollision(const Player& player, Enemy& enemy)
 {
-    float distance = Vector2Distance(enemy.enemyPosition, playerPosition);
+    float distance = Vector2Distance(enemy.enemyPosition, player.playerPosition);
     if (distance <= radius) {
         enemy.health -= baseDamage;
         if (enemy.health <= 0) {

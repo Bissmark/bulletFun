@@ -1,16 +1,13 @@
 #pragma once
-#include <raylib.h>
+#include "ability.h"
 
-class Player;
-class Enemy;
-
-class AuraDmg
+class AuraDmg : public Ability
 {
     public:
         AuraDmg(float radius, int baseDamage, Color color);
         void Update(const Player& player);
         void Draw(const Player& player) const;
-        bool Collision(const Vector2& playerPosition, Enemy& enemy);
+        bool CheckCollision(const Player& player, Enemy& enemy);
     
     private:
         float radius;

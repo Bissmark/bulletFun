@@ -4,8 +4,8 @@
 #include <memory>
 #include "bullet.h"
 #include "slash.h"
-#include "auraDmg.h"
-#include "flamethrower.h"
+#include "abilityManager.h"
+#include "ability.h"
 
 class Player
 {
@@ -20,6 +20,7 @@ class Player
         void LevelUp();
         void DrawExp() const;
         void DrawLevelUpBox();
+        void AddAbility(std::unique_ptr<Ability> ability);
         Vector2 playerPosition;
         int radius;
         int healthPoints;
@@ -54,6 +55,5 @@ class Player
         double startTime;
         void UpdateFrame();
         Enemy* FindClosestEnemy(std::vector<std::unique_ptr<Enemy>>& enemies);
-        AuraDmg auraDmg;
-        Flamethrower flamethrower;
+        AbilityManager abilityManager;
 };

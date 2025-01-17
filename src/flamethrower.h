@@ -1,17 +1,14 @@
 #pragma once
-#include <raylib.h>
+#include "ability.h"
 #include <vector>
 
-class Player;
-class Enemy;
-
-class Flamethrower
+class Flamethrower : public Ability
 {
     public:
         Flamethrower(float width, float length, int speed, int baseDamage, Color color);
-        void Update(const Player& player);
-        void Draw(const Player& player) const;
-        bool Collision(const Player& player, Enemy& enemy);
+        void Update(const Player& player) override;
+        void Draw(const Player& player) const override;
+        bool CheckCollision(const Player& player, Enemy& enemy);
 
     private:
         float width;
