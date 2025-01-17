@@ -6,6 +6,7 @@
 #include "powerup.h"
 #include "characterSelection.h"
 #include "tilemap.h"
+#include "skillPickup.h"
 #include <raymath.h>
 #include <cmath>
 #include <iostream>
@@ -23,6 +24,7 @@ int main()
     Powerup powerup;
     CharacterSelection characterSelection(player);
     Tilemap tilemap(16, 32);
+    SkillPickup skillPickup;
 
     SetTargetFPS(60);
     
@@ -54,6 +56,7 @@ int main()
                 player.Update();
                 player.AutoAttack(enemySpawner.enemies, deltaTime);
                 powerup.Update(player);
+                skillPickup.Update(player);
                 enemySpawner.Update(deltaTime);
 
                 //background.Update(player.playerPosition);
@@ -72,6 +75,7 @@ int main()
                     //background.Draw();
                     enemySpawner.Draw();
                     powerup.Draw();
+                    skillPickup.Draw();
                     player.Draw();
                 EndMode2D();
                 player.DrawExp();

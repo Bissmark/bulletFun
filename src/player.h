@@ -35,11 +35,12 @@ class Player
         std::vector<Bullet> bullets;
         PlayerType playerType;
         Rectangle frameRec;
+        Texture2D currentTexture;
+        unsigned int numFrames;
 
     private:
         Texture2D playerIdle;
         Texture2D playerWalk;
-        Texture2D currentTexture;
         Rectangle boxCollision;
         int speedX;
         int speedY;
@@ -48,7 +49,6 @@ class Player
         int framesSpeed;
         int frameWidth;
         int currentEnemiesKilled;
-        unsigned int numFrames;
         bool leveledUp;
         enum Direction { LEFT, RIGHT } direction;
         double startTime;

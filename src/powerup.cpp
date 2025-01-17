@@ -28,7 +28,7 @@ void Powerup::Update(Player& player)
 
 void Powerup::CheckCollision(Player& player)
 {
-     Rectangle playerCollision = { player.playerPosition.x - player.radius, player.playerPosition.y - player.radius, (float)player.radius * 2, (float)player.radius * 2 };
+    Rectangle playerCollision = { player.playerPosition.x - player.radius, player.playerPosition.y - player.radius, (float)player.radius * 2, (float)player.radius * 2 };
 
     if (CheckCollisionRecs(boxCollision, playerCollision)) {
         isCollected = true;

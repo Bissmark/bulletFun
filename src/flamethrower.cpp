@@ -23,7 +23,7 @@ void Flamethrower::Update(const Player& player)
 
 void Flamethrower::Draw(const Player& player) const
 {
-    Vector2 centerPosition = { player.playerPosition.x + player.frameRec.width / 2, player.playerPosition.y + player.frameRec.height / 2 };
+    Vector2 centerPosition = { player.playerPosition.x + (player.frameRec.width / 2) + 5, player.playerPosition.y + player.frameRec.height / 2 };
 
     for (int i = 0; i < numBeams; ++i) {
         float angle = beamAngles[i];
@@ -35,7 +35,7 @@ void Flamethrower::Draw(const Player& player) const
 
 bool Flamethrower::Collision(const Player& player, Enemy& enemy)
 {
-    Vector2 centerPosition = { player.playerPosition.x + player.frameRec.width / 2, player.playerPosition.y + player.frameRec.height / 2 };
+    Vector2 centerPosition = { player.playerPosition.x + (player.frameRec.width / 2) + 5, player.playerPosition.y + player.frameRec.height / 2 };
 
     for (int i = 0; i < numBeams; ++i) {
         float angle = beamAngles[i];
