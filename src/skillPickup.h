@@ -1,7 +1,15 @@
 #pragma once
 #include <raylib.h>
+#include <vector>
 
 class Player;
+
+struct Pickup {
+    Vector2 position;
+    Rectangle boxCollision;
+    bool isActive;
+    enum class SkillType { Ring, Flamethrower } skillType;
+};
 
 class SkillPickup
 {
@@ -11,9 +19,6 @@ class SkillPickup
         void Draw() const;
 
     private:
-        void CheckCollision(Player& player);
-        Vector2 skillPosition;
-        Rectangle boxCollision;
-        bool isActive;
-        enum class SkillType { Flamethrower, Ring } skillType;
+        void CheckCollision(Player& player, Pickup& pickup);
+        std::vector<Pickup> pickups;
 };
