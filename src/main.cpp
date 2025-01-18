@@ -8,6 +8,7 @@
 #include "tilemap.h"
 #include "skillPickup.h"
 #include "levelUp.h"
+#include "skillBar.h"
 #include <raymath.h>
 #include <cmath>
 #include <iostream>
@@ -29,6 +30,7 @@ int main()
     Tilemap tilemap(16, 32);
     SkillPickup skillPickup;
     LevelUp levelUp(player);
+    SkillBar skillBar;
 
     SetTargetFPS(60);
     
@@ -83,12 +85,13 @@ int main()
                     player.Draw();
                 EndMode2D();
                 player.DrawExp();
+                skillBar.Draw();
                 if (player.leveledUp) {
                     levelUp.DrawLevelUpBox();
                 }
                 DrawText(TextFormat("Health: %i", player.healthPoints), 10, 10, 20, RED);
                 DrawText(TextFormat("Elapsed Time: %i seconds", (int)player.elapsedTime), 10, 50, 20, RED);
-                DrawText(TextFormat("%i", player.level), 30, screenHeight - 50, 30, WHITE);
+                DrawText(TextFormat("%i", player.level), GetScreenWidth() - 27, GetScreenHeight() - 37, 40, WHITE);
             }
         EndDrawing();
     }

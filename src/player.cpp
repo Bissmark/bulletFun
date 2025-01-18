@@ -226,15 +226,17 @@ void Player::Draw() const
 void Player::DrawExp() const
 {
     float expPercentage = (float)experiencePoints / maxExperiencePoints;
-    float barWidth = 650.0f;
-    float barHeight = 15.0f;
-    Vector2 barPosition = { GetScreenWidth() / 10.0f, GetScreenHeight() - 40.0f };
+    float barWidth = 25.0f;
+    float barHeight = GetScreenHeight() - 80.0f;
+    Vector2 barPosition = { GetScreenWidth() - barWidth - 10.0f, GetScreenHeight() / 2 - barHeight / 2 };
 
     // Draw background of the exp bar
     DrawRectangle(barPosition.x, barPosition.y, barWidth, barHeight, GRAY);
 
     // Draw the exp bar
-    DrawRectangle(barPosition.x, barPosition.y, barWidth * expPercentage, barHeight, GOLD);
+    float filledHeight = barHeight * expPercentage;
+    float filledY = barPosition.y + (barHeight - filledHeight);
+    DrawRectangle(barPosition.x, filledY, barWidth, filledHeight, GOLD);
 }
 
 void Player::AddAbility(std::unique_ptr<Ability> ability)
