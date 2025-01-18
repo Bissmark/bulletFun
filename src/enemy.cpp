@@ -8,11 +8,10 @@ Enemy::Enemy(Player& player, Vector2 position) : player(player), enemyPosition(p
     currentFrame = 0;
     framesCounter = 0;
     framesSpeed = 5;
-    speedX = 50;
-    speedY = 50;
     numFrames = 4;
-    maxHealth = 100;
     frameWidth = enemyIdle.width / numFrames;
+
+    maxHealth = 100;
 
     radius = 15;
     health = 100;
@@ -28,11 +27,9 @@ Enemy::Enemy(Player& player, Vector2 position) : player(player), enemyPosition(p
 void Enemy::Update(float deltaTime)
 {
     Move(deltaTime);
+    Attack(deltaTime);
 
     frameRec.x = (float)currentFrame * (float)currentTexture.width / numFrames;
-
-    boxCollision.x = enemyPosition.x;
-    boxCollision.y = enemyPosition.y;
 }
 
 void Enemy::Move(float deltaTime)
@@ -40,21 +37,21 @@ void Enemy::Move(float deltaTime)
     bool isMoving = false;
 
     if (player.playerPosition.x > enemyPosition.x) {
-        enemyPosition.x += speedX * deltaTime;
+        enemyPosition.x += movementSpeed * deltaTime;
         isMoving = true;
         direction = RIGHT;
     }
     if (player.playerPosition.x < enemyPosition.x) {
-        enemyPosition.x -= speedX * deltaTime;
+        enemyPosition.x -= movementSpeed * deltaTime;
         isMoving = true;
         direction = LEFT;
     }
     if (player.playerPosition.y > enemyPosition.y) {
-        enemyPosition.y += speedY * deltaTime;
+        enemyPosition.y += movementSpeed * deltaTime;
         isMoving = true;
     }
     if (player.playerPosition.y < enemyPosition.y) {
-        enemyPosition.y -= speedY * deltaTime;
+        enemyPosition.y -= movementSpeed * deltaTime;
         isMoving = true;
     }
 
@@ -71,6 +68,9 @@ void Enemy::Move(float deltaTime)
             frameWidth = enemyIdle.width / numFrames;
         }
     }
+
+    boxCollision.x = enemyPosition.x;
+    boxCollision.y = enemyPosition.y;
 
     UpdateFrame();
 }

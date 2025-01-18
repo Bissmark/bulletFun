@@ -17,13 +17,14 @@ class Player
         void Draw() const;
         void Fire(const Camera2D& camera);
         void AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime);
-        void LevelUp();
+        void PlayerLevelUp();
         void DrawExp() const;
-        void DrawLevelUpBox();
+        //void DrawLevelUpBox();
         void AddAbility(std::unique_ptr<Ability> ability);
         Vector2 playerPosition;
         int radius;
         int healthPoints;
+        int maxHealth;
         int experiencePoints;
         int maxExperiencePoints;
         int level;
@@ -38,6 +39,7 @@ class Player
         Rectangle frameRec;
         Texture2D currentTexture;
         unsigned int numFrames;
+        bool leveledUp;
 
     private:
         Texture2D playerIdle;
@@ -50,7 +52,6 @@ class Player
         int framesSpeed;
         int frameWidth;
         int currentEnemiesKilled;
-        bool leveledUp;
         enum Direction { LEFT, RIGHT } direction;
         double startTime;
         void UpdateFrame();

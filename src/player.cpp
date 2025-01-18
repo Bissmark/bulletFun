@@ -10,8 +10,7 @@
 #include <limits>
 
 Player::Player()
-    : healthPoints(100)
-    , speedX(5)
+    : speedX(5)
     , speedY(5)
     , radius(15)
     , boxCollision({ 0 })
@@ -29,6 +28,9 @@ Player::Player()
     experiencePoints = 0;
     maxExperiencePoints = 100;
     attackSpeed = 1;
+
+    healthPoints = 100;
+    maxHealth = 100;
 
     baseDamage = 10;
     critChance = 5.0f;
@@ -56,7 +58,7 @@ void Player::Update()
         bullet.Move();
     }
 
-    LevelUp();
+    PlayerLevelUp();
 
     elapsedTime = GetTime() - startTime;
 
@@ -186,7 +188,7 @@ void Player::AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float delt
     abilityManager.CheckCollisions(*this, enemies);
 }
 
-void Player::LevelUp()
+void Player::PlayerLevelUp()
 {
     if (experiencePoints >= maxExperiencePoints) {
         experiencePoints = 0;
@@ -197,42 +199,10 @@ void Player::LevelUp()
     }
 }
 
-void Player::DrawLevelUpBox()
-{
-    if (leveledUp) {
-        // Draw the main blue box
-        int mainBoxWidth = 300;
-        int mainBoxHeight = 200;
-        int mainBoxX = GetScreenWidth() / 2 - mainBoxWidth / 2;
-        int mainBoxY = GetScreenHeight() / 2 - mainBoxHeight / 2;
-        DrawRectangle(mainBoxX, mainBoxY, mainBoxWidth + 20, mainBoxHeight, BLUE);
-
-        // Draw three smaller boxes inside the main box
-        int smallBoxWidth = 80;
-        int smallBoxHeight = 80;
-        int spacing = 20;
-        int smallBoxY = mainBoxY + (mainBoxHeight - smallBoxHeight) / 2;
-
-        for (int i = 0; i < 3; ++i) {
-            int smallBoxX = mainBoxX + spacing + i * (smallBoxWidth + spacing);
-            DrawRectangle(smallBoxX, smallBoxY, smallBoxWidth, smallBoxHeight, WHITE);
-
-            // Draw textures inside the smaller boxes (replace with actual textures)
-            // Example: DrawTexture(texture, smallBoxX, smallBoxY, WHITE);
-            // For now, we'll just draw a placeholder rectangle
-            DrawRectangle(smallBoxX + 10, smallBoxY + 10, smallBoxWidth - 20, smallBoxHeight - 20, GRAY);
-        
-            // Check for mouse clicks within the bounding rectangles of the small boxes
-            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-                Vector2 mousePosition = GetMousePosition();
-                if (CheckCollisionPointRec(mousePosition, { (float)smallBoxX, (float)smallBoxY, (float)smallBoxWidth, (float)smallBoxHeight })) {
-                    leveledUp = false;
-                    gamePaused = false;
-                }
-            }
-        }
-    }
-}
+// void Player::DrawLevelUpBox()
+// {
+//     levelUp.DrawLevelUpBox();
+// }
 
 void Player::Draw() const
 {
@@ -250,6 +220,7 @@ void Player::Draw() const
     }
 
     abilityManager.Draw(*this);
+    //levelUp.DrawLevelUpBox();
 }
 
 void Player::DrawExp() const

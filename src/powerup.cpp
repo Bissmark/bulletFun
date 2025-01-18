@@ -32,7 +32,8 @@ void Powerup::CheckCollision(Player& player)
 
     if (CheckCollisionRecs(boxCollision, playerCollision)) {
         isCollected = true;
-        player.healthPoints += 10;
+        // increase player health by % of player max health
+        player.healthPoints += player.maxHealth * 0.1;
         isActive = false;
         Respawn();
     }

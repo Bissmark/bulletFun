@@ -14,6 +14,7 @@ Grunt::Grunt(Player& player, Vector2 position) : Enemy(player, position)
 
     maxHealth = 150;
     health = maxHealth;
+    movementSpeed = 30;
 }
 
 void Grunt::Update(float deltaTime)

@@ -13,6 +13,7 @@ EnemySpawner::EnemySpawner(Player& player, int spawnRate)
     , currentEnemies(0)
     , framesCounter(0)
     , spawnCounter(0.0f)
+    , amountOfEnemyTypes(3)
 {
 }
 
@@ -30,7 +31,6 @@ void EnemySpawner::Update(float deltaTime)
 
     for (auto& enemy : enemies) {
         enemy->Update(deltaTime);
-        enemy->Attack(deltaTime);
     }
 
     for (auto it = enemies.begin(); it != enemies.end(); ) {
@@ -55,8 +55,8 @@ void EnemySpawner::Update(float deltaTime)
             }
         }
         
-        if ((*it)->Destroy()) { // Check if the enemy should be destroyed
-            it = enemies.erase(it); // Remove the enemy from the vector
+        if ((*it)->Destroy()) {
+            it = enemies.erase(it);
         } else {
             ++it; // Move to the next enemy
         }
@@ -74,7 +74,7 @@ void EnemySpawner::Draw() const
 
 void EnemySpawner::SpawnEnemy()
 {
-    EnemyType type = static_cast<EnemyType>(GetRandomValue(0, 3));
+    EnemyType type = static_cast<EnemyType>(GetRandomValue(0, amountOfEnemyTypes));
     Vector2 position = { (float)GetRandomValue(0, GetScreenWidth()), (float)GetRandomValue(0, GetScreenHeight()) };
     enemies.emplace_back(CreateEnemy(type, position));
     ++currentEnemies;

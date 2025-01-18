@@ -7,6 +7,7 @@
 #include "characterSelection.h"
 #include "tilemap.h"
 #include "skillPickup.h"
+#include "levelUp.h"
 #include <raymath.h>
 #include <cmath>
 #include <iostream>
@@ -15,6 +16,8 @@ int main()
 {
     constexpr int screenWidth = 800;
     constexpr int screenHeight = 600;
+
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     
     InitWindow(screenWidth, screenHeight, "2D Game");
 
@@ -25,6 +28,7 @@ int main()
     CharacterSelection characterSelection(player);
     Tilemap tilemap(16, 32);
     SkillPickup skillPickup;
+    LevelUp levelUp(player);
 
     SetTargetFPS(60);
     
@@ -79,7 +83,9 @@ int main()
                     player.Draw();
                 EndMode2D();
                 player.DrawExp();
-                player.DrawLevelUpBox();
+                if (player.leveledUp) {
+                    levelUp.DrawLevelUpBox();
+                }
                 DrawText(TextFormat("Health: %i", player.healthPoints), 10, 10, 20, RED);
                 DrawText(TextFormat("Elapsed Time: %i seconds", (int)player.elapsedTime), 10, 50, 20, RED);
                 DrawText(TextFormat("%i", player.level), 30, screenHeight - 50, 30, WHITE);

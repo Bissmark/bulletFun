@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include <array>
 #include "enemy.h"
 
 class Player;
@@ -21,6 +22,7 @@ class EnemySpawner
         int spawnRate;
         int currentEnemies;
         int framesCounter;
+        int amountOfEnemyTypes;
         float spawnCounter;
 
         enum EnemyType { ARCHER, SLIME, MAGE, WARRIOR, GRUNT };
