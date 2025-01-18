@@ -59,11 +59,12 @@ int main()
         } else {
             if (!player.gamePaused) {
                 player.Move();
-                player.Update();
+                player.Update(enemySpawner.enemies, deltaTime);
                 player.AutoAttack(enemySpawner.enemies, deltaTime);
                 powerup.Update(player);
-                skillPickup.Update(player);
+                skillPickup.Update(player, skillBar);
                 enemySpawner.Update(deltaTime);
+                skillBar.Update(player, enemySpawner.enemies, deltaTime);
 
                 //background.Update(player.playerPosition);
             }

@@ -15,16 +15,16 @@ SkillPickup::SkillPickup()
     }
 }
 
-void SkillPickup::Update(Player& player)
+void SkillPickup::Update(Player& player, SkillBar& skillBar)
 {
     for (auto& pickup : pickups) {
         if (pickup.isActive) {
-            CheckCollision(player, pickup);
+            CheckCollision(player, pickup, skillBar);
         }
     }
 }
 
-void SkillPickup::CheckCollision(Player& player, Pickup& pickup)
+void SkillPickup::CheckCollision(Player& player, Pickup& pickup, SkillBar& skillBar)
 {
     Rectangle playerCollision = { player.playerPosition.x - player.radius, player.playerPosition.y - player.radius, (float)player.radius * 2, (float)player.radius * 2 };
 
@@ -33,10 +33,12 @@ void SkillPickup::CheckCollision(Player& player, Pickup& pickup)
 
         switch (pickup.skillType) {
             case Pickup::SkillType::Ring:
-                player.AddAbility(std::make_unique<AuraDmg>(50.0f, 10, RED));
+                //player.AddAbility(std::make_unique<AuraDmg>(50.0f, 10, RED));
+                skillBar.AddSkill(std::make_unique<AuraDmg>(50.0f, 10, RED));
                 break;
             case Pickup::SkillType::Flamethrower:
-                player.AddAbility(std::make_unique<Flamethrower>(20.0f, 100.0f, 20, 1, RED));
+                //player.AddAbility(std::make_unique<Flamethrower>(20.0f, 100.0f, 20, 1, RED));
+                skillBar.AddSkill(std::make_unique<Flamethrower>(20.0f, 100.0f, 20, 1, RED));
                 break;
         }
     }

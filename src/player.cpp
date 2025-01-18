@@ -50,7 +50,7 @@ Player::Player()
     playerPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
 }
 
-void Player::Update()
+void Player::Update(std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime)
 {
     frameRec.x = (float)currentFrame * (float)currentTexture.width / numFrames;
 
@@ -62,7 +62,7 @@ void Player::Update()
 
     elapsedTime = GetTime() - startTime;
 
-    abilityManager.Update(*this);
+    abilityManager.Update(*this, enemies, deltaTime);
 }
 
 void Player::Move()

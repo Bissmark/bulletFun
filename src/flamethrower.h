@@ -6,7 +6,7 @@ class Flamethrower : public Ability
 {
     public:
         Flamethrower(float width, float length, int speed, int baseDamage, Color color);
-        void Update(const Player& player) override;
+        void Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime) override;
         void Draw(const Player& player) const override;
         bool CheckCollision(const Player& player, Enemy& enemy);
 

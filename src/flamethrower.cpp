@@ -11,7 +11,7 @@ Flamethrower::Flamethrower(float width, float length, int speed, int baseDamage,
     }
 }
 
-void Flamethrower::Update(const Player& player)
+void Flamethrower::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime)
 {
     rotationAngle += GetFrameTime() * speed;
     for (int i = 0; i < numBeams; ++i) {

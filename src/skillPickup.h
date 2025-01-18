@@ -1,6 +1,7 @@
 #pragma once
 #include <raylib.h>
 #include <vector>
+#include "skillBar.h"
 
 class Player;
 
@@ -15,10 +16,10 @@ class SkillPickup
 {
     public:
         SkillPickup();
-        void Update(Player& player);
+        void Update(Player& player, SkillBar& skillBar);
         void Draw() const;
 
     private:
-        void CheckCollision(Player& player, Pickup& pickup);
+        void CheckCollision(Player& player, Pickup& pickup, SkillBar& skillBar);
         std::vector<Pickup> pickups;
 };

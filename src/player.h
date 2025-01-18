@@ -12,14 +12,13 @@ class Player
     public: 
         enum class PlayerType { WARRIOR, MAGE, ARCHER };
         Player();
-        void Update();
+        void Update(std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime);
         void Move();
         void Draw() const;
         void Fire(const Camera2D& camera);
         void AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime);
         void PlayerLevelUp();
         void DrawExp() const;
-        //void DrawLevelUpBox();
         void AddAbility(std::unique_ptr<Ability> ability);
         Vector2 playerPosition;
         int radius;

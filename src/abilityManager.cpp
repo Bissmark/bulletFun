@@ -6,10 +6,10 @@ AbilityManager::AbilityManager()
 {
 }
 
-void AbilityManager::Update(Player& player)
+void AbilityManager::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime)
 {
     for (auto& ability : abilities) {
-        ability->Update(player);
+        ability->Update(player, enemies, deltaTime);
     }
 }
 

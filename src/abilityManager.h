@@ -11,7 +11,7 @@ class AbilityManager
 {
     public:
         AbilityManager();
-        void Update(Player& player);
+        void Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime);
         void CheckCollisions(Player& player, std::vector<std::unique_ptr<Enemy>>& enemies);
         void Draw(const Player& player) const;
         void AddAbility(std::unique_ptr<Ability> ability);
