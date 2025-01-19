@@ -14,7 +14,7 @@ Flamethrower::Flamethrower(float width, float length, int speed, int baseDamage,
 
 void Flamethrower::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime)
 {
-    //centerPosition = player.playerPosition;
+    centerPosition = { player.playerPosition.x + player.frameRec.width / 2, player.playerPosition.y + player.frameRec.height / 2 };
     rotationAngle += GetFrameTime() * speed;
     for (int i = 0; i < numBeams; ++i) {
         beamAngles[i] = fmod(rotationAngle + i * (360.0f / numBeams), 360.0f); // Update angles to be evenly distributed
@@ -23,7 +23,7 @@ void Flamethrower::Update(const Player& player, std::vector<std::unique_ptr<Enem
 
 void Flamethrower::Draw(const Player& player, const Camera2D& camera) const
 {
-    Vector2 screenPlayerPosition = GetWorldToScreen2D(player.playerPosition, camera);
+    Vector2 screenPlayerPosition = GetWorldToScreen2D(centerPosition, camera);
 
     for (int i = 0; i < numBeams; ++i) {
         float angle = beamAngles[i];

@@ -30,7 +30,7 @@ void AuraDmg::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& 
     if (isActive) {
         elapsedTime += deltaTime;
 
-        centerPosition = player.playerPosition;
+        centerPosition = { player.playerPosition.x + player.frameRec.width / 2, player.playerPosition.y + player.frameRec.height / 2 };
 
         // Calculate the current radius based on the elapsed time
         float halfDuration = duration / 2.0f;
