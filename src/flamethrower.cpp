@@ -23,12 +23,12 @@ void Flamethrower::Update(const Player& player, std::vector<std::unique_ptr<Enem
 
 void Flamethrower::Draw(const Player& player, const Camera2D& camera) const
 {
-    Vector2 centerPosition = player.playerPosition;
+    Vector2 screenPlayerPosition = GetWorldToScreen2D(player.playerPosition, camera);
 
     for (int i = 0; i < numBeams; ++i) {
         float angle = beamAngles[i];
         Vector2 forwardOffset = { cosf(angle * DEG2RAD) * (player.frameRec.width + (width * 1.5)), sinf(angle * DEG2RAD) * (player.frameRec.height + (width * 1.5)) };
-        Vector2 beamPosition = Vector2Add(centerPosition, forwardOffset);
+        Vector2 beamPosition = Vector2Add(screenPlayerPosition, forwardOffset);
         DrawRectanglePro({ beamPosition.x, beamPosition.y, length, width }, { length / 2, width / 2 }, angle, color);
     }
 }
