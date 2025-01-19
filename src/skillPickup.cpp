@@ -34,7 +34,7 @@ void SkillPickup::CheckCollision(Player& player, Pickup& pickup, SkillBar& skill
         switch (pickup.skillType) {
             case Pickup::SkillType::Ring:
                 //player.AddAbility(std::make_unique<AuraDmg>(50.0f, 10, RED));
-                skillBar.AddSkill(std::make_unique<AuraDmg>(50.0f, 10, RED));
+                skillBar.AddSkill(std::make_unique<AuraDmg>(100.0f, 10, RED));
                 break;
             case Pickup::SkillType::Flamethrower:
                 //player.AddAbility(std::make_unique<Flamethrower>(20.0f, 100.0f, 20, 1, RED));

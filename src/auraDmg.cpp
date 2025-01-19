@@ -45,8 +45,7 @@ void AuraDmg::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& 
 
         // Check for collisions with enemies
         for (auto& enemy : enemies) {
-            float distance = Vector2Distance(enemy->enemyPosition, centerPosition);
-            if (distance <= currentRadius) {
+            if (CheckCollisionRecs(enemy->boxCollision, { centerPosition.x - currentRadius, centerPosition.y - currentRadius, currentRadius * 2, currentRadius * 2 })) {
                 enemy->health -= baseDamage;
                 if (enemy->health <= 0) {
                     enemy->Destroy();
@@ -58,21 +57,21 @@ void AuraDmg::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& 
 
 bool AuraDmg::CheckCollision(const Player& player, Enemy& enemy)
 {
-    float distance = Vector2Distance(enemy.enemyPosition, centerPosition);
-    if (distance <= currentRadius) {
-        enemy.health -= baseDamage;
-        if (enemy.health <= 0) {
-            enemy.Destroy();
-        }
-        return true;
-    }
-    return false;
+    // float distance = Vector2Distance(enemy.enemyPosition, centerPosition);
+    // if (distance <= currentRadius) {
+    //     enemy.health -= baseDamage;
+    //     if (enemy.health <= 0) {
+    //         enemy.Destroy();
+    //     }
+    //     return true;
+    // }
+    // return false;
 }
 
 void AuraDmg::Draw(const Player& player, const Camera2D& camera) const
 {
     if (isActive) {
         Vector2 screenPlayerPosition = GetWorldToScreen2D(centerPosition, camera);
-        DrawCircleV(screenPlayerPosition, currentRadius, Fade(color, 0.5f));
+        DrawCircleLinesV(screenPlayerPosition, currentRadius, Fade(color, 0.5f));
     }
 }

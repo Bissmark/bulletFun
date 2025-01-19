@@ -9,7 +9,6 @@
 #include "skillPickup.h"
 #include "levelUp.h"
 #include "skillBar.h"
-#include "auraDmg.h"
 #include <raymath.h>
 #include <cmath>
 #include <iostream>
@@ -32,7 +31,6 @@ int main()
     SkillPickup skillPickup;
     LevelUp levelUp(player);
     SkillBar skillBar;
-    AuraDmg auraDmg(100.0f, 10, RED);
 
     SetTargetFPS(60);
     
