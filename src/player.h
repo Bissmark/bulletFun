@@ -43,7 +43,6 @@ class Player
     private:
         Texture2D playerIdle;
         Texture2D playerWalk;
-        Rectangle boxCollision;
         int speedX;
         int speedY;
         int currentFrame;
