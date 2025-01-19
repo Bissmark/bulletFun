@@ -11,7 +11,7 @@ class SkillBar
     public:
         SkillBar();
         void Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime);
-        void Draw() const;
+        void Draw(Player& player, Camera2D camera) const;
         void AddSkill(std::unique_ptr<Ability> skill);
 
     private:

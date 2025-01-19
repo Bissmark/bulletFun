@@ -14,7 +14,7 @@ class Player
         Player();
         void Update(std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime);
         void Move();
-        void Draw() const;
+        void Draw(const Camera2D& camera) const;
         void Fire(const Camera2D& camera);
         void AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime);
         void PlayerLevelUp();

@@ -9,7 +9,7 @@ class Bullet
     public:
         Bullet(Vector2 position, Vector2 direction, float speed, Color color, Player* player);
         void Move();
-        void Draw() const;
+        void Draw(const Camera2D& camera) const;
         bool Collision(Enemy& enemy);
 
     private:

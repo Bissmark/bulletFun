@@ -22,10 +22,10 @@ void AbilityManager::CheckCollisions(Player& player, std::vector<std::unique_ptr
     }
 }
 
-void AbilityManager::Draw(const Player& player) const
+void AbilityManager::Draw(const Player& player, const Camera2D& camera) const
 {
     for (const auto& ability : abilities) {
-        ability->Draw(player);
+        ability->Draw(player, camera);
     }
 }
 

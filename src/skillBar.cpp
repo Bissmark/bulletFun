@@ -1,5 +1,6 @@
 #include "skillBar.h"
 #include "auraDmg.h"
+#include <iostream>
 
 SkillBar::SkillBar()
 {
@@ -34,8 +35,9 @@ void SkillBar::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>&
     }
 }
 
-void SkillBar::Draw() const
+void SkillBar::Draw(Player& player, Camera2D camera) const
 {
+    // Draw the skill bar in screen space
     int mainBoxWidth = 300;
     int mainBoxHeight = 60;
     int mainBoxX = GetScreenWidth() / 2 - mainBoxWidth / 2;
@@ -43,7 +45,7 @@ void SkillBar::Draw() const
 
     DrawRectangle(mainBoxX, mainBoxY, mainBoxWidth, mainBoxHeight, GRAY);
 
-    // Draw 4 smaller boxes inside the main box
+    // Draw smaller boxes for skills
     int smallBoxWidth = 60;
     int smallBoxHeight = 60;
     int spacing = 10;
@@ -53,11 +55,16 @@ void SkillBar::Draw() const
         int smallBoxX = mainBoxX + spacing + i * (smallBoxWidth + spacing);
         DrawRectangle(smallBoxX, smallBoxY, smallBoxWidth, smallBoxHeight, WHITE);
 
-        // Draw the skill icon inside the smaller boxes if a skill is present
+        // Draw the skill icon inside the boxes
         if (i < skills.size()) {
-            // Placeholder for skill icon drawing
-            DrawRectangle(smallBoxX + 10, smallBoxY + 10, smallBoxWidth - 20, smallBoxHeight - 20, RED);//skills[i]->GetColor());
+            DrawRectangle(smallBoxX + 10, smallBoxY + 10, smallBoxWidth - 20, smallBoxHeight - 20, RED);
         }
+    }
+
+    // Draw skills (e.g., abilities) in world space
+    //Vector2 screenPlayerPosition = GetWorldToScreen2D(player.playerPosition, camera);
+    for (const auto& skill : skills) {
+        skill->Draw(player, camera);
     }
 }
 

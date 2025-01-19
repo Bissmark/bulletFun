@@ -5,9 +5,20 @@
 #include <iostream>
 
 AuraDmg::AuraDmg(float radius, int baseDamage, Color color)
-    : maxRadius(radius), currentRadius(radius), baseDamage(baseDamage), color(color), enemy(enemy)
+    : maxRadius(radius), baseDamage(baseDamage), color(color), isActive(false), duration(2.0f), elapsedTime(0.0f), cooldown(5.0f), cooldownTime(0.0f)
 {
     currentRadius = 0.0f;
+    centerPosition = { 0.0f, 0.0f };
+}
+
+void AuraDmg::Activate()
+{
+    if (cooldownTime <= 0.0f) {
+        isActive = true;
+        elapsedTime = 0.0f;
+        currentRadius = 0.0f;
+        cooldownTime = cooldown;
+    }
 }
 
 void AuraDmg::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime)
@@ -16,10 +27,10 @@ void AuraDmg::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& 
         cooldownTime -= deltaTime;
     }
 
-    std::cout << isActive << std::endl;
-
     if (isActive) {
         elapsedTime += deltaTime;
+
+        centerPosition = player.playerPosition;
 
         // Calculate the current radius based on the elapsed time
         float halfDuration = duration / 2.0f;
@@ -34,7 +45,7 @@ void AuraDmg::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& 
 
         // Check for collisions with enemies
         for (auto& enemy : enemies) {
-            float distance = Vector2Distance(enemy->enemyPosition, player.playerPosition);
+            float distance = Vector2Distance(enemy->enemyPosition, centerPosition);
             if (distance <= currentRadius) {
                 enemy->health -= baseDamage;
                 if (enemy->health <= 0) {
@@ -47,7 +58,7 @@ void AuraDmg::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& 
 
 bool AuraDmg::CheckCollision(const Player& player, Enemy& enemy)
 {
-    float distance = Vector2Distance(enemy.enemyPosition, player.playerPosition);
+    float distance = Vector2Distance(enemy.enemyPosition, centerPosition);
     if (distance <= currentRadius) {
         enemy.health -= baseDamage;
         if (enemy.health <= 0) {
@@ -58,20 +69,10 @@ bool AuraDmg::CheckCollision(const Player& player, Enemy& enemy)
     return false;
 }
 
-void AuraDmg::Activate()
-{
-    if (cooldownTime <= 0.0f) {
-        isActive = true;
-        elapsedTime = 0.0f;
-        currentRadius = 0.0f;
-        cooldownTime = cooldown;
-    }
-}
-
-void AuraDmg::Draw(const Player& player) const
+void AuraDmg::Draw(const Player& player, const Camera2D& camera) const
 {
     if (isActive) {
-        Vector2 centerPosition = { player.playerPosition.x + player.frameRec.width / 2, player.playerPosition.y + player.frameRec.height / 2 };
-        DrawCircleV(centerPosition, currentRadius, Fade(color, 0.5f));
+        Vector2 screenPlayerPosition = GetWorldToScreen2D(centerPosition, camera);
+        DrawCircleV(screenPlayerPosition, currentRadius, Fade(color, 0.5f));
     }
 }

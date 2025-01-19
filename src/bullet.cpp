@@ -33,8 +33,9 @@ bool Bullet::Collision(Enemy& enemy)
     return false;
 }
 
-void Bullet::Draw() const
+void Bullet::Draw(const Camera2D& camera) const
 {
+    Vector2 screenBulletPosition = GetWorldToScreen2D(position, camera);
     float angle = atan2f(direction.y, direction.x) * (180.0f / PI);
-    DrawTextureEx(arrowTexture, position, angle, 0.1f, WHITE);
+    DrawTextureEx(arrowTexture, { screenBulletPosition.x, screenBulletPosition.y }, angle, 0.1f, WHITE);
 }

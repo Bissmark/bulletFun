@@ -9,6 +9,7 @@
 #include "skillPickup.h"
 #include "levelUp.h"
 #include "skillBar.h"
+#include "auraDmg.h"
 #include <raymath.h>
 #include <cmath>
 #include <iostream>
@@ -31,6 +32,7 @@ int main()
     SkillPickup skillPickup;
     LevelUp levelUp(player);
     SkillBar skillBar;
+    AuraDmg auraDmg(100.0f, 10, RED);
 
     SetTargetFPS(60);
     
@@ -83,10 +85,11 @@ int main()
                     enemySpawner.Draw();
                     powerup.Draw();
                     skillPickup.Draw();
-                    player.Draw();
+                    player.Draw(camera);
                 EndMode2D();
+
                 player.DrawExp();
-                skillBar.Draw();
+                skillBar.Draw(player, camera);
                 if (player.leveledUp) {
                     levelUp.DrawLevelUpBox();
                 }

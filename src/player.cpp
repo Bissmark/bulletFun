@@ -204,7 +204,7 @@ void Player::PlayerLevelUp()
 //     levelUp.DrawLevelUpBox();
 // }
 
-void Player::Draw() const
+void Player::Draw(const Camera2D& camera) const
 {
     if (direction == RIGHT) {
         DrawTextureRec(currentTexture, frameRec, playerPosition, WHITE);
@@ -216,10 +216,10 @@ void Player::Draw() const
     }
 
     for (auto& bullet : bullets) {
-        bullet.Draw();
+        bullet.Draw(camera);
     }
 
-    abilityManager.Draw(*this);
+    abilityManager.Draw(*this, camera);
     //levelUp.DrawLevelUpBox();
 }
 

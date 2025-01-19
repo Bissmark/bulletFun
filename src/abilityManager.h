@@ -13,7 +13,7 @@ class AbilityManager
         AbilityManager();
         void Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime);
         void CheckCollisions(Player& player, std::vector<std::unique_ptr<Enemy>>& enemies);
-        void Draw(const Player& player) const;
+        void Draw(const Player& player, const Camera2D& camera) const;
         void AddAbility(std::unique_ptr<Ability> ability);
 
     private:

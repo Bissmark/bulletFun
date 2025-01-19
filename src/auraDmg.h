@@ -6,12 +6,11 @@ class AuraDmg : public Ability
     public:
         AuraDmg(float radius, int baseDamage, Color color);
         void Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime) override;
-        void Draw(const Player& player) const override;
+        void Draw(const Player& player, const Camera2D& camera) const;
         bool CheckCollision(const Player& player, Enemy& enemy) override;
         void Activate();
     
     private:
-        Enemy& enemy;
         float maxRadius;
         float currentRadius;
         int baseDamage;
@@ -22,5 +21,6 @@ class AuraDmg : public Ability
         float cooldown;
         float cooldownTime;
         float deltaTime;
+        Vector2 centerPosition;
         
 };
