@@ -3,7 +3,7 @@
 
 Background::Background()
 {
-    background = LoadTexture("src/Spritesheet/background.png");
+    background = LoadTexture("Spritesheet/background.png");
     screenHeight = GetScreenHeight();
     screenWidth = GetScreenWidth();
     position1 = { 0.0f, 0.0f };

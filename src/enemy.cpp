@@ -16,8 +16,8 @@ Enemy::Enemy(Player& player, Vector2 position) : player(player), enemyPosition(p
     radius = 15;
     health = 100;
     
-    enemyIdle = LoadTexture("src/Spritesheet/enemy/Idle.png");
-    enemyWalk = LoadTexture("src/Spritesheet/enemy/Walk.png");
+    enemyIdle = LoadTexture("Spritesheet/enemy/Idle.png");
+    enemyWalk = LoadTexture("Spritesheet/enemy/Walk.png");
     currentTexture = enemyIdle;
 
     frameRec = { 0.0f, 0.0f, (float)enemyIdle.width / numFrames, (float)enemyIdle.height };

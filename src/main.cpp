@@ -42,7 +42,7 @@ int main()
     
     Camera2D camera = { 0 };
     camera.target = player.playerPosition;
-    camera.offset = (Vector2){ screenWidth / 2, screenHeight / 2 };
+    camera.offset = { static_cast<float>(screenWidth) / 2, static_cast<float>(screenHeight) / 2 };
     camera.rotation = 0.0f;
     camera.zoom = 1.0f;
 

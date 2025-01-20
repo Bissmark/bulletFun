@@ -24,7 +24,7 @@ void Tilemap::LoadTextures(int level)
     // Load different textures based on the level
     switch (level) {
         case 1:
-            floorTexture = LoadTexture("src/Spritesheet/floor1.png");
+            floorTexture = LoadTexture("Spritesheet/floor1.png");
             //wallTexture = LoadTexture("src/Textures/wall1.png");
             break;
         case 2:

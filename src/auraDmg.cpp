@@ -57,15 +57,15 @@ void AuraDmg::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& 
 
 bool AuraDmg::CheckCollision(const Player& player, Enemy& enemy)
 {
-    // float distance = Vector2Distance(enemy.enemyPosition, centerPosition);
-    // if (distance <= currentRadius) {
-    //     enemy.health -= baseDamage;
-    //     if (enemy.health <= 0) {
-    //         enemy.Destroy();
-    //     }
-    //     return true;
-    // }
-    // return false;
+    float distance = Vector2Distance(enemy.enemyPosition, centerPosition);
+    if (distance <= currentRadius) {
+        enemy.health -= baseDamage;
+        if (enemy.health <= 0) {
+            enemy.Destroy();
+        }
+        return true;
+    }
+    return false;
 }
 
 void AuraDmg::Draw(const Player& player, const Camera2D& camera) const

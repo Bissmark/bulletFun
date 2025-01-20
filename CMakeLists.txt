@@ -15,12 +15,27 @@ add_executable(BulletFun
     src/archer.cpp
     src/grunt.cpp
     src/slime.cpp
+    src/abilityManager.cpp
+    src/auraDmg.cpp
+    src/background.cpp
+    src/characterSelection.cpp
+    src/flamethrower.cpp
+    src/levelUp.cpp
+    src/powerup.cpp
+    src/skillBar.cpp
+    src/skillPickup.cpp
+    src/slash.cpp
+    src/tilemap.cpp
     # Add other source files here
 )
+
+file(COPY ${CMAKE_SOURCE_DIR}/src/Spritesheet DESTINATION ${CMAKE_BINARY_DIR})
+
 
 # Include directories
 target_include_directories(BulletFun PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
 # Link Raylib
-find_package(raylib REQUIRED)
+set(CMAKE_PREFIX_PATH "C:/raylib")
+# find_package(raylib REQUIRED)
 target_link_libraries(BulletFun PRIVATE raylib)

@@ -5,8 +5,8 @@
 
 Grunt::Grunt(Player& player, Vector2 position) : Enemy(player, position)
 {
-    idleTexture = LoadTexture("src/Spritesheet/enemy/bardIdle.png");
-    walkTexture = LoadTexture("src/Spritesheet/enemy/bardWalk.png");
+    idleTexture = LoadTexture("Spritesheet/enemy/bardIdle.png");
+    walkTexture = LoadTexture("Spritesheet/enemy/bardWalk.png");
     currentTexture = idleTexture;
     numFrames = 4;
     frameWidth = currentTexture.width / numFrames;

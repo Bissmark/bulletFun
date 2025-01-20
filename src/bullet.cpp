@@ -6,7 +6,7 @@
 
 Bullet::Bullet(Vector2 position, Vector2 direction, float speed, Color color, Player* player) : position(position), direction(direction), speed(speed), color(color), player(player)
 {
-    arrowTexture = LoadTexture("src/Spritesheet/Arrow.png");
+    arrowTexture = LoadTexture("Spritesheet/Arrow.png");
 }
 
 void Bullet::Move()

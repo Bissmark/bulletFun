@@ -35,8 +35,8 @@ Player::Player()
     critChance = 5.0f;
     critDamage = 2;
 
-    playerIdle = LoadTexture("src/Spritesheet/player/Idle.png");
-    playerWalk = LoadTexture("src/Spritesheet/player/Walk.png");
+    playerIdle = LoadTexture("Spritesheet/player/Idle.png");
+    playerWalk = LoadTexture("Spritesheet/player/Walk.png");
 
     numFrames = 4;
     frameWidth = playerIdle.width / numFrames;

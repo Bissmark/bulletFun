@@ -12,10 +12,10 @@ Powerup::Powerup()
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
-    healthPot = LoadTexture("src/Spritesheet/powerup/Health.png");
-    speedPot = LoadTexture("src/Spritesheet/powerup/Speed.png");
-    dmgPot = LoadTexture("src/Spritesheet/powerup/Damage.png");
-    shieldPot = LoadTexture("src/Spritesheet/powerup/Shield.png");
+    healthPot = LoadTexture("Spritesheet/powerup/Health.png");
+    speedPot = LoadTexture("Spritesheet/powerup/Speed.png");
+    dmgPot = LoadTexture("Spritesheet/powerup/Damage.png");
+    shieldPot = LoadTexture("Spritesheet/powerup/Shield.png");
 
     powerupPosition = { (float)GetRandomValue(0, screenWidth - healthPot.width), (float)GetRandomValue(0, screenHeight - healthPot.height) };
     boxCollision = { powerupPosition.x, powerupPosition.y, (float)healthPot.width, (float)healthPot.height };

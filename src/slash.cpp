@@ -9,7 +9,7 @@ Slash::Slash(Vector2 position, Vector2 direction, float radius, Player* player)
     , radius(radius)
     , player(player)
 {
-    slashTexture = LoadTexture("src/Spritesheet/Slash.png");
+    slashTexture = LoadTexture("Spritesheet/Slash.png");
 }
 
 void Slash::Update()
