@@ -58,6 +58,12 @@ void SkillBar::Draw(Player& player, Camera2D camera) const
         // Draw the skill icon inside the boxes
         if (i < skills.size()) {
             DrawRectangle(smallBoxX + 10, smallBoxY + 10, smallBoxWidth - 20, smallBoxHeight - 20, RED);
+        
+            const std::string skillName = skills[i]->GetName();
+            int textWidth = MeasureText(skillName.c_str(), 10);
+            int textX = smallBoxX + (smallBoxWidth - textWidth) / 2;
+            int textY = smallBoxY + (smallBoxHeight - 10) / 2;
+            DrawText(skillName.c_str(), textX, textY, 10, BLACK);
         }
     }
 

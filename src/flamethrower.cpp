@@ -3,7 +3,7 @@
 #include <cmath>
 
 Flamethrower::Flamethrower(float width, float length, int speed, int baseDamage, Color color)
-    : width(width), length(length), speed(speed), baseDamage(baseDamage), color(color), rotationAngle(0.0f)
+    : width(width), length(length), speed(speed), baseDamage(baseDamage), color(color), rotationAngle(0.0f), name("Flamethrower")
 {
     centerPosition = { 0.0f, 0.0f };
     numBeams = 3;
@@ -51,4 +51,9 @@ bool Flamethrower::CheckCollision(const Player& player, Enemy& enemy)
         }
     }
     return false;
+}
+
+std::string Flamethrower::GetName() const
+{
+    return name;
 }

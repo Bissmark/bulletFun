@@ -1,6 +1,7 @@
 #pragma once
 #include "ability.h"
 #include <vector>
+#include <string>
 
 class Flamethrower : public Ability
 {
@@ -9,6 +10,7 @@ class Flamethrower : public Ability
         void Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime) override;
         void Draw(const Player& player, const Camera2D& camera) const;
         bool CheckCollision(const Player& player, Enemy& enemy);
+        std::string GetName() const override;
 
     private:
         float width;
@@ -19,5 +21,6 @@ class Flamethrower : public Ability
         int numBeams;
         float rotationAngle;
         Vector2 centerPosition;
+        std::string name;
         std::vector<float> beamAngles;
 };

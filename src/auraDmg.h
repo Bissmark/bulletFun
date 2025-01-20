@@ -1,5 +1,6 @@
 #pragma once
 #include "ability.h"
+#include <string>
 
 class AuraDmg : public Ability
 {
@@ -9,6 +10,7 @@ class AuraDmg : public Ability
         void Draw(const Player& player, const Camera2D& camera) const;
         bool CheckCollision(const Player& player, Enemy& enemy) override;
         void Activate();
+        std::string GetName() const override;
     
     private:
         float maxRadius;
@@ -22,5 +24,6 @@ class AuraDmg : public Ability
         float cooldownTime;
         float deltaTime;
         Vector2 centerPosition;
+        std::string name;
         
 };
