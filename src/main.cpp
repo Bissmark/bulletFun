@@ -13,14 +13,20 @@
 #include <cmath>
 #include <iostream>
 
+#define RAYTMX_IMPLEMENTATION
+#include "raytmx.h"
+
 int main() 
 {
     constexpr int screenWidth = 800;
     constexpr int screenHeight = 600;
+    const char* tmx = "Tileset/level1.tmx";
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     
     InitWindow(screenWidth, screenHeight, "2D Game");
+
+    TmxMap* map = LoadTMX(tmx);
 
     Player player;
     EnemySpawner enemySpawner(player, 2);
@@ -78,14 +84,15 @@ int main()
                 characterSelection.Draw();
             } else {
                 BeginMode2D(camera);
-                    tilemap.Draw(player.playerPosition);
+                    DrawTMX(map, &camera, 0, 0, WHITE);
+                    DrawTMXLayerTile(map, Rectangle({0, 0, 800, 600}), 0, 0, 0, WHITE);
+                    //tilemap.Draw(player.playerPosition);
                     //background.Draw();
                     enemySpawner.Draw();
                     powerup.Draw();
                     skillPickup.Draw();
                     player.Draw(camera);
                 EndMode2D();
-
                 player.DrawExp();
                 skillBar.Draw(player, camera);
                 if (player.leveledUp) {
@@ -98,5 +105,6 @@ int main()
         EndDrawing();
     }
     
+    UnloadTMX(map);
     CloseWindow();
 }

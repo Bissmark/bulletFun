@@ -29,8 +29,11 @@ add_executable(BulletFun
     # Add other source files here
 )
 
-file(COPY ${CMAKE_SOURCE_DIR}/src/Spritesheet DESTINATION ${CMAKE_BINARY_DIR})
 
+add_library(raylib-tmx-h INTERFACE)
+
+# Include Directory
+target_include_directories(raylib-tmx-h INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/)
 
 # Include directories
 target_include_directories(BulletFun PRIVATE ${CMAKE_SOURCE_DIR}/src)
@@ -38,4 +41,6 @@ target_include_directories(BulletFun PRIVATE ${CMAKE_SOURCE_DIR}/src)
 # Link Raylib
 set(CMAKE_PREFIX_PATH "C:/raylib")
 # find_package(raylib REQUIRED)
-target_link_libraries(BulletFun PRIVATE raylib)
+target_link_libraries(BulletFun PRIVATE raylib
+    raylib-tileson
+)

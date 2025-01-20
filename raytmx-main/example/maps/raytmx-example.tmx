@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-up" width="36" height="52" tilewidth="16" tileheight="16" infinite="0" parallaxoriginx="288" parallaxoriginy="416" nextlayerid="18" nextobjectid="25">
+ <tileset firstgid="1" name="ruins" tilewidth="16" tileheight="16" tilecount="140" columns="7">
+  <image source="../tilesets/ruins.png" width="112" height="320"/>
+ </tileset>
+ <tileset firstgid="141" name="grass" tilewidth="16" tileheight="16" tilecount="40" columns="4">
+  <image source="../tilesets/grass.png" width="64" height="160"/>
+ </tileset>
+ <tileset firstgid="181" name="fade" tilewidth="16" tileheight="16" tilecount="6" columns="2">
+  <image source="../tilesets/fade.png" width="32" height="48"/>
+ </tileset>
+ <tileset firstgid="187" source="../tilesets/shadows.tsx"/>
+ <tileset firstgid="203" source="../tilesets/trees.tsx"/>
+ <objectgroup id="15" name="Text">
+  <object id="12" x="336" y="576" width="48" height="17.875">
+   <text fontfamily="Segoe UI" pixelsize="12" wrap="1" color="#55ffff">raytmx</text>
+  </object>
+ </objectgroup>
+ <group id="5" name="Floors">
+  <layer id="10" name="Light grass" width="36" height="52">
+   <data encoding="base64" compression="zlib">
+   eJztzsEJACAMBMHrH3zYUUqzhjwEMTOw/00AgOl2Up1u/6xmfvz48ePHzws/AAAA/OEAXzNfHQ==
+  </data>
+  </layer>
+  <layer id="9" name="Ruin tiles" width="36" height="52">
+   <data encoding="base64" compression="zlib">
+   eJzt1OEJgzAQQOGT6690CUfpKB0toziKo3jXGBULQpF6Ed4HB4KCjyREBAAA4D6eIoOWEZ+HPUf2JJFRS5e3fCaC/Tdbi6/J4E1BGQtdW5own5Uc3VFZS6/BZ3fL9ilrW+szWlMf3VH5+UltrY/v1yu6o0rlTn5Hd1TzXYgGdZs5880/evb/PHp3Zc/R0EPPLz1Xo+dePQAA4NsEpjkNmw==
+  </data>
+  </layer>
+  <layer id="7" name="Fades to black" width="36" height="52">
+   <data encoding="base64" compression="zlib">
+   eJzt0kEKgDAQQ9Ee1aPkUha8nQUpzKJWZpFx8x90NYEEsTUAAAAAAACvM5eVa0foyGTl2hE6Mlm5doSOTFauHaEjk5VrR+h4dY3+cT/m6z/vqfgei87dTVU7QufupqodU396j9Wr+F8AAMC3G12lHh4=
+  </data>
+  </layer>
+  <layer id="8" name="Ruin stairs" width="36" height="52">
+   <data encoding="base64" compression="zlib">
+   eJztzssJgEAQRMHNcv0kM6HbooIJyHiogoaF2cMbAwAAAPjCzJbuiJfunjXbsv1eWmpe7zqXW+VPdXU9PV0dAADAPxzUzwr1
+  </data>
+  </layer>
+  <layer id="12" name="Shadows 1" width="36" height="52">
+   <data encoding="base64" compression="zlib">
+   eJzt1MsNgzAQBNAtJaVQCqVQCn0AkfkoSVkZFEAWApMLnj3MkyzL+OCR14uZiIiIiD8jxpRY5/bG+EQ51jWblxzeXL2X3O/pqk6sOrL7apXqK0bGVD2YPee9Xqx8ZzXx8n/szUp2hlhLzNOZ1e0vwzbCsod7qvZ7d8MZdYZj/qY8aU9/eUKDecDbjb/h3gLmIneeuV7osbmXNq+orxh5MB6Eow95yyMiIiL+fQFwAERb
+  </data>
+  </layer>
+  <layer id="11" name="Shadows 2" width="36" height="52">
+   <data encoding="base64" compression="zlib">
+   eJzt0TEKACAMBMH8/1sK+iwt7S3CwQxcvyRVAADwb9zN7ojHutvdEaH8MusGSa0AAACQ4AD0ZAxZ
+  </data>
+  </layer>
+ </group>
+ <group id="4" name="Edges">
+  <layer id="1" name="Ruin ledges" width="36" height="52">
+   <data encoding="base64" compression="zlib">
+   eJztzjEKgDAUg2Fv4EF0ctPT5eh2KTyKgxlSEP8P3tIGkmUBAAB/t7XbjUs7JnQ4vrynZZXaUTqcrFI7SoeTVWpH6XCySu0oHU5WqR2lw8kqtaN0OFmldpQOJ6vUjtLhZJXa0Z3truG68f2csGd9uDd/f9kDAAAAAF9xAw6QDmY=
+  </data>
+  </layer>
+  <layer id="6" name="Ruin walls" width="36" height="52">
+   <data encoding="base64" compression="zlib">
+   eJzt0ksKgDAMRVGX4A/8DawTdf8rtIMUSikVIikO7oGQkmYUXtMAAAAAAICvnNGu1mW0q+WMdrW4T9nf7nP46nyN0WyQ2S69z+xYuX3NvrZotsrslL5kdqw45Z+VUiZq5CUVstJKj9818pIKWZmkx+8aeQEAAO8eLy0Fbw==
+  </data>
+  </layer>
+ </group>
+ <group id="3" name="Trees">
+  <layer id="14" name="Trees 1" width="36" height="52">
+   <data encoding="base64" compression="zlib">
+   eJzt1DEOACEIRFHvf721ddv1GNKQ2IDFJozFfwkFHXHA1gAAgMJj1ZO+2rB6tzm8V/ms5jaH92q3zHHal+p9Ou1L9T55TtE7VOeY3ZXi9rO7Utx+lpfi5qK8VP90lJfqn44yueV/BAAAAADgrwUVRDkc
+  </data>
+  </layer>
+  <layer id="13" name="Trees 2" width="36" height="52">
+   <data encoding="base64" compression="zlib">
+   eJzt0zEKwDAMA8D8/3vp2qztM+oxk8kmKHeg3Uh4DAAATszKlT5ic1dW+ojNU3nTRxyyZd9BYsuug8ReXQd+DwAAAP7tA/IPFMU=
+  </data>
+  </layer>
+ </group>
+ <layer id="17" name="Fog" width="36" height="52" visible="0" parallaxx="0.2" parallaxy="0.2">
+  <data encoding="base64" compression="zlib">
+   eJx911mSoDAMA9AcNEDg/oeY/kBVD3V6Pii22PEqK9cY4/65zvee5+fnOt779X473ue7nufPtfg+X7n5vq/3+eJ+sTZ7Tu43+z51P5Bf6Jnsdb7PsSu2xZ+Fvsjmu/+v9x4dk/uBzvibfdUZ+ZP17fOJjhu7E6vsd45vjozrjU+LtZE1L7HlQD46fdeHxCaxz9p7fHPbuuJvair263/7sFhrnUz+R88a3zjq+4lOY2tO3VM/9Dfxyn2Ob7/o9106khNlrc+ssw5ik/GzLxKHh/+LdVmbPNmv0Wn87am8t/+L5+hon+1J7ez9O3dta/7lu3r9bky7B57SF51imvFT3nj081ky8X9nX+OpsTbvz/j6mDX5Lr6pK/EUVxqfrN3kLrqfko1N9oy9aV88G52xX9/ujY7Goh32NFYt/LLejb0xWuPbf8bXunp4Fqc7340x1pk9v5sz1rTf9Cc5dp70P+eN+By96a287/ou8hc6rFf3jM7I+C4eW1MdH32+x7dOjbOYp1/JW+NF9Irp+e8cECfFI3OrnnzP2p4j9pd4ePLdODkf1G1sYqvzIfG3LsUn58MOb/XXGozcjs9ZX9rV9WhemtMkFj5bw/aJvDM5zN6Rty5cJy52jtf4zZ/+6u1js582d60+pU+8sgacabE5NW19y4eaE+94njWmbT1X7cs1fveKNdFxNG8LGfdrvtY56txHT89j57ucyvkq34/u5ta7WtE2Y2zuxGkx5Kr35qpzfGNuTfU/913jWx/GXdxJzBo/YqsxNv7d22K+dh3olnM3L1/jd91GPvlo3nGNbw4iZ5yirznYif4dFoujnil2PHWWbNeBdde8yLqVj/Y8NycXMt0Pzjm5kPUrpj+lX17V+NC1bJ6a81vTO95j7sXm5pHK2E87zvxsdOivudEGcd04N98SpxOfPruZy/axubM6FvqTB/HLWbe41Jk1nRcxasfh891+sqY89zSfePgvT7BfjIm1rT2Ndc7P3flH/DfHsUuZ5hr2Y/M4ZefYx8RY9jm3ebn44oxp3m0dybHkNPrimUC7zO8qffZS1shLOhbNMRrr8k89zRHFUbFlYUNjmjWw4+h9djP+C31H6RAX1vjWz8IW9Rh//ZFbdq+LAzufO27NA/7CBPnJXf/Nf59des7sOK1rZ+mKb0fJWxvym+Yirr9qn2P8rjF7xljcdaWOxS57KjFr3u5eWdMxz72xu882iVXiJ66KTeZc/7N/zwrz7DxV50LG+nc+NdcSk60Vcas5ceOzOdL2Prs0z20saD7ac0LbPJOICY2DiXNsMD7P5j1rxL2eX31O1Z/4J6b2jLZm1vjOSGs9/5zPYr59Yq7E9ebZjfO+6+sc3xx0fZt7a7I5nLPHGo9O87bQJd+QT2q3daOsddF4ap15zhAPEquua7HF2TjRd3LNWtf8cI2vvbFfXiXfEB8bQ62Bv85V9rczwbOOXErskjut8TuO9o1939jUPDz5TBzNdb7b8wv9+W+M7NVVd7nj/+a8fEWu5D31l/XOPfX3+bh5ivGXZ7h3c55/Chi2ww==
+  </data>
+ </layer>
+ <objectgroup color="#400000ff" id="16" name="Doors" visible="0">
+  <object id="15" template="door.tx" x="368" y="240">
+   <properties>
+    <property name="direction" value="west"/>
+    <property name="name" value="garden upper"/>
+    <property name="to" value="spawn"/>
+   </properties>
+  </object>
+  <object id="18" template="door.tx" x="288" y="576">
+   <properties>
+    <property name="one-off" value="This property exists solely to create a property not from the template, forcing a merge"/>
+   </properties>
+  </object>
+  <object id="24" template="door.tx" x="368" y="256">
+   <properties>
+    <property name="direction" value="west"/>
+    <property name="name" value="garden lower"/>
+    <property name="to" value="spawn"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#40aa00ff" draworder="index" id="2" name="Walls" visible="0">
+  <properties>
+   <property name="bool property" type="bool" value="true"/>
+   <property name="color property" type="color" value="#ff55ffff"/>
+   <property name="float property" type="float" value="3.1415926"/>
+   <property name="int property" type="int" value="64"/>
+   <property name="string property" value="string value"/>
+  </properties>
+  <object id="1" x="208" y="224" width="48" height="16"/>
+  <object id="2" x="256" y="224" width="128" height="16"/>
+  <object id="3" x="192" y="224" width="16" height="400"/>
+  <object id="4" x="208" y="592" width="112" height="32"/>
+  <object id="5" x="208" y="528" width="32" height="32"/>
+  <object id="7" x="208" y="416" width="64" height="48"/>
+  <object id="8" x="304" y="416" width="64" height="48"/>
+  <object id="9" x="368" y="272" width="16" height="288"/>
+  <object id="10" x="272" y="528" width="96" height="32"/>
+  <object id="11" x="304" y="560" width="16" height="32"/>
+ </objectgroup>
+</map>
