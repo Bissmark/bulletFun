@@ -220,7 +220,14 @@ void Player::Draw(const Camera2D& camera) const
 
     abilityManager.Draw(*this, camera);
 
-    DrawRectangleLines(playerPosition.x, playerPosition.y, frameRec.width, frameRec.height, RED);
+    // Calculate the new width and height (2/3rds of the current size)
+    float newWidth = frameRec.width * 2.0f / 3.0f;
+
+    // Calculate the new position to center the rectangle
+    float newX = playerPosition.x + (frameRec.width - newWidth) / 2.0f;
+
+    // Draw the rectangle lines with the adjusted dimensions
+    DrawRectangleLines(newX, playerPosition.y, newWidth, frameRec.height, RED);
 }
 
 void Player::DrawExp() const
@@ -245,6 +252,11 @@ void Player::AddAbility(std::unique_ptr<Ability> ability)
 }
 
 Rectangle Player::GetBoundingBox() const
-{
-    return { playerPosition.x, playerPosition.y, frameRec.width, frameRec.height };
+{   
+    float newWidth = frameRec.width * 2.0f / 3.0f;
+
+    // Calculate the new position to center the rectangle
+    float newX = playerPosition.x + (frameRec.width - newWidth) / 2.0f;
+
+    return { newX, playerPosition.y, newWidth, frameRec.height };
 }
