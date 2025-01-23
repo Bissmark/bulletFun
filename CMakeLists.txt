@@ -26,6 +26,7 @@ add_executable(BulletFun
     src/skillPickup.cpp
     src/slash.cpp
     src/tilemap.cpp
+    src/terrainCollisionDetection.cpp
     # Add other source files here
 )
 
@@ -37,10 +38,10 @@ target_include_directories(raylib-tmx-h INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/)
 
 # Include directories
 target_include_directories(BulletFun PRIVATE ${CMAKE_SOURCE_DIR}/src)
+target_include_directories(BulletFun PRIVATE ${CMAKE_SOURCE_DIR}/include)
+
 
 # Link Raylib
 set(CMAKE_PREFIX_PATH "C:/raylib")
 # find_package(raylib REQUIRED)
-target_link_libraries(BulletFun PRIVATE raylib
-    raylib-tileson
-)
+target_link_libraries(BulletFun PRIVATE raylib)

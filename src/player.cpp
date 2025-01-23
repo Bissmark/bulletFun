@@ -219,7 +219,8 @@ void Player::Draw(const Camera2D& camera) const
     }
 
     abilityManager.Draw(*this, camera);
-    //levelUp.DrawLevelUpBox();
+
+    DrawRectangleLines(playerPosition.x, playerPosition.y, frameRec.width, frameRec.height, RED);
 }
 
 void Player::DrawExp() const

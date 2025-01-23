@@ -9,12 +9,32 @@
 #include "skillPickup.h"
 #include "levelUp.h"
 #include "skillBar.h"
+#include "include/rlImGui.h"
 #include <raymath.h>
 #include <cmath>
 #include <iostream>
+#include "include/imgui.h"
 
 #define RAYTMX_IMPLEMENTATION
-#include "raytmx.h"
+#include "include/raytmx.h"
+#include "terrainCollisionDetection.h"
+
+// bool CheckCollision(const Vector2& playerPosition)
+// {
+//     if (map != nullptr) {
+//         TmxLayer* collisionLayer = &map->layers[1];
+//         if (collisionLayer->type == LAYER_TYPE_OBJECT_GROUP) {
+//             for (uint32_t i = 0; i < collisionLayer->exact.objectGroup.objectsLength; ++i) {
+//                 TmxObject* object = &collisionLayer->exact.objectGroup.objects[i];
+//                 if (object->type == OBJECT_TYPE_POLYGON || object->type == OBJECT_TYPE_POLYLINE) {
+//                     if (CheckCollisionPointPoly(playerPosition, object->points, object->pointsLength)) {
+//                         return true;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
 int main() 
 {
@@ -25,6 +45,8 @@ int main()
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     
     InitWindow(screenWidth, screenHeight, "2D Game");
+
+    rlImGuiSetup(true);
 
     TmxMap* map = LoadTMX(tmx);
 
@@ -37,6 +59,8 @@ int main()
     SkillPickup skillPickup;
     LevelUp levelUp(player);
     SkillBar skillBar;
+    TerrainCollision tileCollision;
+    tileCollision.LoadMap(tmx);
 
     SetTargetFPS(60);
     
@@ -64,13 +88,19 @@ int main()
             }
         } else {
             if (!player.gamePaused) {
+                Vector2 oldPosition = player.playerPosition;
                 player.Move();
+                // Check for collision with terrain
+                if (tileCollision.CheckCollision(player.playerPosition)) {
+                    player.playerPosition = oldPosition; // Revert to old position if collision detected
+                }
                 player.Update(enemySpawner.enemies, deltaTime);
                 player.AutoAttack(enemySpawner.enemies, deltaTime);
                 powerup.Update(player);
                 skillPickup.Update(player, skillBar);
                 enemySpawner.Update(deltaTime);
                 skillBar.Update(player, enemySpawner.enemies, deltaTime);
+
 
                 //background.Update(player.playerPosition);
             }
@@ -85,7 +115,7 @@ int main()
             } else {
                 BeginMode2D(camera);
                     DrawTMX(map, &camera, 0, 0, WHITE);
-                    DrawTMXLayerTile(map, Rectangle({0, 0, 800, 600}), 0, 0, 0, WHITE);
+                    tileCollision.Draw();
                     //tilemap.Draw(player.playerPosition);
                     //background.Draw();
                     enemySpawner.Draw();
@@ -102,9 +132,28 @@ int main()
                 DrawText(TextFormat("Elapsed Time: %i seconds", (int)player.elapsedTime), 10, 50, 20, RED);
                 DrawText(TextFormat("%i", player.level), GetScreenWidth() - 27, GetScreenHeight() - 37, 40, WHITE);
             }
+
+        // Start ImGui frame
+            rlImGuiBegin();
+
+            // Create ImGui window
+            ImGui::Begin("Debug Window");
+            ImGui::Text("Player Health: %i", player.healthPoints);
+            ImGui::Text("Elapsed Time: %i seconds", (int)player.elapsedTime);
+            ImGui::Text("Player Level: %i", player.level);
+            ImGui::Text("Map Layers:");
+            for (uint32_t i = 0; i < map->layersLength; ++i) {
+                ImGui::Text("Layer %d: %s", i, map->layers[i].name);
+            }
+
+            ImGui::End();
+
+            // End ImGui frame
+            rlImGuiEnd();
         EndDrawing();
     }
     
     UnloadTMX(map);
+    rlImGuiShutdown();
     CloseWindow();
 }
