@@ -9,7 +9,7 @@ class TerrainCollision
         void LoadMap(const char* tmx);
         void UnloadMap();
         void Draw();
-        bool CheckCollision(const Vector2& playerPosition) const;
+        bool CheckCollision(const Rectangle& playerBoundingBox) const;
         Vector2 GetCenterPosition() const;
 
     private:

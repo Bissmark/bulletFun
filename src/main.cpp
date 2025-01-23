@@ -19,23 +19,6 @@
 #include "include/raytmx.h"
 #include "terrainCollisionDetection.h"
 
-// bool CheckCollision(const Vector2& playerPosition)
-// {
-//     if (map != nullptr) {
-//         TmxLayer* collisionLayer = &map->layers[1];
-//         if (collisionLayer->type == LAYER_TYPE_OBJECT_GROUP) {
-//             for (uint32_t i = 0; i < collisionLayer->exact.objectGroup.objectsLength; ++i) {
-//                 TmxObject* object = &collisionLayer->exact.objectGroup.objects[i];
-//                 if (object->type == OBJECT_TYPE_POLYGON || object->type == OBJECT_TYPE_POLYLINE) {
-//                     if (CheckCollisionPointPoly(playerPosition, object->points, object->pointsLength)) {
-//                         return true;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
-
 int main() 
 {
     constexpr int screenWidth = 800;
@@ -91,10 +74,10 @@ int main()
                 Vector2 oldPosition = player.playerPosition;
                 player.Move();
                 // Check for collision with terrain
-                if (tileCollision.CheckCollision(player.playerPosition)) {
+                player.Update(enemySpawner.enemies, deltaTime);
+                if (tileCollision.CheckCollision(player.GetBoundingBox())) {
                     player.playerPosition = oldPosition; // Revert to old position if collision detected
                 }
-                player.Update(enemySpawner.enemies, deltaTime);
                 player.AutoAttack(enemySpawner.enemies, deltaTime);
                 powerup.Update(player);
                 skillPickup.Update(player, skillBar);

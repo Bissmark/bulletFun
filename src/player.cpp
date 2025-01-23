@@ -243,3 +243,8 @@ void Player::AddAbility(std::unique_ptr<Ability> ability)
 {
     abilityManager.AddAbility(std::move(ability));
 }
+
+Rectangle Player::GetBoundingBox() const
+{
+    return { playerPosition.x, playerPosition.y, frameRec.width, frameRec.height };
+}
