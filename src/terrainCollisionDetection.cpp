@@ -47,6 +47,21 @@ void TerrainCollision::Draw()
     }
 }
 
+bool TerrainCollision::CheckCollisionPoly(const Rectangle& playerBoundingBox, TmxObject* polygon) const {
+    for (int i = 0; i < polygon->pointsLength; ++i) {
+        int next = (i + 1) % polygon->pointsLength;
+        if (CheckCollisionLines(
+                { polygon->points[i].x, polygon->points[i].y },
+                { polygon->points[next].x, polygon->points[next].y },
+                { playerBoundingBox.x, playerBoundingBox.y },
+                { playerBoundingBox.x + playerBoundingBox.width, playerBoundingBox.y + playerBoundingBox.height },
+                nullptr)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool TerrainCollision::CheckCollision(const Rectangle& playerBoundingBox) const
 {
     if (map != nullptr) {
@@ -58,7 +73,7 @@ bool TerrainCollision::CheckCollision(const Rectangle& playerBoundingBox) const
                         TmxObject* object = &collisionLayer->exact.objectGroup.objects[i];
                         if (object->type == OBJECT_TYPE_POLYGON || object->type == OBJECT_TYPE_POLYLINE) {
                             for (int j = 0; j < object->pointsLength - 1; ++j) {
-                                if (CheckCollisionRecs(playerBoundingBox, { object->points[j].x, object->points[j].y, object->points[j + 1].x - object->points[j].x, object->points[j + 1].y - object->points[j].y })) {
+                                if(CheckCollisionPoly(playerBoundingBox, object)) {
                                     return true;
                                 }
                             }

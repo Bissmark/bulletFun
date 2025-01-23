@@ -74,10 +74,10 @@ int main()
                 Vector2 oldPosition = player.playerPosition;
                 player.Move();
                 // Check for collision with terrain
-                player.Update(enemySpawner.enemies, deltaTime);
                 if (tileCollision.CheckCollision(player.GetBoundingBox())) {
                     player.playerPosition = oldPosition; // Revert to old position if collision detected
                 }
+                player.Update(enemySpawner.enemies, deltaTime);
                 player.AutoAttack(enemySpawner.enemies, deltaTime);
                 powerup.Update(player);
                 skillPickup.Update(player, skillBar);
