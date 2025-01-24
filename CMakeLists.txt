@@ -33,14 +33,13 @@ add_executable(BulletFun
     src/imgui_draw.cpp
     src/imgui_tables.cpp
     src/imgui_demo.cpp
-    # Add other source files here
 )
 
 
-add_library(raylib-tmx-h INTERFACE)
+# add_library(raylib-tmx-h INTERFACE)
 
 # Include Directory
-target_include_directories(raylib-tmx-h INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/)
+# target_include_directories(raylib-tmx-h INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/)
 
 # Include directories
 target_include_directories(BulletFun PRIVATE ${CMAKE_SOURCE_DIR}/src)

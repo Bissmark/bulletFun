@@ -10,13 +10,14 @@
 #include <limits>
 
 Player::Player()
-    : speedX(5)
-    , speedY(5)
+    : speedX(2)
+    , speedY(2)
     , radius(15)
     , currentEnemiesKilled(0)
     , startTime(GetTime())
     , elapsedTime(0.0)
     , gamePaused(false)
+    , scale(0.5f)
 {
     currentFrame = 0;
 
@@ -206,12 +207,12 @@ void Player::PlayerLevelUp()
 void Player::Draw(const Camera2D& camera) const
 {
     if (direction == RIGHT) {
-        DrawTextureRec(currentTexture, frameRec, playerPosition, WHITE);
+        DrawTexturePro(currentTexture, frameRec, { playerPosition.x, playerPosition.y, frameRec.width * scale, frameRec.height * scale }, { 0, 0 }, 0.0f, WHITE);
     } else {
         // Flip the texture horizontally
         Rectangle flippedFrameRec = frameRec;
         flippedFrameRec.width = -frameRec.width;
-        DrawTextureRec(currentTexture, flippedFrameRec, playerPosition, WHITE);
+        DrawTexturePro(currentTexture, flippedFrameRec, { playerPosition.x, playerPosition.y, frameRec.width * scale, frameRec.height * scale }, { 0, 0 }, 0.0f, WHITE);
     }
 
     for (auto& bullet : bullets) {
@@ -221,13 +222,13 @@ void Player::Draw(const Camera2D& camera) const
     abilityManager.Draw(*this, camera);
 
     // Calculate the new width and height (2/3rds of the current size)
-    float newWidth = frameRec.width * 2.0f / 3.0f;
+    float newWidth = frameRec.width * scale * 2.0f / 3.0f;
 
     // Calculate the new position to center the rectangle
-    float newX = playerPosition.x + (frameRec.width - newWidth) / 2.0f;
+    float newX = playerPosition.x + (frameRec.width * scale - newWidth) / 2.0f;
 
     // Draw the rectangle lines with the adjusted dimensions
-    DrawRectangleLines(newX, playerPosition.y, newWidth, frameRec.height, RED);
+    DrawRectangleLines(newX, playerPosition.y, newWidth, frameRec.height * scale, RED);
 }
 
 void Player::DrawExp() const
@@ -253,10 +254,10 @@ void Player::AddAbility(std::unique_ptr<Ability> ability)
 
 Rectangle Player::GetBoundingBox() const
 {   
-    float newWidth = frameRec.width * 2.0f / 3.0f;
+    float newWidth = frameRec.width * scale * 2.0f / 3.0f;
 
     // Calculate the new position to center the rectangle
-    float newX = playerPosition.x + (frameRec.width - newWidth) / 2.0f;
+    float newX = playerPosition.x + (frameRec.width * scale - newWidth) / 2.0f;
 
     return { newX, playerPosition.y, newWidth, frameRec.height };
 }

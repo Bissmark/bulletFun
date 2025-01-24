@@ -51,6 +51,7 @@ class Player
         int framesSpeed;
         int frameWidth;
         int currentEnemiesKilled;
+        float scale;
         enum Direction { LEFT, RIGHT } direction;
         double startTime;
         void UpdateFrame();

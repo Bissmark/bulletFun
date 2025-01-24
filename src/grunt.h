@@ -14,4 +14,5 @@ class Grunt : public Enemy
         Texture2D walkTexture;
         Texture2D currentTexture;
         int startingMaxHealth = 50;
+        float scale = 0.5f;
 };

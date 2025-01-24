@@ -57,11 +57,16 @@ int main()
     camera.target = player.playerPosition;
     camera.offset = { static_cast<float>(screenWidth) / 2, static_cast<float>(screenHeight) / 2 };
     camera.rotation = 0.0f;
-    camera.zoom = 1.0f;
+    camera.zoom = 3.0f;
 
     while (!WindowShouldClose())
     {
         float deltaTime = GetFrameTime();
+
+        // Update camera offset dynamically based on window size
+        int screenWidth = GetScreenWidth(); // Get the current window width
+        int screenHeight = GetScreenHeight(); // Get the current window height
+        camera.offset = { static_cast<float>(screenWidth) / 2.0f, static_cast<float>(screenHeight) / 2.0f };
 
         if (!characterSelected) {
             characterSelection.Update();

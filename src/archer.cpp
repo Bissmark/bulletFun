@@ -12,7 +12,7 @@ Archer::Archer(Player& player, Vector2 position) : Enemy(player, position)
 
     maxHealth = 70;
     health = maxHealth;
-    movementSpeed = 50;
+    movementSpeed = 20;
 }
 
 void Archer::Update(float deltaTime)

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <raymath.h>
 
-Enemy::Enemy(Player& player, Vector2 position) : player(player), enemyPosition(position), timeSinceLastAttack(0.0f), hitPlayer(false)
+Enemy::Enemy(Player& player, Vector2 position) : player(player), enemyPosition(position), timeSinceLastAttack(0.0f), hitPlayer(false), scale(0.5f)
 {
     currentFrame = 0;
     framesCounter = 0;
@@ -119,11 +119,11 @@ bool Enemy::Destroy()
 void Enemy::Draw() const
 {   
     if (direction == RIGHT) {
-        DrawTextureRec(currentTexture, frameRec, enemyPosition, WHITE);
+        DrawTexturePro(currentTexture, frameRec, { enemyPosition.x, enemyPosition.y, frameRec.width * scale, frameRec.height * scale }, { 0, 0 }, 0.0f, WHITE);
     } else {
         Rectangle flippedFrameRec = frameRec;
         flippedFrameRec.width = -frameRec.width;
-        DrawTextureRec(currentTexture, flippedFrameRec, enemyPosition, WHITE);
+        DrawTexturePro(currentTexture, frameRec, { enemyPosition.x, enemyPosition.y, frameRec.width * scale, frameRec.height * scale }, { 0, 0 }, 0.0f, WHITE);
     }
 
     // Draw health bar
@@ -133,8 +133,8 @@ void Enemy::Draw() const
     Vector2 barPosition = { enemyPosition.x, enemyPosition.y - 10.0f }; // Position of the health bar above the enemy
 
     // Draw the background of the health bar (max health)
-    DrawRectangle(barPosition.x, barPosition.y, barWidth, barHeight, RED);
+    DrawRectangle(barPosition.x, barPosition.y, barWidth * scale, barHeight, RED);
 
     // Draw the current health bar
-    DrawRectangle(barPosition.x, barPosition.y, barWidth * healthPercentage, barHeight, GREEN);
+    DrawRectangle(barPosition.x, barPosition.y, barWidth * healthPercentage * scale, barHeight, GREEN);
 }
