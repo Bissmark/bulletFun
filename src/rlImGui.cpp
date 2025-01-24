@@ -27,14 +27,14 @@
 *   SOFTWARE.
 *
 **********************************************************************************************/
-#include "include/rlImGui.h"
+#include "rlImGui.h"
 
-#include "include/imgui_impl_raylib.h"
+#include "imgui_impl_raylib.h"
 
 #include "raylib.h"
-#include "include/rlgl.h"
+#include "rlgl.h"
 
-#include "include/imgui.h"
+#include "imgui.h"
 
 #include <math.h>
 #include <map>
@@ -42,7 +42,7 @@
 #include <cstdint>
 
 #ifndef NO_FONT_AWESOME
-#include "include/extras/FA6FreeSolidFontData.h"
+#include "extras/FA6FreeSolidFontData.h"
 #endif
 
 static ImGuiMouseCursor CurrentMouseCursor = ImGuiMouseCursor_COUNT;

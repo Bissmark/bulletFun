@@ -85,11 +85,3 @@ bool TerrainCollision::CheckCollision(const Rectangle& playerBoundingBox) const
     }
     return false;
 }
-
-Vector2 TerrainCollision::GetCenterPosition() const
-{
-    if (map != nullptr) {
-        return { map->width * map->tileWidth / 2, map->height * map->tileHeight / 2 };
-    }
-    return { 0, 0 };
-}

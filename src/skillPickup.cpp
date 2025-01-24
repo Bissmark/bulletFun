@@ -2,6 +2,7 @@
 #include "player.h"
 #include "auraDmg.h"
 #include "flamethrower.h"
+#include "terrainCollisionDetection.h"
 
 SkillPickup::SkillPickup()
 {

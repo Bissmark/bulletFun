@@ -9,14 +9,14 @@
 #include "skillPickup.h"
 #include "levelUp.h"
 #include "skillBar.h"
-#include "include/rlImGui.h"
+#include "rlimGui.h"
 #include <raymath.h>
 #include <cmath>
 #include <iostream>
-#include "include/imgui.h"
+#include "imgui.h"
 
 #define RAYTMX_IMPLEMENTATION
-#include "include/raytmx.h"
+#include "raytmx.h"
 #include "terrainCollisionDetection.h"
 
 int main() 

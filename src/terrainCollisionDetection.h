@@ -1,5 +1,5 @@
 #pragma once
-#include "include/raytmx.h"
+#include "raytmx.h"
 
 class TerrainCollision
 {
@@ -11,7 +11,6 @@ class TerrainCollision
         void Draw();
         bool CheckCollisionPoly(const Rectangle& playerBoundingBox, TmxObject* polygon) const;
         bool CheckCollision(const Rectangle& playerBoundingBox) const;
-        Vector2 GetCenterPosition() const;
 
     private:
         TmxMap* map;

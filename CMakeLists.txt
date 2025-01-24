@@ -27,6 +27,12 @@ add_executable(BulletFun
     src/slash.cpp
     src/tilemap.cpp
     src/terrainCollisionDetection.cpp
+    src/rlimGui.cpp
+    src/imgui.cpp
+    src/imgui_widgets.cpp
+    src/imgui_draw.cpp
+    src/imgui_tables.cpp
+    src/imgui_demo.cpp
     # Add other source files here
 )
 
