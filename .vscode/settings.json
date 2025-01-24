@@ -67,5 +67,8 @@
         "fstream": "cpp",
         "iomanip": "cpp",
         "sstream": "cpp"
+    },
+    "terminal.integrated.env.windows": {
+        "PATH": "C:/raylib/w64devkit/bin;${env:PATH}"
     }
 }

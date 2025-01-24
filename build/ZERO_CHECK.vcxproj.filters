@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\build\CMakeFiles\bd286317fb8cc9029ac74b8b24e7de21\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B014B393-081E-33CF-A712-0675F380AB57}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

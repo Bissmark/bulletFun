@@ -25,6 +25,60 @@
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\slime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\abilityManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\auraDmg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\background.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\characterSelection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\flamethrower.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\levelUp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\powerup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\skillBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\skillPickup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\slash.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\tilemap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\terrainCollisionDetection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\rlImGui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui_widgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui_draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui_tables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui_demo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\CMakeLists.txt" />

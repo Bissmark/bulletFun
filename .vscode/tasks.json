@@ -1,88 +1,68 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
             "label": "build debug",
             "type": "process",
-            "command": "make",
+            "command": "cmake",
             "args": [
-                "PLATFORM=PLATFORM_DESKTOP",
-                "BUILD_MODE=DEBUG"
+                "-S", ".",
+                "-B", "build",
+                "-DCMAKE_BUILD_TYPE=Debug"
             ],
-            "windows": {
-                "command": "C:/raylib/w64devkit/bin/mingw32-make.exe",
-                "args": [
-                    "RAYLIB_PATH=C:/raylib/raylib",
-                    "PROJECT_NAME=${fileBasenameNoExtension}",
-                    "OBJS=src/*.cpp",
-                    "BUILD_MODE=DEBUG"
-                ]
-            },
-            "osx": {
-                "args": [
-                    "PROJECT_NAME=${fileBasenameNoExtension}",
-                    "OBJS=src/*.cpp",
-                    "BUILD_MODE=DEBUG"
-                ]
-            },
-            "linux": {
-                "args": [
-                    "PROJECT_NAME=${fileBasenameNoExtension}",
-                    "DESTDIR=/home/linuxbrew/.linuxbrew",
-                    "RAYLIB_LIBTYPE=SHARED",
-                    "EXAMPLE_RUNTIME_PATH=/home/linuxbrew/.linuxbrew/lib",
-                    "OBJS=src/*.cpp",
-                    "BUILD_MODE=DEBUG"
-                ]
-            },
+            "problemMatcher": ["$gcc"],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "detail": "Configure the project with CMake in debug mode."
         },
         {
-            "label": "build release",
+            "label": "compile debug",
             "type": "process",
-            "command": "make",
+            "command": "cmake",
+            
             "args": [
-                "PLATFORM=PLATFORM_DESKTOP"
+                "--build", "build",
+                "--config", "Debug"
             ],
-            "windows": {
-                "command": "C:/raylib/w64devkit/bin/mingw32-make.exe",
-                "args": [
-                    "RAYLIB_PATH=C:/raylib/raylib",
-                    "PROJECT_NAME=${fileBasenameNoExtension}",
-                    "OBJS=src/*.cpp"
-                ]
-            },
-            "osx": {
-                "args": [
-                    "PROJECT_NAME=${fileBasenameNoExtension}",
-                    "OBJS=src/*.cpp"
-                ]
-            },
-            "linux": {
-                "args": [
-                    "PROJECT_NAME=${fileBasenameNoExtension}",
-                    "DESTDIR=/home/linuxbrew/.linuxbrew",
-                    "RAYLIB_LIBTYPE=SHARED",
-                    "EXAMPLE_RUNTIME_PATH=/home/linuxbrew/.linuxbrew/lib",
-                    "OBJS=src/*.cpp"
-                ]
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
+            "problemMatcher": ["$gcc"],
             "group": {
                 "kind": "build",
                 "isDefault": false
             },
-            "detail": "compiler: C:\\raylib\\w64devkit\\bin\\g++.exe"
+            "detail": "Build the debug version of the project using CMake."
+        },
+        {
+            "label": "build release",
+            "type": "process",
+            "command": "cmake",
+            "args": [
+                "-S", ".",
+                "-B", "build",
+                "-DCMAKE_BUILD_TYPE=Release"
+            ],
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Configure the project with CMake in release mode."
+        },
+        {
+            "label": "compile release",
+            "type": "process",
+            "command": "cmake",
+            "args": [
+                "--build", "build",
+                "--config", "Release"
+            ],
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Build the release version of the project using CMake."
         }
     ]
 }

@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -107,10 +107,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -133,7 +133,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -155,10 +155,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -181,7 +181,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -203,10 +203,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -229,7 +229,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -250,10 +250,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -340,6 +340,24 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\archer.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\grunt.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\slime.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\abilityManager.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\auraDmg.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\background.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\characterSelection.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\flamethrower.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\levelUp.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\powerup.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\skillBar.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\skillPickup.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\slash.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\tilemap.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\terrainCollisionDetection.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\rlImGui.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui_widgets.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui_draw.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui_tables.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui_demo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\ZERO_CHECK.vcxproj">
