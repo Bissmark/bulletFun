@@ -3,19 +3,32 @@
     "tasks": [
         {
             "label": "build debug",
-            "type": "process",
+            "type": "shell",
             "command": "cmake",
             "args": [
-                "-S", ".",
-                "-B", "build",
-                "-DCMAKE_BUILD_TYPE=Debug"
+                "--build",
+                "${workspaceFolder}/build",
+                "--config",
+                "Debug"
             ],
-            "problemMatcher": ["$gcc"],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "Configure the project with CMake in debug mode."
+            "problemMatcher": []
+        },
+        {
+            "label": "build release",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--config",
+                "Release"
+            ],
+            "group": "build",
+            "problemMatcher": []
         },
         {
             "label": "compile debug",
@@ -32,22 +45,6 @@
                 "isDefault": false
             },
             "detail": "Build the debug version of the project using CMake."
-        },
-        {
-            "label": "build release",
-            "type": "process",
-            "command": "cmake",
-            "args": [
-                "-S", ".",
-                "-B", "build",
-                "-DCMAKE_BUILD_TYPE=Release"
-            ],
-            "problemMatcher": ["$gcc"],
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            },
-            "detail": "Configure the project with CMake in release mode."
         },
         {
             "label": "compile release",

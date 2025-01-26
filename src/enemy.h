@@ -21,6 +21,7 @@ class Enemy
         void Move(float deltaTime);
         bool CheckCollisionWithOtherEnemy(const Enemy& other) const;
         bool Destroy();
+        Rectangle GetBoundingBox() const;
 
     protected:
         Player& player;

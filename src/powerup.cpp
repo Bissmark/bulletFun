@@ -8,6 +8,7 @@ Powerup::Powerup()
     , isCollected(false)
     , speedX(5)
     , speedY(5)
+    , scale(0.3f)
 {
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
@@ -50,7 +51,7 @@ void Powerup::Respawn()
 void Powerup::Draw() const
 {
     if (isActive) {
-        DrawTexture(healthPot, powerupPosition.x, powerupPosition.y, WHITE);
+        DrawTexturePro(healthPot, { 0, 0, (float)healthPot.width, (float)healthPot.height }, { powerupPosition.x, powerupPosition.y, (float)healthPot.width * scale, (float)healthPot.height * scale }, { (float)healthPot.width * scale / 2, (float)healthPot.height * scale / 2 }, 0.0f, WHITE);
     }
 }
 

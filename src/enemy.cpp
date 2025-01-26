@@ -138,3 +138,15 @@ void Enemy::Draw() const
     // Draw the current health bar
     DrawRectangle(barPosition.x, barPosition.y, barWidth * healthPercentage * scale, barHeight, GREEN);
 }
+
+Rectangle Enemy::GetBoundingBox() const
+{
+    float newWidth = frameRec.width * scale * 2.0f / 3.0f;
+    float newHeight = frameRec.height * scale * 2.0f / 3.0f;
+
+    // Calculate the new position to center the rectangle
+    float newX = enemyPosition.x + (frameRec.width * scale - newWidth) / 2.0f;
+    float newY = enemyPosition.y + (frameRec.height * scale - newHeight) / 2.0f;
+
+    return { newX, newY, newWidth, newHeight };
+}

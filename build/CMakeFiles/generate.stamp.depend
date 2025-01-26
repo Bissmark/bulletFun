@@ -12,6 +12,8 @@ C:/Program Files/CMake/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacr
 C:/Program Files/CMake/share/cmake-3.30/Modules/Compiler/MSVC-C.cmake
 C:/Program Files/CMake/share/cmake-3.30/Modules/Compiler/MSVC-CXX.cmake
 C:/Program Files/CMake/share/cmake-3.30/Modules/Compiler/MSVC.cmake
+C:/Program Files/CMake/share/cmake-3.30/Modules/ExternalProject/shared_internal_commands.cmake
+C:/Program Files/CMake/share/cmake-3.30/Modules/FetchContent.cmake
 C:/Program Files/CMake/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake
 C:/Program Files/CMake/share/cmake-3.30/Modules/Platform/Windows-MSVC-C.cmake
 C:/Program Files/CMake/share/cmake-3.30/Modules/Platform/Windows-MSVC-CXX.cmake

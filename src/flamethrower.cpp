@@ -23,7 +23,11 @@ void Flamethrower::Update(const Player& player, std::vector<std::unique_ptr<Enem
 
 void Flamethrower::Draw(const Player& player, const Camera2D& camera) const
 {
-    Vector2 screenPlayerPosition = GetWorldToScreen2D(centerPosition, camera);
+    Vector2 adjustedCenterPosition = {
+            player.playerPosition.x + (player.frameRec.width * player.scale) / 2.0f,
+            player.playerPosition.y + (player.frameRec.height * player.scale) / 2.0f
+    };
+    Vector2 screenPlayerPosition = GetWorldToScreen2D(adjustedCenterPosition, camera);
 
     for (int i = 0; i < numBeams; ++i) {
         float angle = beamAngles[i];
@@ -35,22 +39,23 @@ void Flamethrower::Draw(const Player& player, const Camera2D& camera) const
 
 bool Flamethrower::CheckCollision(const Player& player, Enemy& enemy)
 {
-    Vector2 centerPosition = player.playerPosition;
+    
+    // Adjust the center position based on the player's scale
+    Vector2 adjustedCenterPosition = {
+        player.playerPosition.x + (player.frameRec.width * player.scale) / 2.0f,
+        player.playerPosition.y + (player.frameRec.height * player.scale) / 2.0f
+    };
 
-    for (int i = 0; i < numBeams; ++i) {
-        float angle = beamAngles[i];
-        Vector2 forwardOffset = { cosf(angle * DEG2RAD) * (player.frameRec.width / 2 + width / 2), sinf(angle * DEG2RAD) * (player.frameRec.height / 2 + width / 2) };
-        Vector2 beamPosition = Vector2Add(centerPosition, forwardOffset);
-        Rectangle beamCollision = { beamPosition.x - length / 2, beamPosition.y - width / 2, length, width };
-        if (CheckCollisionRecs(beamCollision, enemy.boxCollision)) {
-            enemy.health -= baseDamage;
-            if (enemy.health <= 0) {
-                enemy.Destroy();
-            }
-            return true;
-        }
-    }
-    return false;
+    // Calculate the collision rectangle for the flamethrower
+    Rectangle flamethrowerRect = {
+        adjustedCenterPosition.x - (width / 2.0f),
+        adjustedCenterPosition.y - (length / 2.0f),
+        width,
+        length
+    };
+
+    // Check for collision with the enemy
+    return CheckCollisionRecs(flamethrowerRect, enemy.GetBoundingBox());
 }
 
 std::string Flamethrower::GetName() const

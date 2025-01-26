@@ -25,4 +25,5 @@ class Powerup
         Rectangle boxCollision;
         int speedX;
         int speedY;
+        float scale;
 };

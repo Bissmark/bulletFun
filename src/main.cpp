@@ -17,7 +17,7 @@
 
 #define RAYTMX_IMPLEMENTATION
 #include "raytmx.h"
-#include "terrainCollisionDetection.h"
+#include "terrainCollisionDetection.h" 
 
 int main() 
 {
@@ -77,6 +77,14 @@ int main()
         } else {
             if (!player.gamePaused) {
                 Vector2 oldPosition = player.playerPosition;
+
+                for (auto& enemy : enemySpawner.enemies) {
+                    Vector2 oldPositionEnemy = enemy->enemyPosition;
+                    enemy->Update(deltaTime);
+                    if (tileCollision.CheckCollision(enemy->GetBoundingBox())) {
+                        enemy->enemyPosition = oldPositionEnemy;
+                    }
+                }
                 player.Move();
                 // Check for collision with terrain
                 if (tileCollision.CheckCollision(player.GetBoundingBox())) {
@@ -86,11 +94,13 @@ int main()
                 player.AutoAttack(enemySpawner.enemies, deltaTime);
                 powerup.Update(player);
                 skillPickup.Update(player, skillBar);
+                //skillPickup.Update(player, skillBar, tileCollision);
                 enemySpawner.Update(deltaTime);
                 skillBar.Update(player, enemySpawner.enemies, deltaTime);
 
-
-                //background.Update(player.playerPosition);
+                // for (auto& enemy : enemySpawner.enemies) {
+                //     enemy->Update(deltaTime, tileCollision);
+                // }
             }
 
             camera.target = Vector2Lerp(camera.target, player.playerPosition, 0.1f);
@@ -104,8 +114,6 @@ int main()
                 BeginMode2D(camera);
                     DrawTMX(map, &camera, 0, 0, WHITE);
                     tileCollision.Draw();
-                    //tilemap.Draw(player.playerPosition);
-                    //background.Draw();
                     enemySpawner.Draw();
                     powerup.Draw();
                     skillPickup.Draw();
@@ -129,6 +137,9 @@ int main()
             ImGui::Text("Player Health: %i", player.healthPoints);
             ImGui::Text("Elapsed Time: %i seconds", (int)player.elapsedTime);
             ImGui::Text("Player Level: %i", player.level);
+            ImGui::Text("Crit Chance: %i", player.critChance);
+            ImGui::Text("Crit Damage: %f", player.critDamage);
+            ImGui::Text("Base Damage: %i", player.baseDamage);
             ImGui::Text("Map Layers:");
             for (uint32_t i = 0; i < map->layersLength; ++i) {
                 ImGui::Text("Layer %d: %s", i, map->layers[i].name);

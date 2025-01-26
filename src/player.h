@@ -21,6 +21,7 @@ class Player
         void DrawExp() const;
         void AddAbility(std::unique_ptr<Ability> ability);
         Rectangle GetBoundingBox() const;
+
         Vector2 playerPosition;
         int radius;
         int healthPoints;
@@ -31,15 +32,17 @@ class Player
         int attackSpeed;
         double elapsedTime;
         bool gamePaused;
-        float critChance;
-        float critDamage;
+        int critChance;
+        int critDamage;
         int baseDamage;
+        int cooldownReduction;
         std::vector<Bullet> bullets;
         PlayerType playerType;
         Rectangle frameRec;
         Texture2D currentTexture;
         unsigned int numFrames;
         bool leveledUp;
+        float scale;
 
     private:
         Texture2D playerIdle;
@@ -51,7 +54,6 @@ class Player
         int framesSpeed;
         int frameWidth;
         int currentEnemiesKilled;
-        float scale;
         enum Direction { LEFT, RIGHT } direction;
         double startTime;
         void UpdateFrame();

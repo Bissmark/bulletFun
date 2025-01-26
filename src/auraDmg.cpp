@@ -71,7 +71,11 @@ bool AuraDmg::CheckCollision(const Player& player, Enemy& enemy)
 void AuraDmg::Draw(const Player& player, const Camera2D& camera) const
 {
     if (isActive) {
-        Vector2 screenPlayerPosition = GetWorldToScreen2D(centerPosition, camera);
+        Vector2 adjustedCenterPosition = {
+            player.playerPosition.x + (player.frameRec.width * player.scale) / 2.0f,
+            player.playerPosition.y + (player.frameRec.height * player.scale) / 2.0f
+        };
+        Vector2 screenPlayerPosition = GetWorldToScreen2D(adjustedCenterPosition, camera);
         DrawCircleLinesV(screenPlayerPosition, currentRadius, Fade(color, 0.5f));
     }
 }
