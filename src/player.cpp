@@ -33,7 +33,7 @@ Player::Player()
     maxHealth = 100;
 
     baseDamage = 10;
-    critChance = 5.0f;
+    critChance = 5;
     critDamage = 2;
 
     playerIdle = LoadTexture("Spritesheet/player/Idle.png");

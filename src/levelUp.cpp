@@ -41,9 +41,20 @@ std::vector<Upgrade> LevelUp::GetRandomUpgrades()
         groupedUpgrades[upgrade.type].push_back(upgrade);
     }
 
-    // Randomly select one upgrade from each group
+    std::map<Rarity, int> rarityWeights = {
+        { Rarity::Common, 70 },
+        { Rarity::Rare, 25 },
+        { Rarity::Epic, 5 }
+    };
+
+    // Randomly select one upgrade from each group based on weighted probabilities
     for (const auto& group : groupedUpgrades) {
-        std::uniform_int_distribution<> dis(0, group.second.size() - 1);
+        std::vector<int> weights;
+        for (const auto& upgrade : group.second) {
+            weights.push_back(rarityWeights[upgrade.rarity]);
+        }
+
+        std::discrete_distribution<> dis(weights.begin(), weights.end());
         int index = dis(gen);
         selectedUpgrades.push_back(group.second[index]);
     }
@@ -62,7 +73,6 @@ std::vector<Upgrade> LevelUp::GetRandomUpgrades()
 void LevelUp::DrawLevelUpBox()
 {
     if (player.leveledUpWindowActive) {
-        // Draw the main blue box
         int mainBoxWidth = 300;
         int mainBoxHeight = 200;
         int mainBoxX = GetScreenWidth() / 2 - mainBoxWidth / 2;
@@ -72,8 +82,7 @@ void LevelUp::DrawLevelUpBox()
         if (currentUpgrades.size() < 3) {
             currentUpgrades = GetRandomUpgrades();
         }
-
-        // Draw three smaller boxes inside the main box
+\
         int smallBoxWidth = 80;
         int smallBoxHeight = 80;
         int spacing = 20;
@@ -82,14 +91,8 @@ void LevelUp::DrawLevelUpBox()
         for (int i = 0; i < 3; ++i) {
             int smallBoxX = mainBoxX + spacing + i * (smallBoxWidth + spacing);
             DrawRectangle(smallBoxX, smallBoxY, smallBoxWidth, smallBoxHeight, WHITE);
-
-            // Draw textures inside the smaller boxes (replace with actual textures)
-            // Example: DrawTexture(texture, smallBoxX, smallBoxY, WHITE);
-            // For now, we'll just draw a placeholder rectangle
-            //DrawRectangle(smallBoxX + 10, smallBoxY + 10, smallBoxWidth - 20, smallBoxHeight - 20, GRAY);
             DrawText(currentUpgrades[i].name, smallBoxX + 10, smallBoxY + 10, 10, currentUpgrades[i].color);
         
-            // Check for mouse clicks within the bounding rectangles of the small boxes
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
                 Vector2 mousePosition = GetMousePosition();
                 if (CheckCollisionPointRec(mousePosition, { (float)smallBoxX, (float)smallBoxY, (float)smallBoxWidth, (float)smallBoxHeight })) {
