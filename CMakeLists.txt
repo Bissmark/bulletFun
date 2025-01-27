@@ -50,3 +50,10 @@ target_include_directories(BulletFun PRIVATE ${CMAKE_SOURCE_DIR}/include)
 set(CMAKE_PREFIX_PATH "C:/raylib")
 # find_package(raylib REQUIRED)
 target_link_libraries(BulletFun PRIVATE raylib)
+
+# Copy raylib.dll to the output directory after build
+# add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+#     COMMAND ${CMAKE_COMMAND} -E copy_if_different
+#         "C:/vcpkg/installed/x86-windows/debug/bin/raylib.dll"  # Path to raylib.dll
+#         $<TARGET_FILE_DIR:${PROJECT_NAME}>
+# )

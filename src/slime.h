@@ -10,5 +10,7 @@ class Slime : public Enemy
         void Attack(float deltaTime) override;
 
     private:
+        Texture2D idleTexture;
+        Texture2D walkTexture;
         Texture2D currentTexture;
 };

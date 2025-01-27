@@ -5,6 +5,7 @@
 #include "slime.h"
 #include <raymath.h>
 #include <algorithm>
+#include <iostream>
 
 EnemySpawner::EnemySpawner(Player& player, int spawnRate)
     : player(player)
@@ -68,13 +69,15 @@ void EnemySpawner::Update(float deltaTime)
 void EnemySpawner::Draw() const
 {
     for (const auto& enemy : enemies) {
+        std::cout << enemy << std::endl;
         enemy->Draw();
     }
 }
 
 void EnemySpawner::SpawnEnemy()
 {
-    EnemyType type = static_cast<EnemyType>(GetRandomValue(0, amountOfEnemyTypes));
+    std::cout << amountOfEnemyTypes << std::endl;
+    EnemyType type = static_cast<EnemyType>(GetRandomValue(0, amountOfEnemyTypes - 1));
     Vector2 position = { (float)GetRandomValue(0, GetScreenWidth()), (float)GetRandomValue(0, GetScreenHeight()) };
     enemies.emplace_back(CreateEnemy(type, position));
     ++currentEnemies;
@@ -94,10 +97,6 @@ std::unique_ptr<Enemy> EnemySpawner::CreateEnemy(EnemyType type, Vector2 positio
             return std::make_unique<Archer>(player, position);
         case SLIME:
             return std::make_unique<Slime>(player, position);
-        case MAGE:
-            //return std::make_unique<Mage>(player);
-        case WARRIOR:
-            //return std::make_unique<Warrior>(player);
         case GRUNT:
             return std::make_unique<Grunt>(player, position);
         default:

@@ -114,9 +114,9 @@ int main()
                 BeginMode2D(camera);
                     DrawTMX(map, &camera, 0, 0, WHITE);
                     tileCollision.Draw();
-                    enemySpawner.Draw();
                     powerup.Draw();
                     skillPickup.Draw();
+                    enemySpawner.Draw();
                     player.Draw(camera);
                 EndMode2D();
                 player.DrawExp();

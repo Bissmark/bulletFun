@@ -1,0 +1,10 @@
+^C:\USERS\GOSH_\DESKTOP\PROGRAMMING\PROJECTS\C++\RAYLIB\BULLETFUN\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun -BC:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build --check-stamp-file C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -3,7 +3,12 @@
 #include <iostream>
 #include <raymath.h>
 
-Enemy::Enemy(Player& player, Vector2 position) : player(player), enemyPosition(position), timeSinceLastAttack(0.0f), hitPlayer(false), scale(0.5f)
+Enemy::Enemy(Player& player, Vector2 position) : 
+    player(player), 
+    enemyPosition(position),
+    timeSinceLastAttack(0.0f), 
+    hitPlayer(false), 
+    scale(0.5f)
 {
     currentFrame = 0;
     framesCounter = 0;
@@ -11,17 +16,15 @@ Enemy::Enemy(Player& player, Vector2 position) : player(player), enemyPosition(p
     numFrames = 4;
     frameWidth = enemyIdle.width / numFrames;
 
-    maxHealth = 100;
-
-    radius = 15;
-    health = 100;
-    
     enemyIdle = LoadTexture("Spritesheet/enemy/Idle.png");
-    enemyWalk = LoadTexture("Spritesheet/enemy/Walk.png");
     currentTexture = enemyIdle;
 
-    frameRec = { 0.0f, 0.0f, (float)enemyIdle.width / numFrames, (float)enemyIdle.height };
-    boxCollision = { enemyPosition.x, enemyPosition.y, (float)enemyIdle.width / numFrames, (float)enemyIdle.height };
+    frameRec = { 0.0f, 0.0f, (float)currentTexture.width / numFrames, (float)currentTexture.height };
+    boxCollision = { enemyPosition.x, enemyPosition.y, (float)currentTexture.width / numFrames, (float)currentTexture.height };
+
+    maxHealth = 100;
+    radius = 15;
+    health = 100;
 }
 
 void Enemy::Update(float deltaTime)
@@ -77,7 +80,7 @@ void Enemy::Move(float deltaTime)
 
 void Enemy::UpdateFrame()
 {
-    ++framesCounter;
+    framesCounter++;
 
     if (framesCounter >= (60 / framesSpeed)) {
         framesCounter = 0;
@@ -106,7 +109,6 @@ void Enemy::Attack(float deltaTime)
     }
 }
 
-
 bool Enemy::Destroy()
 {
     if (health <= 0) {
@@ -117,13 +119,13 @@ bool Enemy::Destroy()
 }
 
 void Enemy::Draw() const
-{   
+{
     if (direction == RIGHT) {
         DrawTexturePro(currentTexture, frameRec, { enemyPosition.x, enemyPosition.y, frameRec.width * scale, frameRec.height * scale }, { 0, 0 }, 0.0f, WHITE);
     } else {
         Rectangle flippedFrameRec = frameRec;
         flippedFrameRec.width = -frameRec.width;
-        DrawTexturePro(currentTexture, frameRec, { enemyPosition.x, enemyPosition.y, frameRec.width * scale, frameRec.height * scale }, { 0, 0 }, 0.0f, WHITE);
+        DrawTexturePro(currentTexture, flippedFrameRec, { enemyPosition.x, enemyPosition.y, frameRec.width * scale, frameRec.height * scale }, { 0, 0 }, 0.0f, WHITE);
     }
 
     // Draw health bar
