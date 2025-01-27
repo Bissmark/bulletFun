@@ -1,5 +1,7 @@
 #include "levelUp.h"
 #include <iostream>
+#include <random>
+#include <algorithm>
 
 LevelUp::LevelUp(Player& player) : player(player)
 {
@@ -9,23 +11,67 @@ LevelUp::LevelUp(Player& player) : player(player)
 void LevelUp::InitializeUpgrades()
 {
     upgrades = {
-        { UpgradeType::CritChance, "Crit Chance", "Increase your crit chance by 5%", nullptr },
-        { UpgradeType::CritDamage, "Crit Damage", "Increase your crit damage by 50%", nullptr },
-        { UpgradeType::CooldownReduction, "Cooldown Reduction", "Reduce all ability cooldowns by 10%", nullptr },
-        { UpgradeType::Health, "Health", "Increase your max health by 10%", nullptr },
-        { UpgradeType::Damage, "Damage", "Increase your base damage by 10%", nullptr }
+        { UpgradeType::CritChance, "Crit Chance", "Increase your crit chance by 3%", nullptr, Rarity::Common, 3.0f, GREEN },
+        { UpgradeType::CritChance, "Crit Chance", "Increase your crit chance by 5%", nullptr, Rarity::Rare, 5.0f, BLUE },
+        { UpgradeType::CritChance, "Crit Chance", "Increase your crit chance by 8%", nullptr, Rarity::Epic, 8.0f, PURPLE },
+        { UpgradeType::CritDamage, "Crit Damage", "Increase your crit damage by 50%", nullptr, Rarity::Common, 50.0f, GREEN },
+        { UpgradeType::CritDamage, "Crit Damage", "Increase your crit damage by 75%", nullptr, Rarity::Rare, 75.0f, BLUE },
+        { UpgradeType::CritDamage, "Crit Damage", "Increase your crit damage by 100%", nullptr, Rarity::Epic, 100.0f, PURPLE },
+        { UpgradeType::CooldownReduction, "Cooldown Reduction", "Reduce all ability cooldowns by 10%", nullptr, Rarity::Common, 10.0f, GREEN },
+        { UpgradeType::CooldownReduction, "Cooldown Reduction", "Reduce all ability cooldowns by 15%", nullptr, Rarity::Rare, 15.0f, BLUE },
+        { UpgradeType::CooldownReduction, "Cooldown Reduction", "Reduce all ability cooldowns by 20%", nullptr, Rarity::Epic, 20.0f, PURPLE },
+        { UpgradeType::Health, "Health", "Increase your max health by 10%", nullptr, Rarity::Common, 10.0f, GREEN },
+        { UpgradeType::Health, "Health", "Increase your max health by 15%", nullptr, Rarity::Rare, 15.0f, BLUE },
+        { UpgradeType::Health, "Health", "Increase your max health by 20%", nullptr, Rarity::Epic, 20.0f, PURPLE },
+        { UpgradeType::Damage, "Damage", "Increase your base damage by 10%", nullptr, Rarity::Common, 10.0f, GREEN },
+        { UpgradeType::Damage, "Damage", "Increase your base damage by 15%", nullptr, Rarity::Rare, 15.0f, BLUE },
+        { UpgradeType::Damage, "Damage", "Increase your base damage by 20%", nullptr, Rarity::Epic, 20.0f, PURPLE }
     };
+}
+
+std::vector<Upgrade> LevelUp::GetRandomUpgrades()
+{
+    std::vector<Upgrade> selectedUpgrades;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    // Group upgrades by type
+    std::map<UpgradeType, std::vector<Upgrade>> groupedUpgrades;
+    for (const auto& upgrade : upgrades) {
+        groupedUpgrades[upgrade.type].push_back(upgrade);
+    }
+
+    // Randomly select one upgrade from each group
+    for (const auto& group : groupedUpgrades) {
+        std::uniform_int_distribution<> dis(0, group.second.size() - 1);
+        int index = dis(gen);
+        selectedUpgrades.push_back(group.second[index]);
+    }
+
+    // Shuffle the selected upgrades to randomize their order
+    std::shuffle(selectedUpgrades.begin(), selectedUpgrades.end(), gen);
+
+    // Limit the number of selected upgrades to 3
+    if (selectedUpgrades.size() > 3) {
+        selectedUpgrades.resize(3);
+    }
+
+    return selectedUpgrades;
 }
 
 void LevelUp::DrawLevelUpBox()
 {
-    if (player.leveledUp) {
+    if (player.leveledUpWindowActive) {
         // Draw the main blue box
         int mainBoxWidth = 300;
         int mainBoxHeight = 200;
         int mainBoxX = GetScreenWidth() / 2 - mainBoxWidth / 2;
         int mainBoxY = GetScreenHeight() / 2 - mainBoxHeight / 2;
         DrawRectangle(mainBoxX, mainBoxY, mainBoxWidth + 20, mainBoxHeight, BLUE);
+
+        if (currentUpgrades.size() < 3) {
+            currentUpgrades = GetRandomUpgrades();
+        }
 
         // Draw three smaller boxes inside the main box
         int smallBoxWidth = 80;
@@ -41,13 +87,14 @@ void LevelUp::DrawLevelUpBox()
             // Example: DrawTexture(texture, smallBoxX, smallBoxY, WHITE);
             // For now, we'll just draw a placeholder rectangle
             //DrawRectangle(smallBoxX + 10, smallBoxY + 10, smallBoxWidth - 20, smallBoxHeight - 20, GRAY);
-            DrawText(upgrades[i].name, smallBoxX + 10, smallBoxY + 10, 10, BLACK);
+            DrawText(currentUpgrades[i].name, smallBoxX + 10, smallBoxY + 10, 10, currentUpgrades[i].color);
         
             // Check for mouse clicks within the bounding rectangles of the small boxes
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
                 Vector2 mousePosition = GetMousePosition();
                 if (CheckCollisionPointRec(mousePosition, { (float)smallBoxX, (float)smallBoxY, (float)smallBoxWidth, (float)smallBoxHeight })) {
-                    ApplyUpgrade(upgrades[i]);
+                    ApplyUpgrade(currentUpgrades[i]);
+                    player.leveledUpWindowActive = false;
                     player.leveledUp = false;
                     player.gamePaused = false;
                 }
@@ -60,20 +107,20 @@ void LevelUp::ApplyUpgrade(const Upgrade& upgrade)
 {
     switch (upgrade.type) {
         case UpgradeType::CritChance:
-            player.critChance += 3.0f;
+            player.critChance += upgrade.increaseAmount;
             break;
         case UpgradeType::CritDamage:
-            player.critDamage += 50.0f;
+            player.critDamage += upgrade.increaseAmount;
             break;
         case UpgradeType::CooldownReduction:
             //player.abilityManager.ReduceCooldowns();
-            player.cooldownReduction += 10.0f;
+            player.cooldownReduction += upgrade.increaseAmount;
             break;
         case UpgradeType::Health:
-            player.maxHealth += 10;
+            player.maxHealth += upgrade.increaseAmount;
             break;
         case UpgradeType::Damage:
-            player.baseDamage += 5;
+            player.baseDamage += upgrade.increaseAmount;
             break;
     }
 }

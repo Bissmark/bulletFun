@@ -6,60 +6,30 @@
             "type": "shell",
             "command": "cmake",
             "args": [
-                "--build",
-                "${workspaceFolder}/build",
-                "--config",
-                "Debug"
+                "--build", "build",
+                "--config", "Debug"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": []
+            "problemMatcher": ["$gcc"],
+            "detail": "Build the project using CMake in debug mode."
         },
         {
             "label": "build release",
             "type": "shell",
             "command": "cmake",
             "args": [
-                "--build",
-                "${workspaceFolder}/build",
-                "--config",
-                "Release"
-            ],
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "compile debug",
-            "type": "process",
-            "command": "cmake",
-            
-            "args": [
-                "--build", "build",
-                "--config", "Debug"
-            ],
-            "problemMatcher": ["$gcc"],
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            },
-            "detail": "Build the debug version of the project using CMake."
-        },
-        {
-            "label": "compile release",
-            "type": "process",
-            "command": "cmake",
-            "args": [
                 "--build", "build",
                 "--config", "Release"
             ],
-            "problemMatcher": ["$gcc"],
             "group": {
                 "kind": "build",
                 "isDefault": false
             },
-            "detail": "Build the release version of the project using CMake."
+            "problemMatcher": ["$gcc"],
+            "detail": "Build the project using CMake in release mode."
         }
     ]
 }

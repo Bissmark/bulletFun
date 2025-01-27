@@ -137,6 +137,8 @@ void Enemy::Draw() const
 
     // Draw the current health bar
     DrawRectangle(barPosition.x, barPosition.y, barWidth * healthPercentage * scale, barHeight, GREEN);
+
+    DrawRectangleLines(enemyPosition.x, enemyPosition.y, frameRec.width * scale, frameRec.height * scale, RED);
 }
 
 Rectangle Enemy::GetBoundingBox() const

@@ -6,7 +6,13 @@ enum class UpgradeType {
     CritDamage,
     CooldownReduction,
     Health,
-    Damage
+    Damage,
+};
+
+enum class Rarity {
+    Common,
+    Rare,
+    Epic,
 };
 
 struct Upgrade {
@@ -14,4 +20,7 @@ struct Upgrade {
     const char* name;
     const char* description;
     const Texture2D* texture;
+    Rarity rarity;
+    float increaseAmount;
+    Color color;
 };

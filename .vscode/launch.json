@@ -5,7 +5,7 @@
             "name": "BulletFun",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/Debug/BulletFun.exe",  // Adjust this path if necessary
+            "program": "${workspaceFolder}/build/Debug/BulletFun.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -39,10 +39,10 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "program": "${workspaceFolder}/build/Debug/BulletFun.exe",  // Adjust this path if necessary
+            "program": "${workspaceFolder}/build/Debug/BulletFun.exe",
             "MIMode": "gdb",
             "windows": {
-                "program": "${workspaceFolder}/build/Debug/BulletFun.exe",  // Adjust this path if necessary
+                "program": "${workspaceFolder}/build/Debug/BulletFun.exe",
                 "miDebuggerPath": "C:/raylib/w64devkit/bin/gdb.exe"
             },
             "osx": {

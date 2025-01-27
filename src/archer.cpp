@@ -5,7 +5,9 @@
 
 Archer::Archer(Player& player, Vector2 position) : Enemy(player, position)
 {
-    currentTexture = LoadTexture("Spritesheet/enemy/Idle.png");
+    idleTexture = LoadTexture("Spritesheet/enemy/Idle.png");
+    walkTexture = LoadTexture("Spritesheet/enemy/Walk.png");
+    currentTexture = idleTexture;
     numFrames = 4;
     frameWidth = currentTexture.width / numFrames;
     frameRec = { 0.0f, 0.0f, (float)currentTexture.width / numFrames, (float)currentTexture.height };
@@ -18,8 +20,6 @@ Archer::Archer(Player& player, Vector2 position) : Enemy(player, position)
 void Archer::Update(float deltaTime)
 {
     Enemy::Update(deltaTime);
-
-    UpdateFrame();
 }
 
 void Archer::Draw() const

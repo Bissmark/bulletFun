@@ -121,7 +121,11 @@ int main()
                 EndMode2D();
                 player.DrawExp();
                 skillBar.Draw(player, camera);
-                if (player.leveledUp) {
+                if (player.leveledUp && !player.leveledUpWindowActive) {
+                    player.leveledUpWindowActive = true;
+                    levelUp.currentUpgrades = levelUp.GetRandomUpgrades();
+                }
+                if (player.leveledUpWindowActive) {
                     levelUp.DrawLevelUpBox();
                 }
                 DrawText(TextFormat("Health: %i", player.healthPoints), 10, 10, 20, RED);

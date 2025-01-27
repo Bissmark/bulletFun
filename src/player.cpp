@@ -45,6 +45,7 @@ Player::Player()
     currentTexture = playerIdle;
 
     leveledUp = false;
+    leveledUpWindowActive = false;
 
     frameRec = { 0.0f, 0.0f, (float)playerIdle.width / numFrames, (float)playerIdle.height };
     playerPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
@@ -194,6 +195,7 @@ void Player::PlayerLevelUp()
         experiencePoints = 0;
         maxExperiencePoints *= 2;
         leveledUp = true;
+        leveledUpWindowActive = true;
         gamePaused = true;
         level++;
     }

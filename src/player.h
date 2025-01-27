@@ -42,6 +42,7 @@ class Player
         Texture2D currentTexture;
         unsigned int numFrames;
         bool leveledUp;
+        bool leveledUpWindowActive;
         float scale;
 
     private:

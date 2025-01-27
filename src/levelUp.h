@@ -2,6 +2,7 @@
 #include "player.h"
 #include "upgrades.h"
 #include <vector>
+#include <map>
 
 class LevelUp
 {
@@ -9,6 +10,8 @@ class LevelUp
         LevelUp(Player& player);
         void DrawLevelUpBox();
         void ApplyUpgrade(const Upgrade& upgrade);
+        std::vector<Upgrade> currentUpgrades;
+        std::vector<Upgrade> GetRandomUpgrades();
 
     private:
         Player& player;
