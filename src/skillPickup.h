@@ -2,7 +2,7 @@
 #include <raylib.h>
 #include <vector>
 #include "skillBar.h"
-//#include "terrainCollisionDetection.h"
+#include "terrainCollisionDetection.h"
 
 class Player;
 
@@ -17,8 +17,8 @@ class SkillPickup
 {
     public:
         SkillPickup();
-        void Update(Player& player, SkillBar& skillBar);
-        //void Update(Player& player, SkillBar& skillBar, TerrainCollision& tileCollision);
+        //void Update(Player& player, SkillBar& skillBar);
+        void Update(Player& player, SkillBar& skillBar, TerrainCollision& tileCollision);
         void Draw() const;
 
     private:
@@ -26,5 +26,5 @@ class SkillPickup
         std::vector<Pickup> pickups;
         float scale;
 
-        //void SpawnPickup(Pickup& pickup, TerrainCollision& tileCollision);
+        void SpawnPickup(Pickup& pickup, TerrainCollision& tileCollision);
 };

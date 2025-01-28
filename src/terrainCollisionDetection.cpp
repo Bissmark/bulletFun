@@ -1,3 +1,5 @@
+#define RAYTMX_IMPLEMENTATION
+#include "raytmx.h"
 #include "terrainCollisionDetection.h"
 #include <iostream>
 
@@ -72,10 +74,8 @@ bool TerrainCollision::CheckCollision(const Rectangle& playerBoundingBox) const
                     for (uint32_t i = 0; i < collisionLayer->exact.objectGroup.objectsLength; ++i) {
                         TmxObject* object = &collisionLayer->exact.objectGroup.objects[i];
                         if (object->type == OBJECT_TYPE_POLYGON || object->type == OBJECT_TYPE_POLYLINE) {
-                            for (int j = 0; j < object->pointsLength - 1; ++j) {
-                                if(CheckCollisionPoly(playerBoundingBox, object)) {
-                                    return true;
-                                }
+                            if(CheckCollisionPoly(playerBoundingBox, object)) {
+                                return true;
                             }
                         }
                     }
@@ -84,4 +84,12 @@ bool TerrainCollision::CheckCollision(const Rectangle& playerBoundingBox) const
         } 
     }
     return false;
+}
+
+Rectangle TerrainCollision::GetTerrainBounds() const
+{
+    if (map != nullptr) {
+        return { 0, 0, (float)map->width * map->tileWidth, (float)map->height * map->tileHeight };
+    }
+    return { 0, 0, 0, 0 };
 }

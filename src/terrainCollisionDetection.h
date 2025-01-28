@@ -12,6 +12,7 @@ class TerrainCollision
         void Draw();
         bool CheckCollisionPoly(const Rectangle& playerBoundingBox, TmxObject* polygon) const;
         bool CheckCollision(const Rectangle& playerBoundingBox) const;
+        Rectangle GetTerrainBounds() const;
 
     private:
         TmxMap* map;

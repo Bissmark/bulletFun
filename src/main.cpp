@@ -15,7 +15,7 @@
 #include <iostream>
 #include "imgui.h"
 
-#define RAYTMX_IMPLEMENTATION
+//#define RAYTMX_IMPLEMENTATION
 #include "raytmx.h"
 #include "terrainCollisionDetection.h" 
 
@@ -93,8 +93,8 @@ int main()
                 player.Update(enemySpawner.enemies, deltaTime);
                 player.AutoAttack(enemySpawner.enemies, deltaTime);
                 powerup.Update(player);
-                skillPickup.Update(player, skillBar);
-                //skillPickup.Update(player, skillBar, tileCollision);
+                //skillPickup.Update(player, skillBar);
+                skillPickup.Update(player, skillBar, tileCollision);
                 enemySpawner.Update(deltaTime);
                 skillBar.Update(player, enemySpawner.enemies, deltaTime);
 
