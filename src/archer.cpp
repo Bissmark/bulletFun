@@ -5,7 +5,6 @@
 
 Archer::Archer(Player& player, Vector2 position) : Enemy(player, position)
 {
-    std::cout << "Initializing Archer" << std::endl;
     enemyIdle = LoadTexture("Spritesheet/enemy/Idle.png");
     enemyWalk = LoadTexture("Spritesheet/enemy/Walk.png");
     currentTexture = enemyIdle;
@@ -21,10 +20,7 @@ Archer::Archer(Player& player, Vector2 position) : Enemy(player, position)
 
 void Archer::Update(float deltaTime)
 {
-    std::cout << "Updating Archer" << std::endl;
     Enemy::Update(deltaTime);
-    //Move(deltaTime);
-    std::cout << "Archer updated" << std::endl;
 }
 
 void Archer::Draw() const

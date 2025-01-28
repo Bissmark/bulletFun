@@ -11,7 +11,9 @@ class AuraDmg : public Ability
         bool CheckCollision(const Player& player, Enemy& enemy) override;
         void Activate();
         std::string GetName() const override;
-    
+        float GetCooldownTime() const;
+        float GetCooldownDuration() const;
+
     private:
         float maxRadius;
         float currentRadius;

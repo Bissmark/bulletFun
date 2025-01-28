@@ -64,6 +64,15 @@ void SkillBar::Draw(Player& player, Camera2D camera) const
             int textX = smallBoxX + (smallBoxWidth - textWidth) / 2;
             int textY = smallBoxY + (smallBoxHeight - 10) / 2;
             DrawText(skillName.c_str(), textX, textY, 10, BLACK);
+
+            // Cooldown Visualization
+            if (AuraDmg* auraDmg = dynamic_cast<AuraDmg*>(skills[i].get())) {
+                if (auraDmg->GetCooldownTime() > 0.0f) {
+                    float cooldownPercentage = auraDmg->GetCooldownTime() / auraDmg->GetCooldownDuration();
+                    int cooldownHeight = static_cast<int>((smallBoxHeight - 20) * cooldownPercentage);
+                    DrawRectangle(smallBoxX + 10, smallBoxY + 10 + (smallBoxHeight - 20 - cooldownHeight), smallBoxWidth - 20, cooldownHeight, Fade(BLACK, 0.5f));
+                }
+            }
         }
     }
 
