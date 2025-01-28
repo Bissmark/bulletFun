@@ -36,7 +36,7 @@ int main()
     Player player;
     EnemySpawner enemySpawner(player, 2);
     Background background;
-    Powerup powerup;
+    Powerup powerup(LoadTexture("Spritesheet/powerup/Health.png"), 0.5f);
     CharacterSelection characterSelection(player);
     Tilemap tilemap(16, 32);
     SkillPickup skillPickup;
@@ -92,7 +92,7 @@ int main()
                 }
                 player.Update(enemySpawner.enemies, deltaTime);
                 player.AutoAttack(enemySpawner.enemies, deltaTime);
-                powerup.Update(player);
+                powerup.Update(player, tileCollision);
                 //skillPickup.Update(player, skillBar);
                 skillPickup.Update(player, skillBar, tileCollision);
                 enemySpawner.Update(deltaTime);

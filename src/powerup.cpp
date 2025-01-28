@@ -1,33 +1,24 @@
 #include "powerup.h"
 #include "player.h"
+#include "terrainCollisionDetection.h"
+#include <raylib.h>
 
-Powerup::Powerup()
-    : radius(15)
-    , powerupPosition({ 0 })
-    , isActive(true)
-    , isCollected(false)
-    , speedX(5)
-    , speedY(5)
-    , scale(0.3f)
+Powerup::Powerup(Texture2D texture, float scale)
+    : healthPot(texture), scale(scale), isActive(false), isCollected(false)
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
-    healthPot = LoadTexture("Spritesheet/powerup/Health.png");
-    speedPot = LoadTexture("Spritesheet/powerup/Speed.png");
-    dmgPot = LoadTexture("Spritesheet/powerup/Damage.png");
-    shieldPot = LoadTexture("Spritesheet/powerup/Shield.png");
-
-    powerupPosition = { (float)GetRandomValue(0, screenWidth - healthPot.width), (float)GetRandomValue(0, screenHeight - healthPot.height) };
-    boxCollision = { powerupPosition.x, powerupPosition.y, (float)healthPot.width, (float)healthPot.height };
+    Respawn();
 }
 
-void Powerup::Update(Player& player)
+void Powerup::Update(Player& player, TerrainCollision& terrainCollision)
 {
-    CheckCollision(player);
+    if (isActive) {
+        CheckCollision(player, terrainCollision);
+    } else {
+        SpawnPowerup(terrainCollision);
+    }
 }
 
-void Powerup::CheckCollision(Player& player)
+void Powerup::CheckCollision(Player& player, TerrainCollision& terrainCollision)
 {
     Rectangle playerCollision = { player.playerPosition.x + player.frameRec.width / 2, player.playerPosition.y + player.frameRec.height / 2, (float)player.radius * 2, (float)player.radius * 2 };
 
@@ -36,17 +27,38 @@ void Powerup::CheckCollision(Player& player)
         // increase player health by % of player max health
         player.healthPoints += player.maxHealth * 0.1;
         isActive = false;
-        Respawn();
+        SpawnPowerup(terrainCollision);
     }
 }
 
 void Powerup::Respawn()
 {
-    powerupPosition = { (float)GetRandomValue(0, GetScreenWidth() - healthPot.width), (float)GetRandomValue(0, GetScreenHeight() - healthPot.height) };
+    powerupPosition = { (float)GetRandomValue(0, GetScreenWidth() - healthPot.width), (float)GetScreenHeight() - healthPot.height };
     boxCollision = { powerupPosition.x, powerupPosition.y, (float)healthPot.width, (float)healthPot.height };
     isActive = true;
     isCollected = false;
-}   
+}
+
+void Powerup::SpawnPowerup(TerrainCollision& terrainCollision)
+{
+    bool validPosition = false;
+    Rectangle terrainBounds = terrainCollision.GetTerrainBounds();
+    while (!validPosition) {
+        // Generate a random position within the terrain bounds
+        float x = (float)GetRandomValue(terrainBounds.x, terrainBounds.x + terrainBounds.width);
+        float y = (float)GetRandomValue(terrainBounds.y, terrainBounds.y + terrainBounds.height);
+        Rectangle boxCollision = { x, y, (float)healthPot.width * scale, (float)healthPot.height * scale };
+
+        // Check if the position collides with any terrain colliders
+        if (!terrainCollision.CheckCollision(boxCollision)) {
+            powerupPosition = { x, y };
+            this->boxCollision = boxCollision;
+            isActive = true;
+            isCollected = false;
+            validPosition = true;
+        }
+    }
+}
 
 void Powerup::Draw() const
 {
@@ -54,4 +66,3 @@ void Powerup::Draw() const
         DrawTexturePro(healthPot, { 0, 0, (float)healthPot.width, (float)healthPot.height }, { powerupPosition.x, powerupPosition.y, (float)healthPot.width * scale, (float)healthPot.height * scale }, { (float)healthPot.width * scale / 2, (float)healthPot.height * scale / 2 }, 0.0f, WHITE);
     }
 }
-
