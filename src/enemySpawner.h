@@ -3,13 +3,14 @@
 #include <memory>
 #include <array>
 #include "enemy.h"
+#include "terrainCollisionDetection.h"
 
 class Player;
 
 class EnemySpawner
 {
     public:
-        EnemySpawner(Player& player, int spawnRate);
+        EnemySpawner(Player& player, int spawnRate, TerrainCollision& tileCollision);
         void Update(float deltaTime);
         void Draw() const;
         void SpawnEnemy();
@@ -27,4 +28,5 @@ class EnemySpawner
 
         enum EnemyType { ARCHER, SLIME, GRUNT };
         std::unique_ptr<Enemy> CreateEnemy(EnemyType type, Vector2 position);
+        TerrainCollision& tileCollision;
 };

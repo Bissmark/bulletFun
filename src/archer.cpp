@@ -3,7 +3,7 @@
 #include <raymath.h>
 #include <iostream>
 
-Archer::Archer(Player& player, Vector2 position) : Enemy(player, position)
+Archer::Archer(Player& player, Vector2 position, TerrainCollision& tileCollision) : Enemy(player, position, tileCollision)
 {
     enemyIdle = LoadTexture("Spritesheet/enemy/Idle.png");
     enemyWalk = LoadTexture("Spritesheet/enemy/Walk.png");

@@ -61,7 +61,7 @@ void Player::Update(std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTim
 
     PlayerLevelUp();
 
-    elapsedTime = GetTime() - startTime;
+    //elapsedTime = GetTime() - startTime;
 
     abilityManager.Update(*this, enemies, deltaTime);
 }
@@ -230,7 +230,7 @@ void Player::Draw(const Camera2D& camera) const
     float newX = playerPosition.x + (frameRec.width * scale - newWidth) / 2.0f;
 
     // Draw the rectangle lines with the adjusted dimensions
-    DrawRectangleLines(newX, playerPosition.y, newWidth, frameRec.height * scale, RED);
+    //DrawRectangleLines(newX, playerPosition.y, newWidth, frameRec.height * scale, RED);
 }
 
 void Player::DrawExp() const

@@ -1,12 +1,13 @@
 #pragma once
 #include <raylib.h>
+#include "terrainCollisionDetection.h"
 
 class Player;
 
 class Enemy
 {
     public: 
-        Enemy(Player& player, Vector2 position);
+        Enemy(Player& player, Vector2 position, TerrainCollision& tileCollision);
         virtual ~Enemy() = default;
         Enemy(const Enemy&) = delete;              // Disallow copying
         Enemy& operator=(const Enemy&) = delete;   // Disallow assignment
@@ -44,4 +45,5 @@ class Enemy
         enum Direction { LEFT, RIGHT } direction;
         Texture2D currentTexture;
         void UpdateFrame();
+        TerrainCollision& tileCollision;
 };

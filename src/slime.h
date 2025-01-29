@@ -4,7 +4,7 @@
 class Slime : public Enemy
 {
     public:
-        Slime(Player& player, Vector2 position);
+        Slime(Player& player, Vector2 position, TerrainCollision& tileCollision);
         void Update(float deltaTime) override;
         void Draw() const override;
         void Attack(float deltaTime) override;

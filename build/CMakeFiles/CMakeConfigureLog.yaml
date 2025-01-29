@@ -24,7 +24,7 @@ events:
       The output was:
       0
       MSBuild version 17.10.4+10fbfbf2e for .NET Framework
-      Build started 29/01/2025 1:35:43 AM.
+      Build started 29/01/2025 3:28:26 PM.
       
       Project "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\3.30.0-rc1\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -58,7 +58,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:00.74
+      Time Elapsed 00:00:00.72
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -84,7 +84,7 @@ events:
       The output was:
       0
       MSBuild version 17.10.4+10fbfbf2e for .NET Framework
-      Build started 29/01/2025 1:35:44 AM.
+      Build started 29/01/2025 3:28:27 PM.
       
       Project "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\3.30.0-rc1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -137,8 +137,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-ekum9l"
-      binary: "C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-ekum9l"
+      source: "C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-c3r6w9"
+      binary: "C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-c3r6w9"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -147,45 +147,45 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-ekum9l'
+        Change Dir: 'C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-c3r6w9'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_36c1e.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_b1242.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.10.4+10fbfbf2e for .NET Framework
-        Build started 29/01/2025 1:35:45 AM.
+        Build started 29/01/2025 3:28:28 PM.
         
-        Project "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ekum9l\\cmTC_36c1e.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c3r6w9\\cmTC_b1242.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_36c1e.dir\\Debug\\".
+          Creating directory "cmTC_b1242.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ekum9l\\Debug\\".
-          Creating directory "cmTC_36c1e.dir\\Debug\\cmTC_36c1e.tlog\\".
+          Creating directory "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c3r6w9\\Debug\\".
+          Creating directory "cmTC_b1242.dir\\Debug\\cmTC_b1242.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_36c1e.dir\\Debug\\cmTC_36c1e.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_36c1e.dir\\Debug\\cmTC_36c1e.tlog\\unsuccessfulbuild".
+          Creating "cmTC_b1242.dir\\Debug\\cmTC_b1242.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_b1242.dir\\Debug\\cmTC_b1242.tlog\\unsuccessfulbuild".
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_36c1e.dir\\Debug\\\\" /Fd"cmTC_36c1e.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.30\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_b1242.dir\\Debug\\\\" /Fd"cmTC_b1242.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.30\\Modules\\CMakeCCompilerABI.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_36c1e.dir\\Debug\\\\" /Fd"cmTC_36c1e.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.30\\Modules\\CMakeCCompilerABI.c"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_b1242.dir\\Debug\\\\" /Fd"cmTC_b1242.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.30\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ekum9l\\Debug\\cmTC_36c1e.exe" /INCREMENTAL /ILK:"cmTC_36c1e.dir\\Debug\\cmTC_36c1e.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-ekum9l/Debug/cmTC_36c1e.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-ekum9l/Debug/cmTC_36c1e.lib" /MACHINE:X64  /machine:x64 cmTC_36c1e.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_36c1e.vcxproj -> C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ekum9l\\Debug\\cmTC_36c1e.exe
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c3r6w9\\Debug\\cmTC_b1242.exe" /INCREMENTAL /ILK:"cmTC_b1242.dir\\Debug\\cmTC_b1242.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-c3r6w9/Debug/cmTC_b1242.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-c3r6w9/Debug/cmTC_b1242.lib" /MACHINE:X64  /machine:x64 cmTC_b1242.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_b1242.vcxproj -> C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c3r6w9\\Debug\\cmTC_b1242.exe
         AppLocalFromInstalled:
-          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ekum9l\\Debug\\cmTC_36c1e.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_36c1e.dir\\Debug\\cmTC_36c1e.tlog\\cmTC_36c1e.write.1u.tlog" "cmTC_36c1e.dir\\Debug\\vcpkg.applocal.log"
+          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c3r6w9\\Debug\\cmTC_b1242.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_b1242.dir\\Debug\\cmTC_b1242.tlog\\cmTC_b1242.write.1u.tlog" "cmTC_b1242.dir\\Debug\\vcpkg.applocal.log"
         FinalizeBuildStatus:
-          Deleting file "cmTC_36c1e.dir\\Debug\\cmTC_36c1e.tlog\\unsuccessfulbuild".
-          Touching "cmTC_36c1e.dir\\Debug\\cmTC_36c1e.tlog\\cmTC_36c1e.lastbuildstate".
-        Done Building Project "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ekum9l\\cmTC_36c1e.vcxproj" (default targets).
+          Deleting file "cmTC_b1242.dir\\Debug\\cmTC_b1242.tlog\\unsuccessfulbuild".
+          Touching "cmTC_b1242.dir\\Debug\\cmTC_b1242.tlog\\cmTC_b1242.lastbuildstate".
+        Done Building Project "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c3r6w9\\cmTC_b1242.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:00.68
+        Time Elapsed 00:00:00.69
         
       exitCode: 0
   -
@@ -225,8 +225,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-wzui5z"
-      binary: "C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-wzui5z"
+      source: "C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-02rxln"
+      binary: "C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-02rxln"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -236,45 +236,45 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-wzui5z'
+        Change Dir: 'C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-02rxln'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_0eed7.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_df5ea.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.10.4+10fbfbf2e for .NET Framework
-        Build started 29/01/2025 1:35:46 AM.
+        Build started 29/01/2025 3:28:29 PM.
         
-        Project "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wzui5z\\cmTC_0eed7.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-02rxln\\cmTC_df5ea.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_0eed7.dir\\Debug\\".
+          Creating directory "cmTC_df5ea.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wzui5z\\Debug\\".
-          Creating directory "cmTC_0eed7.dir\\Debug\\cmTC_0eed7.tlog\\".
+          Creating directory "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-02rxln\\Debug\\".
+          Creating directory "cmTC_df5ea.dir\\Debug\\cmTC_df5ea.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_0eed7.dir\\Debug\\cmTC_0eed7.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_0eed7.dir\\Debug\\cmTC_0eed7.tlog\\unsuccessfulbuild".
+          Creating "cmTC_df5ea.dir\\Debug\\cmTC_df5ea.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_df5ea.dir\\Debug\\cmTC_df5ea.tlog\\unsuccessfulbuild".
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_0eed7.dir\\Debug\\\\" /Fd"cmTC_0eed7.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.30\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_df5ea.dir\\Debug\\\\" /Fd"cmTC_df5ea.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.30\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_0eed7.dir\\Debug\\\\" /Fd"cmTC_0eed7.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.30\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_df5ea.dir\\Debug\\\\" /Fd"cmTC_df5ea.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.30\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wzui5z\\Debug\\cmTC_0eed7.exe" /INCREMENTAL /ILK:"cmTC_0eed7.dir\\Debug\\cmTC_0eed7.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-wzui5z/Debug/cmTC_0eed7.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-wzui5z/Debug/cmTC_0eed7.lib" /MACHINE:X64  /machine:x64 cmTC_0eed7.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_0eed7.vcxproj -> C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wzui5z\\Debug\\cmTC_0eed7.exe
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-02rxln\\Debug\\cmTC_df5ea.exe" /INCREMENTAL /ILK:"cmTC_df5ea.dir\\Debug\\cmTC_df5ea.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-02rxln/Debug/cmTC_df5ea.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/CMakeScratch/TryCompile-02rxln/Debug/cmTC_df5ea.lib" /MACHINE:X64  /machine:x64 cmTC_df5ea.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_df5ea.vcxproj -> C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-02rxln\\Debug\\cmTC_df5ea.exe
         AppLocalFromInstalled:
-          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wzui5z\\Debug\\cmTC_0eed7.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_0eed7.dir\\Debug\\cmTC_0eed7.tlog\\cmTC_0eed7.write.1u.tlog" "cmTC_0eed7.dir\\Debug\\vcpkg.applocal.log"
+          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-02rxln\\Debug\\cmTC_df5ea.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_df5ea.dir\\Debug\\cmTC_df5ea.tlog\\cmTC_df5ea.write.1u.tlog" "cmTC_df5ea.dir\\Debug\\vcpkg.applocal.log"
         FinalizeBuildStatus:
-          Deleting file "cmTC_0eed7.dir\\Debug\\cmTC_0eed7.tlog\\unsuccessfulbuild".
-          Touching "cmTC_0eed7.dir\\Debug\\cmTC_0eed7.tlog\\cmTC_0eed7.lastbuildstate".
-        Done Building Project "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wzui5z\\cmTC_0eed7.vcxproj" (default targets).
+          Deleting file "cmTC_df5ea.dir\\Debug\\cmTC_df5ea.tlog\\unsuccessfulbuild".
+          Touching "cmTC_df5ea.dir\\Debug\\cmTC_df5ea.tlog\\cmTC_df5ea.lastbuildstate".
+        Done Building Project "C:\\Users\\Gosh_\\Desktop\\Programming\\Projects\\C++\\Raylib\\BulletFun\\build\\CMakeFiles\\CMakeScratch\\TryCompile-02rxln\\cmTC_df5ea.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:00.77
+        Time Elapsed 00:00:00.73
         
       exitCode: 0
   -

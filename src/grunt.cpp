@@ -3,7 +3,7 @@
 #include <raymath.h>
 #include <iostream>
 
-Grunt::Grunt(Player& player, Vector2 position) : Enemy(player, position)
+Grunt::Grunt(Player& player, Vector2 position, TerrainCollision& tileCollision) : Enemy(player, position, tileCollision)
 {
     enemyIdle = LoadTexture("Spritesheet/enemy/bardIdle.png");
     enemyWalk = LoadTexture("Spritesheet/enemy/bardWalk.png");

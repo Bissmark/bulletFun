@@ -3,12 +3,13 @@
 #include <iostream>
 #include <raymath.h>
 
-Enemy::Enemy(Player& player, Vector2 position) : 
+Enemy::Enemy(Player& player, Vector2 position, TerrainCollision& tileCollision) : 
     player(player), 
     enemyPosition(position),
     timeSinceLastAttack(0.0f), 
     hitPlayer(false), 
-    scale(0.5f)
+    scale(0.5f),
+    tileCollision(tileCollision)
 {
     currentFrame = 0;
     framesCounter = 0;
@@ -38,45 +39,76 @@ void Enemy::Update(float deltaTime)
 void Enemy::Move(float deltaTime)
 {
     bool isMoving = false;
+    Vector2 oldPosition = enemyPosition;
 
-    if (player.playerPosition.x > enemyPosition.x) {
-        enemyPosition.x += movementSpeed * deltaTime;
-        isMoving = true;
-        direction = RIGHT;
-    }
-    if (player.playerPosition.x < enemyPosition.x) {
-        enemyPosition.x -= movementSpeed * deltaTime;
-        isMoving = true;
-        direction = LEFT;
-    }
-    if (player.playerPosition.y > enemyPosition.y) {
-        enemyPosition.y += movementSpeed * deltaTime;
-        isMoving = true;
-    }
-    if (player.playerPosition.y < enemyPosition.y) {
-        enemyPosition.y -= movementSpeed * deltaTime;
-        isMoving = true;
+    // Move towards player
+    Vector2 directionToPlayer = Vector2Subtract(player.playerPosition, enemyPosition);
+    directionToPlayer = Vector2Normalize(directionToPlayer);
+    
+    enemyPosition.x += directionToPlayer.x * movementSpeed * deltaTime;
+    enemyPosition.y += directionToPlayer.y * movementSpeed * deltaTime;
+    
+    boxCollision.x = enemyPosition.x;
+    boxCollision.y = enemyPosition.y;
+
+    // Check collision with walls
+    if (tileCollision.CheckCollision(GetBoundingBox())) 
+    {
+        // Revert position
+        enemyPosition = oldPosition;
+        boxCollision.x = enemyPosition.x;
+        boxCollision.y = enemyPosition.y;
+
+        // Try to move sideways instead (strafing)
+        Vector2 perpendicular;
+        if (fabs(directionToPlayer.x) > fabs(directionToPlayer.y)) 
+        {
+            // If mostly moving horizontally, try vertical movement
+            perpendicular = {0, directionToPlayer.y > 0 ? movementSpeed * deltaTime : -movementSpeed * deltaTime};
+        } 
+        else 
+        {
+            // If mostly moving vertically, try horizontal movement
+            perpendicular = {directionToPlayer.x > 0 ? movementSpeed * deltaTime : -movementSpeed * deltaTime, 0};
+        }
+
+        enemyPosition.x += perpendicular.x;
+        enemyPosition.y += perpendicular.y;
+        boxCollision.x = enemyPosition.x;
+        boxCollision.y = enemyPosition.y;
+
+        // If still colliding, revert again (no movement)
+        if (tileCollision.CheckCollision(GetBoundingBox())) 
+        {
+            enemyPosition = oldPosition;
+            boxCollision.x = enemyPosition.x;
+            boxCollision.y = enemyPosition.y;
+        }
     }
 
-    if (isMoving) {
-        if (currentTexture.id != enemyWalk.id) {
+    // Update animation state
+    if (isMoving) 
+    {
+        if (currentTexture.id != enemyWalk.id) 
+        {
             currentTexture = enemyWalk;
             numFrames = 6;
             frameWidth = enemyWalk.width / numFrames;
         }
-    } else {
-        if (currentTexture.id != enemyIdle.id) {
+    } 
+    else 
+    {
+        if (currentTexture.id != enemyIdle.id) 
+        {
             currentTexture = enemyIdle;
             numFrames = 4;
             frameWidth = enemyIdle.width / numFrames;
         }
     }
 
-    boxCollision.x = enemyPosition.x;
-    boxCollision.y = enemyPosition.y;
-
     UpdateFrame();
 }
+
 
 void Enemy::UpdateFrame()
 {

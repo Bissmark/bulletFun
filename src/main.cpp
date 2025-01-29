@@ -34,14 +34,14 @@ int main()
     TmxMap* map = LoadTMX(tmx);
 
     Player player;
-    EnemySpawner enemySpawner(player, 2);
+    TerrainCollision tileCollision;
+    EnemySpawner enemySpawner(player, 2, tileCollision);
     Background background;
     CharacterSelection characterSelection(player);
     SkillPickup skillPickup;
     LevelUp levelUp(player);
     SkillBar skillBar;
     Powerup powerup(LoadTexture("Spritesheet/powerup/Health.png"), 0.5f);
-    TerrainCollision tileCollision;
     tileCollision.LoadMap(tmx);
 
     SetTargetFPS(60);

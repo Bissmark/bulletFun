@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <iostream>
 
-EnemySpawner::EnemySpawner(Player& player, int spawnRate)
+EnemySpawner::EnemySpawner(Player& player, int spawnRate, TerrainCollision& tileCollision)
     : player(player)
     , maxEnemies(10)
     , spawnRate(spawnRate)
@@ -15,6 +15,7 @@ EnemySpawner::EnemySpawner(Player& player, int spawnRate)
     , framesCounter(0)
     , spawnCounter(0.0f)
     , amountOfEnemyTypes(3)
+    , tileCollision(tileCollision)
 {
 }
 
@@ -92,11 +93,11 @@ std::unique_ptr<Enemy> EnemySpawner::CreateEnemy(EnemyType type, Vector2 positio
 {
     switch (type) {
         case ARCHER:
-            return std::make_unique<Archer>(player, position);
+            return std::make_unique<Archer>(player, position, tileCollision);
         case SLIME:
-            return std::make_unique<Slime>(player, position);
+            return std::make_unique<Slime>(player, position, tileCollision);
         case GRUNT:
-            return std::make_unique<Grunt>(player, position);
+            return std::make_unique<Grunt>(player, position, tileCollision);
         default:
             return nullptr;
     }

@@ -4,7 +4,7 @@
 class Grunt : public Enemy
 {
     public:
-        Grunt(Player& player, Vector2 position);
+        Grunt(Player& player, Vector2 position, TerrainCollision& tileCollision);
         void Update(float deltaTime) override;
         void Draw() const override;
         void Attack(float deltaTime) override;
