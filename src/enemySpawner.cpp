@@ -77,10 +77,61 @@ void EnemySpawner::Draw() const
 void EnemySpawner::SpawnEnemy()
 {
     EnemyType type = static_cast<EnemyType>(GetRandomValue(0, amountOfEnemyTypes - 1));
-    Vector2 position = { (float)GetRandomValue(0, GetScreenWidth()), (float)GetRandomValue(0, GetScreenHeight()) };
+
+    bool validPosition = false;
+    Vector2 position;
+    Rectangle enemyBounds;
+
+    Rectangle terrainBounds = tileCollision.GetTerrainBounds(); // Get the map bounds
+
+    while (!validPosition) 
+    {
+        // Pick a random position within terrain bounds
+        position.x = (float)GetRandomValue(terrainBounds.x, terrainBounds.x + terrainBounds.width);
+        position.y = (float)GetRandomValue(terrainBounds.y, terrainBounds.y + terrainBounds.height);
+        
+        // Create a bounding box for collision checking
+        enemyBounds = { position.x, position.y, 32, 32 }; // Adjust size based on enemy size
+
+        // Check if this position collides with walls
+        if (!tileCollision.CheckCollision(enemyBounds)) 
+        {
+            bool tileCollisionDetected = false;
+            
+            // Iterate over tile objects in collision layer
+            if (tileCollision.map != nullptr && tileCollision.map->layersLength > 1) 
+            {
+                TmxLayer* collisionLayer = &tileCollision.map->layers[1]; // Assuming layer 1 is the collision layer
+                if (collisionLayer->type == LAYER_TYPE_OBJECT_GROUP) 
+                {
+                    for (uint32_t i = 0; i < collisionLayer->exact.objectGroup.objectsLength; ++i) 
+                    {
+                        TmxObject* object = &collisionLayer->exact.objectGroup.objects[i];
+                        if (object->type == OBJECT_TYPE_TILE) 
+                        {
+                            if (tileCollision.CheckCollisionTiles(enemyBounds, object)) 
+                            {
+                                tileCollisionDetected = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // If no tile collision, accept this position
+            if (!tileCollisionDetected) 
+            {
+                validPosition = true;
+            }
+        }
+    }
+
+    // Spawn enemy at the valid position
     enemies.emplace_back(CreateEnemy(type, position));
     ++currentEnemies;
 }
+
 
 void EnemySpawner::DestroyEnemy()
 {

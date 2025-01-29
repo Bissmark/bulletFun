@@ -59,25 +59,38 @@ void Enemy::Move(float deltaTime)
         boxCollision.x = enemyPosition.x;
         boxCollision.y = enemyPosition.y;
 
-        // Try to move sideways instead (strafing)
-        Vector2 perpendicular;
+        // Try both perpendicular directions and pick the first valid one
+        Vector2 perpendicular1, perpendicular2;
         if (fabs(directionToPlayer.x) > fabs(directionToPlayer.y)) 
         {
-            // If mostly moving horizontally, try vertical movement
-            perpendicular = {0, directionToPlayer.y > 0 ? movementSpeed * deltaTime : -movementSpeed * deltaTime};
+            // If moving mostly horizontally, try both vertical directions
+            perpendicular1 = { 0, movementSpeed * deltaTime };
+            perpendicular2 = { 0, -movementSpeed * deltaTime };
         } 
         else 
         {
-            // If mostly moving vertically, try horizontal movement
-            perpendicular = {directionToPlayer.x > 0 ? movementSpeed * deltaTime : -movementSpeed * deltaTime, 0};
+            // If moving mostly vertically, try both horizontal directions
+            perpendicular1 = { movementSpeed * deltaTime, 0 };
+            perpendicular2 = { -movementSpeed * deltaTime, 0 };
         }
 
-        enemyPosition.x += perpendicular.x;
-        enemyPosition.y += perpendicular.y;
+        // Try the first perpendicular movement
+        enemyPosition.x += perpendicular1.x;
+        enemyPosition.y += perpendicular1.y;
         boxCollision.x = enemyPosition.x;
         boxCollision.y = enemyPosition.y;
 
-        // If still colliding, revert again (no movement)
+        if (tileCollision.CheckCollision(GetBoundingBox())) 
+        {
+            // If the first attempt failed, revert and try the other direction
+            enemyPosition = oldPosition;
+            enemyPosition.x += perpendicular2.x;
+            enemyPosition.y += perpendicular2.y;
+            boxCollision.x = enemyPosition.x;
+            boxCollision.y = enemyPosition.y;
+        }
+
+        // If both attempts fail, revert to the original position (fully stuck)
         if (tileCollision.CheckCollision(GetBoundingBox())) 
         {
             enemyPosition = oldPosition;
@@ -87,6 +100,8 @@ void Enemy::Move(float deltaTime)
     }
 
     // Update animation state
+    isMoving = (enemyPosition.x != oldPosition.x || enemyPosition.y != oldPosition.y);
+    
     if (isMoving) 
     {
         if (currentTexture.id != enemyWalk.id) 
@@ -108,6 +123,7 @@ void Enemy::Move(float deltaTime)
 
     UpdateFrame();
 }
+
 
 
 void Enemy::UpdateFrame()

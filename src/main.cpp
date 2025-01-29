@@ -59,9 +59,8 @@ int main()
     {
         float deltaTime = GetFrameTime();
 
-        // Update camera offset dynamically based on window size
-        int screenWidth = GetScreenWidth(); // Get the current window width
-        int screenHeight = GetScreenHeight(); // Get the current window height
+        int screenWidth = GetScreenWidth();
+        int screenHeight = GetScreenHeight();
         camera.offset = { static_cast<float>(screenWidth) / 2.0f, static_cast<float>(screenHeight) / 2.0f };
 
         if (!characterSelected) {
@@ -74,29 +73,16 @@ int main()
             if (!player.gamePaused) {
                 Vector2 oldPosition = player.playerPosition;
 
-                for (auto& enemy : enemySpawner.enemies) {
-                    Vector2 oldPositionEnemy = enemy->enemyPosition;
-                    enemy->Update(deltaTime);
-                    if (tileCollision.CheckCollision(enemy->GetBoundingBox())) {
-                        enemy->enemyPosition = oldPositionEnemy;
-                    }
-                }
                 player.Move();
-                // Check for collision with terrain
                 if (tileCollision.CheckCollision(player.GetBoundingBox())) {
-                    player.playerPosition = oldPosition; // Revert to old position if collision detected
+                    player.playerPosition = oldPosition;
                 }
                 player.Update(enemySpawner.enemies, deltaTime);
                 player.AutoAttack(enemySpawner.enemies, deltaTime);
                 powerup.Update(player, tileCollision);
-                //skillPickup.Update(player, skillBar);
                 skillPickup.Update(player, skillBar, tileCollision);
                 enemySpawner.Update(deltaTime);
                 skillBar.Update(player, enemySpawner.enemies, deltaTime);
-
-                // for (auto& enemy : enemySpawner.enemies) {
-                //     enemy->Update(deltaTime, tileCollision);
-                // }
             }
 
             camera.target = Vector2Lerp(camera.target, player.playerPosition, 0.1f);
