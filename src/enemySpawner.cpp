@@ -69,14 +69,12 @@ void EnemySpawner::Update(float deltaTime)
 void EnemySpawner::Draw() const
 {
     for (const auto& enemy : enemies) {
-        std::cout << enemy << std::endl;
         enemy->Draw();
     }
 }
 
 void EnemySpawner::SpawnEnemy()
 {
-    std::cout << amountOfEnemyTypes << std::endl;
     EnemyType type = static_cast<EnemyType>(GetRandomValue(0, amountOfEnemyTypes - 1));
     Vector2 position = { (float)GetRandomValue(0, GetScreenWidth()), (float)GetRandomValue(0, GetScreenHeight()) };
     enemies.emplace_back(CreateEnemy(type, position));

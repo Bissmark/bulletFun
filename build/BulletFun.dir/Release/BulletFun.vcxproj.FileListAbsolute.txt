@@ -1,2 +1,0 @@
-C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\build\Release\raylib.dll
-C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\build\BulletFun.dir\Release\BulletFun.vcxproj.Up2Date

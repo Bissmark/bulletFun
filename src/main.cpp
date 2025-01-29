@@ -36,12 +36,11 @@ int main()
     Player player;
     EnemySpawner enemySpawner(player, 2);
     Background background;
-    Powerup powerup(LoadTexture("Spritesheet/powerup/Health.png"), 0.5f);
     CharacterSelection characterSelection(player);
-    Tilemap tilemap(16, 32);
     SkillPickup skillPickup;
     LevelUp levelUp(player);
     SkillBar skillBar;
+    Powerup powerup(LoadTexture("Spritesheet/powerup/Health.png"), 0.5f);
     TerrainCollision tileCollision;
     tileCollision.LoadMap(tmx);
 
@@ -49,9 +48,6 @@ int main()
     
     bool characterSelected = false;
     int currentLevel = 1;
-
-    tilemap.Generate(currentLevel);
-    player.playerPosition = tilemap.GetCenterPosition();
     
     Camera2D camera = { 0 };
     camera.target = player.playerPosition;

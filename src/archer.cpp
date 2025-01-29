@@ -15,7 +15,6 @@ Archer::Archer(Player& player, Vector2 position) : Enemy(player, position)
     maxHealth = 70;
     health = maxHealth;
     movementSpeed = 20;
-    std::cout << "Archer initialized" << std::endl;
 }
 
 void Archer::Update(float deltaTime)
