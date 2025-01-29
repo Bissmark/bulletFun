@@ -7,8 +7,8 @@
 SkillPickup::SkillPickup() : scale(0.8f)
 {
     // Initialize pickups without assigning positions
-    pickups.push_back({ { 0, 0 }, { 0, 0, 20, 20 }, false, Pickup::SkillType::Flamethrower });
-    pickups.push_back({ { 0, 0 }, { 0, 0, 20, 20 }, false, Pickup::SkillType::Ring });
+    pickups.push_back({ { 0, 0 }, { 0, 0, 20, 20 }, false, false, Pickup::SkillType::Flamethrower });
+    pickups.push_back({ { 0, 0 }, { 0, 0, 20, 20 }, false, false, Pickup::SkillType::Ring });
 }
 
 
@@ -17,8 +17,9 @@ void SkillPickup::Update(Player& player, SkillBar& skillBar, TerrainCollision& t
     for (auto& pickup : pickups) {
         if (pickup.isActive) {
             CheckCollision(player, pickup, skillBar);
-        } else {
+        } else if (!pickup.hasSpawned) {
             SpawnPickup(pickup, tileCollision);
+            pickup.hasSpawned = true;
         }
     }
 }

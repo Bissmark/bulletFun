@@ -12,15 +12,21 @@ public:
     void CheckCollision(Player& player, TerrainCollision& terrainCollision);
     void SpawnPowerup(TerrainCollision& terrainCollision);
     void Draw() const;
+    void Respawn();
 
 private:
     Texture2D healthPot;
     float scale;
-    struct PowerupInstance {
-        Vector2 position;
-        Rectangle boxCollision;
-        bool isActive;
-        bool isCollected;
-    };
-    std::vector<PowerupInstance> powerups;
+    bool isActive;
+    bool isCollected;
+    Rectangle boxCollision;
+    Vector2 position;
+    
+    // struct PowerupInstance {
+    //     Vector2 position;
+    //     Rectangle boxCollision;
+    //     bool isActive;
+    //     bool isCollected;
+    // };
+    // std::vector<PowerupInstance> powerups;
 };

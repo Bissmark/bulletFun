@@ -10,6 +10,7 @@ struct Pickup {
     Vector2 position;
     Rectangle boxCollision;
     bool isActive;
+    bool hasSpawned;
     enum class SkillType { Ring, Flamethrower } skillType;
 };
 
