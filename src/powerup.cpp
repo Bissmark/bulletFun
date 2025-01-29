@@ -53,7 +53,7 @@ void Powerup::SpawnPowerup(TerrainCollision& terrainCollision)
                 float y = (float)GetRandomValue(terrainBounds.y, terrainBounds.y + terrainBounds.height - healthPot.height);
                 Rectangle boxCollision = { x, y, (float)healthPot.width * scale, (float)healthPot.height * scale };
 
-                DrawRectangleLines(x, y, boxCollision.width, boxCollision.height, BLUE);
+                //DrawRectangleLines(x, y, boxCollision.width, boxCollision.height, BLUE);
 
                 // Check if the powerup collides with walls or tiles
                 if (!terrainCollision.CheckCollision(boxCollision)) {
@@ -68,7 +68,7 @@ void Powerup::SpawnPowerup(TerrainCollision& terrainCollision)
                                 if (object->type == OBJECT_TYPE_TILE) {
                                     if (terrainCollision.CheckCollisionTiles(boxCollision, object)) {
                                         tileCollision = true;
-                                        break; // No need to check further if a collision is found
+                                        break;
                                     }
                                 }
                             }

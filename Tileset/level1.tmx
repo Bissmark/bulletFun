@@ -25,7 +25,7 @@
 33,34,34,34,34,36,36,36,36,36,36,36,36,36,36,36,36,37,33,34,34,34,34,34,34,34,34,34,34,37
 </data>
  </layer>
- <objectgroup id="2" name="Collisions">
+ <objectgroup id="2" name="Collisions" visible="0">
   <object id="5" x="41.625" y="579.125">
    <polygon points="0,0 -2.75,-20.125 16.5,-23.375 13.75,-51.125 1,-67.25 1.5,-543.625 -9.875,-542.875 -7.75,-41 -11.25,656.208 1.41166,653.816 1.27825,642.61 -3.41622,111.847 16.4289,104.639 13.5422,78.3737 -1.94508,46.751 17.1651,39.9342 14.375,14.4167"/>
   </object>
@@ -72,7 +72,7 @@
   <object id="101" name="collisionSquare" gid="11" x="1119" y="1271" width="64" height="740"/>
   <object id="102" name="collisionSquare" gid="11" x="1056" y="284" width="64" height="278"/>
   <object id="103" name="collisionSquare" gid="11" x="153" y="70" width="400" height="64"/>
-  <object id="104" name="collisionSquare" gid="11" x="281" y="135" width="266" height="64"/>
+  <object id="104" name="collisionSquare" gid="11" x="281" y="152" width="266" height="82"/>
   <object id="112" name="collisionSquare" gid="11" x="-30" y="1280" width="64" height="1270"/>
   <object id="115" name="collisionSquare" gid="11" x="-9" y="1289" width="1900" height="64"/>
   <object id="116" name="collisionSquare" gid="11" x="0" y="34" width="1900" height="64"/>

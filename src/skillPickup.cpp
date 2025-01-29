@@ -47,24 +47,46 @@ void SkillPickup::SpawnPickup(Pickup& pickup, TerrainCollision& terrainCollision
 {
     bool validPosition = false;
     Rectangle terrainBounds = terrainCollision.GetTerrainBounds();
+    
     while (!validPosition) {
         // Generate a random position within the terrain bounds
         float x = (float)GetRandomValue(terrainBounds.x, terrainBounds.x + terrainBounds.width - pickup.boxCollision.width);
         float y = (float)GetRandomValue(terrainBounds.y, terrainBounds.y + terrainBounds.height - pickup.boxCollision.height);
 
-        // Update the pickup position and collision box
-        pickup.position = { x, y };
-        pickup.boxCollision = { x, y, pickup.boxCollision.width, pickup.boxCollision.height };
+        // Update the pickup's collision box
+        Rectangle boxCollision = { x, y, pickup.boxCollision.width, pickup.boxCollision.height };
 
-        // Check if the new position is valid (not colliding with terrain)
-        if (!terrainCollision.CheckCollision(pickup.boxCollision)) {
-            //if (!terrainCollision.CheckCollisionTiles(pickup.boxCollision)) {
-                validPosition = true;
+        // Check if the new position collides with walls or tiles
+        if (!terrainCollision.CheckCollision(boxCollision)) {
+            bool tileCollision = false;
+
+            // Iterate over the tile objects in the collision layer
+            if (terrainCollision.map != nullptr && terrainCollision.map->layersLength > 1) {
+                TmxLayer* collisionLayer = &terrainCollision.map->layers[1];
+                if (collisionLayer->type == LAYER_TYPE_OBJECT_GROUP) {
+                    for (uint32_t i = 0; i < collisionLayer->exact.objectGroup.objectsLength; ++i) {
+                        TmxObject* object = &collisionLayer->exact.objectGroup.objects[i];
+                        if (object->type == OBJECT_TYPE_TILE) {
+                            if (terrainCollision.CheckCollisionTiles(boxCollision, object)) {
+                                tileCollision = true;
+                                break; // Stop checking if a collision is found
+                            }
+                        }
+                    }
+                }
+            }
+
+            // If no tile collision, finalize placement
+            if (!tileCollision) {
+                pickup.position = { x, y };
+                pickup.boxCollision = boxCollision;
                 pickup.isActive = true;
-           // }
+                validPosition = true;
+            }
         }
     }
 }
+
 
 
 void SkillPickup::Draw() const

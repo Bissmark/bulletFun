@@ -31,29 +31,29 @@ void TerrainCollision::Draw()
         DrawTMX(map, nullptr, 0, 0, WHITE);
 
         // Draw debug lines around the collision objects
-        if (map->layersLength > 1) {
-            TmxLayer* collisionLayer = &map->layers[1];
-            if (collisionLayer->type == LAYER_TYPE_OBJECT_GROUP) {
-                for (uint32_t i = 0; i < collisionLayer->exact.objectGroup.objectsLength; ++i) {
-                    TmxObject* object = &collisionLayer->exact.objectGroup.objects[i];
-                    //std::cout << object->name << std::endl;
-                    if (object->type == OBJECT_TYPE_POLYGON || object->type == OBJECT_TYPE_POLYLINE) {
-                        for (int j = 0; j < object->pointsLength - 1; ++j) {
-                            DrawLine(object->points[j].x, object->points[j].y, object->points[j + 1].x, object->points[j + 1].y, GREEN);
-                        }
-                        // Draw line from last point to first point to close the polygon
-                        DrawLine(object->points[object->pointsLength - 1].x, object->points[object->pointsLength - 1].y, object->points[0].x, object->points[0].y, GREEN);
-                    }
+        // if (map->layersLength > 1) {
+        //     TmxLayer* collisionLayer = &map->layers[1];
+        //     if (collisionLayer->type == LAYER_TYPE_OBJECT_GROUP) {
+        //         for (uint32_t i = 0; i < collisionLayer->exact.objectGroup.objectsLength; ++i) {
+        //             TmxObject* object = &collisionLayer->exact.objectGroup.objects[i];
+        //             //std::cout << object->name << std::endl;
+        //             if (object->type == OBJECT_TYPE_POLYGON || object->type == OBJECT_TYPE_POLYLINE) {
+        //                 for (int j = 0; j < object->pointsLength - 1; ++j) {
+        //                     DrawLine(object->points[j].x, object->points[j].y, object->points[j + 1].x, object->points[j + 1].y, GREEN);
+        //                 }
+        //                 // Draw line from last point to first point to close the polygon
+        //                 DrawLine(object->points[object->pointsLength - 1].x, object->points[object->pointsLength - 1].y, object->points[0].x, object->points[0].y, GREEN);
+        //             }
 
-                    if (object->type == OBJECT_TYPE_TILE) {
-                        std::cout << object->x << " " << object->y << " " << object->width << " " << object->height << std::endl;
-                        DrawRectangleLines(object->x, object->y - object->height, object->width, object->height, RED);
-                        // Debug: Draw a small reference point at the tile's actual origin
-                        DrawCircle(object->x, object->y, 3, BLUE);
-                    }
-                }
-            }
-        }
+        //             if (object->type == OBJECT_TYPE_TILE) {
+        //                 std::cout << object->x << " " << object->y << " " << object->width << " " << object->height << std::endl;
+        //                 DrawRectangleLines(object->x, object->y - object->height, object->width, object->height, RED);
+        //                 // Debug: Draw a small reference point at the tile's actual origin
+        //                 DrawCircle(object->x, object->y, 3, BLUE);
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
 
