@@ -13,7 +13,7 @@ AuraDmg::AuraDmg(float radius, int baseDamage, Color color)
     , elapsedTime(0.0f)
     , cooldown(5.0f)
     , cooldownTime(0.0f)
-    , name("AuraDmg")
+    , name("Aura Damage")
 {
     currentRadius = 0.0f;
     centerPosition = { 0.0f, 0.0f };

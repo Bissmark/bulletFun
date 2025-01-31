@@ -16,10 +16,11 @@ add_executable(${PROJECT_NAME}
     src/grunt.cpp
     src/slime.cpp
     src/abilityManager.cpp
-    src/auraDmg.cpp
     src/background.cpp
     src/characterSelection.cpp
+    src/auraDmg.cpp
     src/flamethrower.cpp
+    src/rotatingBalls.cpp
     src/levelUp.cpp
     src/powerup.cpp
     src/skillBar.cpp

@@ -33,7 +33,10 @@ void InGameMenu::Draw(Player& player, bool &showStartMenu)
         player.critChance, player.critDamage
     };
 
-    for (int i = 0; i < 7; i++) {
+    // Calculate the length of the arrays
+    int numStats = sizeof(statValues) / sizeof(statValues[0]);
+
+    for (int i = 0; i < numStats; i++) {
         float textWidth = ImGui::CalcTextSize(stats[i]).x;
         ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
         ImGui::Text(stats[i], statValues[i]);

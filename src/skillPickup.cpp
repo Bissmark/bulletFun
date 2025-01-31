@@ -2,6 +2,7 @@
 #include "player.h"
 #include "auraDmg.h"
 #include "flamethrower.h"
+#include "rotatingBalls.h"
 #include <iostream>
 
 SkillPickup::SkillPickup() : scale(0.8f)
@@ -9,6 +10,7 @@ SkillPickup::SkillPickup() : scale(0.8f)
     // Initialize pickups without assigning positions
     pickups.push_back({ { 0, 0 }, { 0, 0, 20, 20 }, false, false, Pickup::SkillType::Flamethrower });
     pickups.push_back({ { 0, 0 }, { 0, 0, 20, 20 }, false, false, Pickup::SkillType::Ring });
+    pickups.push_back({ { 0, 0 }, { 0, 0, 20, 20 }, false, false, Pickup::SkillType::RotatingBalls });
 }
 
 
@@ -39,6 +41,10 @@ void SkillPickup::CheckCollision(Player& player, Pickup& pickup, SkillBar& skill
             case Pickup::SkillType::Flamethrower:
                 //player.AddAbility(std::make_unique<Flamethrower>(20.0f, 100.0f, 20, 1, RED));
                 skillBar.AddSkill(std::make_unique<Flamethrower>(20.0f, 100.0f, 20, 1, RED));
+                break;
+            case Pickup::SkillType::RotatingBalls:
+                //player.AddAbility(std::make_unique<RotatingBalls>());
+                skillBar.AddSkill(std::make_unique<RotatingBalls>(20.0f, 100.0f, 20, 1));
                 break;
         }
     }

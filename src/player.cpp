@@ -2,8 +2,6 @@
 #include "bullet.h"
 #include "enemy.h"
 #include "slash.h"
-#include "auraDmg.h"
-#include "flamethrower.h"
 #include "ability.h"
 #include <iostream>
 #include <raymath.h>
