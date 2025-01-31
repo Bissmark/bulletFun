@@ -17,7 +17,7 @@ void InGameMenu::Draw(Player& player, bool &showStartMenu)
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(1.0f, 0.2f, 0.2f, 1.0f));
     ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.6f, 0.0f, 0.0f, 1.0f));
 
-    ImGui::Begin("In-Game Menu", &showStartMenu, ImGuiWindowFlags_NoCollapse);
+    ImGui::Begin("In-Game Menu", &showStartMenu, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
 
     float windowWidth = ImGui::GetWindowSize().x;
 
@@ -45,11 +45,13 @@ void InGameMenu::Draw(Player& player, bool &showStartMenu)
     ImGui::SetCursorPosX(buttonX);
     if (ImGui::Button("Resume", ImVec2(buttonWidth, 40))) {
         showStartMenu = false;
+        player.gamePaused = false;
     }
 
     ImGui::SetCursorPosX(buttonX);
     if (ImGui::Button("Exit", ImVec2(buttonWidth, 40))) {
         CloseWindow();
+        exit(0);
     }
 
     ImGui::PopStyleColor(5); // Pop all style changes
