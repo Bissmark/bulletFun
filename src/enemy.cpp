@@ -161,6 +161,7 @@ bool Enemy::Destroy()
 {
     if (health <= 0) {
         player.experiencePoints += 10;
+        player.enemiesKilled++;
         return true;
     }
     return false;

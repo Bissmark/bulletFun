@@ -18,6 +18,7 @@ Player::Player()
     , elapsedTime(0.0)
     , gamePaused(false)
     , scale(0.5f)
+    , enemiesKilled(0)
 {
     currentFrame = 0;
 

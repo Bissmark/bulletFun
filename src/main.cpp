@@ -14,6 +14,7 @@
 #include <cmath>
 #include <iostream>
 #include "imgui.h"
+#include "inGameMenu.h"
 
 //#define RAYTMX_IMPLEMENTATION
 #include "raytmx.h"
@@ -30,6 +31,7 @@ int main()
     InitWindow(screenWidth, screenHeight, "2D Game");
 
     rlImGuiSetup(true);
+    SetExitKey(KEY_NULL);
 
     TmxMap* map = LoadTMX(tmx);
 
@@ -43,11 +45,13 @@ int main()
     SkillBar skillBar;
     Powerup powerup(LoadTexture("Spritesheet/powerup/Health.png"), 0.5f);
     tileCollision.LoadMap(tmx);
+    InGameMenu inGameMenu;
 
     SetTargetFPS(60);
     
     bool characterSelected = false;
     int currentLevel = 1;
+    bool showPauseMenu = false;
     
     Camera2D camera = { 0 };
     camera.target = player.playerPosition;
@@ -62,6 +66,11 @@ int main()
         int screenWidth = GetScreenWidth();
         int screenHeight = GetScreenHeight();
         camera.offset = { static_cast<float>(screenWidth) / 2.0f, static_cast<float>(screenHeight) / 2.0f };
+
+        if (IsKeyPressed(KEY_ESCAPE)) {
+            showPauseMenu = !showPauseMenu;
+            player.gamePaused = showPauseMenu;
+        }
 
         if (!characterSelected) {
             characterSelection.Update();
@@ -115,26 +124,9 @@ int main()
                 DrawText(TextFormat("%i", player.level), GetScreenWidth() - 27, GetScreenHeight() - 37, 40, WHITE);
             }
 
-        // Start ImGui frame
-            rlImGuiBegin();
-
-            // Create ImGui window
-            ImGui::Begin("Debug Window");
-            ImGui::Text("Player Health: %i", player.healthPoints);
-            ImGui::Text("Elapsed Time: %i seconds", (int)player.elapsedTime);
-            ImGui::Text("Player Level: %i", player.level);
-            ImGui::Text("Crit Chance: %i", player.critChance);
-            ImGui::Text("Crit Damage: %f", player.critDamage);
-            ImGui::Text("Base Damage: %i", player.baseDamage);
-            ImGui::Text("Map Layers:");
-            for (uint32_t i = 0; i < map->layersLength; ++i) {
-                ImGui::Text("Layer %d: %s", i, map->layers[i].name);
+            if (showPauseMenu) {
+                inGameMenu.Draw(player, showPauseMenu);
             }
-
-            ImGui::End();
-
-            // End ImGui frame
-            rlImGuiEnd();
         EndDrawing();
     }
     

@@ -44,6 +44,7 @@ class Player
         bool leveledUp;
         bool leveledUpWindowActive;
         float scale;
+        int enemiesKilled;
 
     private:
         Texture2D playerIdle;
