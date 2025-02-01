@@ -10,6 +10,7 @@
 #include "levelUp.h"
 #include "skillBar.h"
 #include "rlimGui.h"
+#include "abilityManager.h"
 #include <raymath.h>
 #include <cmath>
 #include <iostream>
@@ -46,6 +47,7 @@ int main()
     Powerup powerup(LoadTexture("Spritesheet/powerup/Health.png"), 0.5f);
     tileCollision.LoadMap(tmx);
     InGameMenu inGameMenu;
+    AbilityManager abilityManager;
 
     SetTargetFPS(60);
     
@@ -125,7 +127,7 @@ int main()
             }
 
             if (showPauseMenu) {
-                inGameMenu.Draw(player, showPauseMenu);
+                inGameMenu.Draw(player, skillBar, showPauseMenu);
             }
         EndDrawing();
     }

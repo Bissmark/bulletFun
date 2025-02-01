@@ -1,6 +1,4 @@
 #include "abilityManager.h"
-#include "ability.h"
-#include "player.h"
 
 AbilityManager::AbilityManager()
 {
@@ -33,3 +31,9 @@ void AbilityManager::AddAbility(std::unique_ptr<Ability> ability)
 {
     abilities.push_back(std::move(ability));
 }
+
+const std::vector<std::unique_ptr<Ability>>& AbilityManager::GetAbilities() const
+{
+    return abilities;
+}
+

@@ -1,16 +1,17 @@
 #include "inGameMenu.h"
+#include <iostream>
 
 InGameMenu::InGameMenu()
 {
 }
 
-void InGameMenu::Draw(Player& player, bool &showStartMenu)
+void InGameMenu::Draw(Player& player, SkillBar& skillBar, bool &showStartMenu)
 {
     rlImGuiBegin();
 
     ImGui::SetNextWindowPos(ImVec2(0, 0));
     ImGui::SetNextWindowSize(ImVec2(GetScreenWidth(), GetScreenHeight()), ImGuiCond_Always);
-    
+
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.2f, 0.2f, 0.2f, 0.9f));
     ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.8f, 0.1f, 0.1f, 1.0f));
@@ -21,28 +22,46 @@ void InGameMenu::Draw(Player& player, bool &showStartMenu)
 
     float windowWidth = ImGui::GetWindowSize().x;
 
-    const char* stats[] = {
+    // ==== Display Player Stats ====
+    const char* playerStats[] = {
         "Health: %d", "Level: %d", "Enemies Killed: %d",
-        "Attack Speed: %d", "Base Damage: %d", 
+        "Attack Speed: %d", "Auto Attack Damage: %d", 
         "Crit Chance: %d", "Crit Damage: %d"
     };
 
-    int statValues[] = {
+    int playerValues[] = {
         player.healthPoints, player.level, player.enemiesKilled,
         player.attackSpeed, player.baseDamage,
         player.critChance, player.critDamage
     };
 
-    // Calculate the length of the arrays
-    int numStats = sizeof(statValues) / sizeof(statValues[0]);
+    int numPlayerStats = sizeof(playerValues) / sizeof(playerValues[0]);
 
-    for (int i = 0; i < numStats; i++) {
-        float textWidth = ImGui::CalcTextSize(stats[i]).x;
+    ImGui::Text("Player Stats");
+    ImGui::Separator();
+    for (int i = 0; i < numPlayerStats; i++) {
+        float textWidth = ImGui::CalcTextSize(playerStats[i]).x;
         ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
-        ImGui::Text(stats[i], statValues[i]);
+        ImGui::Text(playerStats[i], playerValues[i]);
     }
 
     ImGui::Spacing();
+
+    // ==== Display Ability Stats ====
+    ImGui::Text("Abilities");
+    ImGui::Separator();
+
+    for (const auto& ability : skillBar.GetAbilities()) {
+        std::cout << ability->GetName() << std::endl;
+        ImGui::Text("%s", ability->GetName().c_str());
+        ImGui::Text("Cooldown: %.2f seconds", ability->GetCooldownDuration());
+        ImGui::Text("Damage: %d", ability->GetDamage());
+        ImGui::Separator();
+    }
+
+    ImGui::Spacing();
+
+    // ==== Resume Button ====
     float buttonWidth = 120;
     float buttonX = (windowWidth - buttonWidth) * 0.5f;
     ImGui::SetCursorPosX(buttonX);
@@ -51,6 +70,7 @@ void InGameMenu::Draw(Player& player, bool &showStartMenu)
         player.gamePaused = false;
     }
 
+    // ==== Exit Button ====
     ImGui::SetCursorPosX(buttonX);
     if (ImGui::Button("Exit", ImVec2(buttonWidth, 40))) {
         CloseWindow();

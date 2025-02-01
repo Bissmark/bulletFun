@@ -79,3 +79,8 @@ void SkillBar::AddSkill(std::unique_ptr<Ability> skill)
 {
     if (skills.size() < 4) skills.push_back(std::move(skill));
 }
+
+const std::vector<std::unique_ptr<Ability>>& SkillBar::GetAbilities() const
+{
+    return skills;
+}

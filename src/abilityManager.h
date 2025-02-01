@@ -2,6 +2,8 @@
 #include <raylib.h>
 #include <vector>
 #include <memory>
+#include "ability.h"
+#include "player.h"
 
 class Player;
 class Enemy;
@@ -15,6 +17,8 @@ class AbilityManager
         void CheckCollisions(Player& player, std::vector<std::unique_ptr<Enemy>>& enemies);
         void Draw(const Player& player, const Camera2D& camera) const;
         void AddAbility(std::unique_ptr<Ability> ability);
+        const std::vector<std::unique_ptr<Ability>>& GetAbilities() const;
+
 
     private:
         std::vector<std::unique_ptr<Ability>> abilities;

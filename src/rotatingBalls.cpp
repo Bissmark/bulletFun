@@ -119,3 +119,8 @@ std::string RotatingBalls::GetName() const
 {
     return name;
 }
+
+int RotatingBalls::GetDamage() const
+{
+    return baseDamage;
+}

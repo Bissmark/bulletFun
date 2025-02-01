@@ -115,3 +115,8 @@ float AuraDmg::GetCooldownDuration() const
 {
     return cooldown;
 }
+
+int AuraDmg::GetDamage() const
+{
+    return baseDamage;
+}

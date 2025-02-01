@@ -4,8 +4,10 @@
 #include <memory>
 #include "bullet.h"
 #include "slash.h"
-#include "abilityManager.h"
 #include "ability.h"
+
+class Ability;
+class AbilityManager;
 
 class Player
 {
@@ -46,6 +48,7 @@ class Player
         bool leveledUpWindowActive;
         float scale;
         int enemiesKilled;
+        std::unique_ptr<AbilityManager> abilityManager;
 
     private:
         Texture2D playerIdle;
@@ -61,5 +64,4 @@ class Player
         double startTime;
         void UpdateFrame();
         Enemy* FindClosestEnemy(std::vector<std::unique_ptr<Enemy>>& enemies);
-        AbilityManager abilityManager;
 };

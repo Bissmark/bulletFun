@@ -15,6 +15,7 @@ class RotatingBalls : public Ability
         std::string GetName() const override;
         float GetCooldownTime() const override;
         float GetCooldownDuration() const override;
+        int GetDamage() const override;
         void Activate() override;
 
 

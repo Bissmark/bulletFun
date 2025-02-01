@@ -21,6 +21,7 @@ add_executable(${PROJECT_NAME}
     src/auraDmg.cpp
     src/fireBreath.cpp
     src/rotatingBalls.cpp
+    src/blizzard.cpp
     src/levelUp.cpp
     src/powerup.cpp
     src/skillBar.cpp

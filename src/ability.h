@@ -15,4 +15,5 @@ class Ability
         virtual float GetCooldownTime() const = 0;
         virtual float GetCooldownDuration() const = 0;
         virtual void Activate() = 0;
+        virtual int GetDamage() const = 0;
 };
