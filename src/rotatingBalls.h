@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <unordered_set>
 
 class RotatingBalls : public Ability
 {
@@ -23,6 +24,7 @@ class RotatingBalls : public Ability
             Vector2 velocity;
             float angle;
             bool isActive;
+            std::unordered_set<Enemy*> hitEnemies;
         };
 
         std::vector<Ball> balls;

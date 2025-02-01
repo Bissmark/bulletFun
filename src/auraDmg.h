@@ -1,6 +1,7 @@
 #pragma once
 #include "ability.h"
 #include <string>
+#include <unordered_map>
 
 class AuraDmg : public Ability
 {
@@ -27,5 +28,6 @@ class AuraDmg : public Ability
         float deltaTime;
         Vector2 centerPosition;
         std::string name;
+        std::unordered_map<Enemy*, bool> hitEnemies;
         
 };

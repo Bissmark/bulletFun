@@ -26,6 +26,7 @@ void AuraDmg::Activate()
         elapsedTime = 0.0f;
         currentRadius = 0.0f;
         cooldownTime = cooldown;
+        hitEnemies.clear();
     }
 }
 
@@ -42,6 +43,7 @@ void AuraDmg::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& 
 
         // Calculate the current radius based on the elapsed time
         float halfDuration = duration / 2.0f;
+        bool expanding = elapsedTime <= halfDuration; // True if in expansion phase
         if (elapsedTime <= halfDuration) {
             currentRadius = maxRadius * (elapsedTime / halfDuration);
         } else if (elapsedTime <= duration) {
@@ -53,8 +55,19 @@ void AuraDmg::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& 
 
         // Check for collisions with enemies
         for (auto& enemy : enemies) {
-            if (CheckCollisionRecs(enemy->boxCollision, { centerPosition.x - currentRadius, centerPosition.y - currentRadius, currentRadius * 2, currentRadius * 2 })) {
-                enemy->health -= baseDamage;
+            if (CheckCollisionRecs(enemy->boxCollision, { centerPosition.x - currentRadius, centerPosition.y - currentRadius, currentRadius * 2, currentRadius * 2 })) 
+            {
+                if (expanding && hitEnemies.find(enemy.get()) == hitEnemies.end()) {
+                    // First hit in expansion phase
+                    enemy->health -= baseDamage;
+                    hitEnemies[enemy.get()] = true; // Mark as hit during expansion
+                } 
+                else if (!expanding && hitEnemies[enemy.get()] == true) {
+                    // Second hit in contraction phase (only if hit before in expansion)
+                    enemy->health -= baseDamage;
+                    hitEnemies[enemy.get()] = false; // Mark as hit during contraction
+                }
+
                 if (enemy->health <= 0) {
                     enemy->Destroy();
                 }

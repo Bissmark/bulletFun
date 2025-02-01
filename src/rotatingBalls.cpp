@@ -46,9 +46,10 @@ void RotatingBalls::Update(const Player& player, std::vector<std::unique_ptr<Ene
         if (cooldownTime <= 0.0f)
         {
             isShooting = false;
-            for (int i = 0; i < numBalls; ++i)
+            for (auto& ball : balls)
             {
-                balls[i].velocity = { 0.0f, 0.0f }; // Reset velocity
+                ball.velocity = { 0.0f, 0.0f }; // Reset velocity
+                ball.hitEnemies.clear(); // Clear hit enemies
             }
         }
     }
@@ -84,12 +85,16 @@ void RotatingBalls::Draw(const Player& player, const Camera2D& camera) const
 
 bool RotatingBalls::CheckCollision(const Player& player, Enemy& enemy)
 {
-    for (const auto& ball : balls)
+    for (auto& ball : balls)
     {
-        if (CheckCollisionCircles(ball.position, radius, enemy.enemyPosition, enemy.radius))
+        if (ball.hitEnemies.find(&enemy) == ball.hitEnemies.end() && // If enemy not already hit
+            CheckCollisionCircles(ball.position, radius, enemy.enemyPosition, enemy.radius))
         {
-            enemy.health -= baseDamage;
-            std::cout << "Enemy Hit!" << std::endl;
+            int damage = isShooting ? baseDamage : baseDamage / 2;
+            enemy.health -= damage;
+
+            ball.hitEnemies.insert(&enemy); // Mark enemy as hit by this ball
+
             if (enemy.health <= 0)
             {
                 enemy.Destroy();
