@@ -38,10 +38,10 @@ void SkillPickup::CheckCollision(Player& player, Pickup& pickup, SkillBar& skill
                 skillBar.AddSkill(std::make_unique<AuraDmg>(100.0f, 10, RED));
                 break;
             case Pickup::SkillType::FireBreath:
-                skillBar.AddSkill(std::make_unique<FireBreath>(20.0f, 20.0f, 1, 1, RED));
+                skillBar.AddSkill(std::make_unique<FireBreath>(20.0f, 20.0f, 10, 1, RED));
                 break;
             case Pickup::SkillType::RotatingBalls:
-                skillBar.AddSkill(std::make_unique<RotatingBalls>(5.0f, 5, 30.0f, 1, 5, RED));
+                skillBar.AddSkill(std::make_unique<RotatingBalls>(5.0f, 5, 30.0f, 3, 5, RED));
                 break;
         }
     }

@@ -25,6 +25,8 @@ void FireBreath::Update(const Player& player, std::vector<std::unique_ptr<Enemy>
     for (auto& enemy : enemies) {
         CheckCollision(player, *enemy);
     }
+
+    storedAngle = player.GetFacingAngle(); // Adjust this value to change the angle of the FireBreath
 }
 
 void FireBreath::Activate()
@@ -34,7 +36,7 @@ void FireBreath::Activate()
         elapsedTime = 0.0f;
         numSections = 1;
         cooldownTime = cooldown;
-        isActive = true;  // Set the FireBreath as active
+        isActive = true;
     }
 }
 
@@ -52,16 +54,13 @@ void FireBreath::Draw(const Player& player, const Camera2D& camera) const
     Vector2 screenPlayerPosition = GetWorldToScreen2D(adjustedCenterPosition, camera);
 
     // Get the player's facing angle (in degrees) and convert to radians.
-    float playerAngle = player.GetFacingAngle(); // For example: 0° for right, 180° for left.
-    float angleRad = playerAngle * DEG2RAD;
+    //float playerAngle = player.GetFacingAngle(); // For example: 0° for right, 180° for left.
+    float angleRad = storedAngle * DEG2RAD;
 
     // Determine the forward and perpendicular vectors.
     Vector2 forward = { cosf(angleRad), sinf(angleRad) };
     // Perpendicular vector: rotate forward by 90 degrees.
     Vector2 perpendicular = { -sinf(angleRad), cosf(angleRad) };
-
-    // Optional: spacing between squares in the same row.
-    float spacing = 0.0f; // Set to 0 if you want them directly adjacent.
     
     // Loop through each beam section (each row of the pyramid).
     // Assume numBeams indicates the total number of rows in the pyramid.
@@ -77,7 +76,7 @@ void FireBreath::Draw(const Player& player, const Camera2D& camera) const
             // Calculate a lateral offset.
             // This centers the row: if there are N squares, we want the middle square at offset 0.
             // The offset for each square is:
-            float offset = (j - (squaresInRow - 1) / 2.0f) * (width + spacing);
+            float offset = (j - (squaresInRow - 1) / 2.0f) * width;
 
             // Compute the final position:
             // Start at the player's center, move forward, then shift perpendicular by the offset.
@@ -90,7 +89,7 @@ void FireBreath::Draw(const Player& player, const Camera2D& camera) const
             DrawRectanglePro(
                 { squarePos.x, squarePos.y, length, width },
                 { length / 2, width / 2 },
-                playerAngle,
+                storedAngle,
                 color
             );
         }

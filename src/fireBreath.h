@@ -1,5 +1,6 @@
 #pragma once
 #include "ability.h"
+#include "player.h"
 #include <vector>
 #include <string>
 
@@ -28,6 +29,7 @@ class FireBreath : public Ability
         float cooldownTime;
         float elapsedTime;
         bool isActive;
+        float storedAngle;
         Color color;
         std::string name;
         std::vector<float> beamAngles;
