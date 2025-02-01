@@ -14,4 +14,5 @@ class Ability
         virtual std::string GetName() const = 0;
         virtual float GetCooldownTime() const = 0;
         virtual float GetCooldownDuration() const = 0;
+        virtual void Activate() = 0;
 };

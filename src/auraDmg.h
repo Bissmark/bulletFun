@@ -12,7 +12,7 @@ class AuraDmg : public Ability
         std::string GetName() const override;
         float GetCooldownTime() const override;
         float GetCooldownDuration() const override;
-        void Activate();
+        void Activate() override;
 
     private:
         float maxRadius;

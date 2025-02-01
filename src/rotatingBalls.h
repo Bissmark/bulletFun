@@ -14,7 +14,7 @@ class RotatingBalls : public Ability
         std::string GetName() const override;
         float GetCooldownTime() const override;
         float GetCooldownDuration() const override;
-        void Activate();
+        void Activate() override;
 
 
     private:
@@ -35,6 +35,5 @@ class RotatingBalls : public Ability
         bool isActive;
         bool isShooting;
         int baseDamage;
-        float elapsedTime;
         std::string name;
 };

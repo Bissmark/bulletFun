@@ -13,6 +13,7 @@ class Flamethrower : public Ability
         float GetCooldownTime() const override;
         float GetCooldownDuration() const override;
         std::string GetName() const override;
+        void Activate() override;
 
     private:
         float width;

@@ -14,24 +14,16 @@ void SkillBar::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>&
 
     // Check for skill activation (e.g., pressing keys 1-4)
     if (IsKeyPressed(KEY_ONE) && skills.size() > 0) {
-        if (auto* auraSkill = dynamic_cast<AuraDmg*>(skills[0].get())) {
-            auraSkill->Activate();
-        }
+        skills[0]->Activate();
     }
     if (IsKeyPressed(KEY_TWO) && skills.size() > 1) {
-        if (auto* auraSkill = dynamic_cast<AuraDmg*>(skills[1].get())) {
-            auraSkill->Activate();
-        }
+        skills[1]->Activate();
     }
     if (IsKeyPressed(KEY_THREE) && skills.size() > 2) {
-        if (auto* auraSkill = dynamic_cast<AuraDmg*>(skills[2].get())) {
-            auraSkill->Activate();
-        }
+        skills[2]->Activate();
     }
     if (IsKeyPressed(KEY_FOUR) && skills.size() > 3) {
-        if (auto* auraSkill = dynamic_cast<AuraDmg*>(skills[3].get())) {
-            auraSkill->Activate();
-        }
+        skills[3]->Activate();
     }
 }
 

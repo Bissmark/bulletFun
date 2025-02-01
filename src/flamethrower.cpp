@@ -72,3 +72,12 @@ float Flamethrower::GetCooldownDuration() const
 {
     return cooldown;
 }
+
+void Flamethrower::Activate()
+{
+    if (cooldownTime <= 0.0f)
+    {
+        //isShooting = false; // Reset shooting state
+        cooldownTime = cooldown;
+    }
+}

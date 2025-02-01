@@ -5,7 +5,7 @@
 
 RotatingBalls::RotatingBalls(float cooldown, int baseDamage, float radius, float speed, int numBalls, Color color)
     : cooldown(cooldown), cooldownTime(0.0f), radius(radius), speed(speed),
-      numBalls(numBalls), isShooting(false), color(color), name("Rotating Balls"), baseDamage(baseDamage), elapsedTime(0.0f)
+      numBalls(numBalls), isShooting(false), color(color), name("Rotating Balls"), baseDamage(baseDamage)
 {
     balls.resize(numBalls);
     for (int i = 0; i < numBalls; ++i)
@@ -36,25 +36,7 @@ void RotatingBalls::Update(const Player& player, std::vector<std::unique_ptr<Ene
             };
             balls[i].angle = angle; // Store updated angle
         }
-
-
-        // Fire the balls outward
-        if (IsKeyPressed(KEY_SPACE)) // Change to actual input method
-        {
-            isShooting = true;
-            elapsedTime = 0.0f;
-            cooldownTime = cooldown;
-            for (auto& ball : balls)
-            {
-                int ballSpeed = 5;
-                ball.velocity = { cos(ball.angle) * ballSpeed, sin(ball.angle) * ballSpeed };
-            }
-        }
-    }
-    else // Shooting phase
-    {
-        elapsedTime += deltaTime;
-
+    } else {
         for (auto& ball : balls)
         {
             ball.position = Vector2Add(ball.position, ball.velocity);
@@ -70,18 +52,23 @@ void RotatingBalls::Update(const Player& player, std::vector<std::unique_ptr<Ene
             }
         }
     }
+
+    for (auto& enemy : enemies)
+    {
+        CheckCollision(player, *enemy);
+    }
 }
 
 void RotatingBalls::Activate()
 {
     if (cooldownTime <= 0.0f)
     {
-        isShooting = false; // Reset shooting state
+        isShooting = true;
         cooldownTime = cooldown;
-
-        for (int i = 0; i < numBalls; ++i)
+        for (auto& ball : balls)
         {
-            balls[i].velocity = { 0.0f, 0.0f }; // Reset velocity
+            int ballSpeed = 5;
+            ball.velocity = { cos(ball.angle) * ballSpeed, sin(ball.angle) * ballSpeed };
         }
     }
 }
@@ -101,11 +88,11 @@ bool RotatingBalls::CheckCollision(const Player& player, Enemy& enemy)
     {
         if (CheckCollisionCircles(ball.position, radius, enemy.enemyPosition, enemy.radius))
         {
-            enemy.health -= baseDamage; // Change this to whatever your base damage should be
+            enemy.health -= baseDamage;
             std::cout << "Enemy Hit!" << std::endl;
             if (enemy.health <= 0)
             {
-                enemy.Destroy(); // Ensure Enemy class has a Destroy() method
+                enemy.Destroy();
             }
             return true;
         }
