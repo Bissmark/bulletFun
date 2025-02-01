@@ -44,7 +44,7 @@ void SkillPickup::CheckCollision(Player& player, Pickup& pickup, SkillBar& skill
                 break;
             case Pickup::SkillType::RotatingBalls:
                 //player.AddAbility(std::make_unique<RotatingBalls>());
-                skillBar.AddSkill(std::make_unique<RotatingBalls>(20.0f, 100.0f, 20, 1));
+                skillBar.AddSkill(std::make_unique<RotatingBalls>(5.0f, 5, 30.0f, 1, 5, RED));
                 break;
         }
     }

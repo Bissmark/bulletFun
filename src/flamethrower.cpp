@@ -62,3 +62,13 @@ std::string Flamethrower::GetName() const
 {
     return name;
 }
+
+float Flamethrower::GetCooldownTime() const
+{
+    return cooldownTime;
+}
+
+float Flamethrower::GetCooldownDuration() const
+{
+    return cooldown;
+}

@@ -12,4 +12,6 @@ class Ability
         virtual void Draw(const Player& player, const Camera2D& camera) const = 0;
         virtual bool CheckCollision(const Player& player, Enemy& enemy) = 0;
         virtual std::string GetName() const = 0;
+        virtual float GetCooldownTime() const = 0;
+        virtual float GetCooldownDuration() const = 0;
 };
