@@ -11,7 +11,7 @@ struct Pickup {
     Rectangle boxCollision;
     bool isActive;
     bool hasSpawned;
-    enum class SkillType { Ring, Flamethrower, RotatingBalls } skillType;
+    enum class SkillType { Ring, FireBreath, RotatingBalls } skillType;
 };
 
 class SkillPickup

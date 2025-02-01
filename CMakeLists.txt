@@ -19,7 +19,7 @@ add_executable(${PROJECT_NAME}
     src/background.cpp
     src/characterSelection.cpp
     src/auraDmg.cpp
-    src/flamethrower.cpp
+    src/fireBreath.cpp
     src/rotatingBalls.cpp
     src/levelUp.cpp
     src/powerup.cpp

@@ -37,7 +37,7 @@
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\auraDmg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\flamethrower.cpp">
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\fireBreath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\rotatingBalls.cpp">

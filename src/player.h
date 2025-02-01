@@ -20,6 +20,7 @@ class Player
         void PlayerLevelUp();
         void DrawExp() const;
         void AddAbility(std::unique_ptr<Ability> ability);
+        float GetFacingAngle() const;
         Rectangle GetBoundingBox() const;
 
         Vector2 playerPosition;

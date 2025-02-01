@@ -117,6 +117,17 @@ void Player::UpdateFrame()
     }
 }
 
+float Player::GetFacingAngle() const
+{
+    if (direction == RIGHT) {
+        return 0.0f;  // Facing right
+    }
+    if (direction == LEFT) {
+        return 180.0f;  // Facing left
+    }
+    return 0.0f;  // Default case, facing right
+}
+
 // void Player::Fire(const Camera2D& camera)
 // {
 //     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
