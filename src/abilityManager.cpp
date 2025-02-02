@@ -1,4 +1,6 @@
 #include "abilityManager.h"
+#include "player.h"
+#include "ability.h"
 
 AbilityManager::AbilityManager()
 {

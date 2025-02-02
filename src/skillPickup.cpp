@@ -1,8 +1,5 @@
 #include "skillPickup.h"
 #include "player.h"
-#include "auraDmg.h"
-#include "fireBreath.h"
-#include "rotatingBalls.h"
 #include <iostream>
 
 SkillPickup::SkillPickup() : scale(0.8f)
@@ -11,6 +8,7 @@ SkillPickup::SkillPickup() : scale(0.8f)
     pickups.push_back({ { 0, 0 }, { 0, 0, 20, 20 }, false, false, Pickup::SkillType::FireBreath });
     pickups.push_back({ { 0, 0 }, { 0, 0, 20, 20 }, false, false, Pickup::SkillType::Ring });
     pickups.push_back({ { 0, 0 }, { 0, 0, 20, 20 }, false, false, Pickup::SkillType::RotatingBalls });
+    pickups.push_back({ { 0, 0 }, { 0, 0, 20, 20 }, false, false, Pickup::SkillType::Blizzard });
 }
 
 
@@ -42,6 +40,9 @@ void SkillPickup::CheckCollision(Player& player, Pickup& pickup, SkillBar& skill
                 break;
             case Pickup::SkillType::RotatingBalls:
                 skillBar.AddSkill(std::make_unique<RotatingBalls>(5.0f, 5, 30.0f, 3, 5, RED));
+                break;
+            case Pickup::SkillType::Blizzard:
+                skillBar.AddSkill(std::make_unique<Blizzard>(50.0f, 5, 10, BLUE));
                 break;
         }
     }

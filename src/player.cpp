@@ -1,8 +1,5 @@
 #include "player.h"
-#include "bullet.h"
 #include "enemy.h"
-#include "slash.h"
-#include "abilityManager.h"
 #include <iostream>
 #include <raymath.h>
 #include <limits>
@@ -46,8 +43,6 @@ Player::Player()
     leveledUp = false;
     leveledUpWindowActive = false;
 
-    abilityManager = std::make_unique<AbilityManager>();
-
     frameRec = { 0.0f, 0.0f, (float)playerIdle.width / numFrames, (float)playerIdle.height };
     playerPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
 }
@@ -64,7 +59,7 @@ void Player::Update(std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTim
 
     //elapsedTime = GetTime() - startTime;
 
-    abilityManager->Update(*this, enemies, deltaTime);
+    abilityManager.Update(*this, enemies, deltaTime);
 }
 
 void Player::Move()
@@ -192,7 +187,7 @@ void Player::AutoAttack(std::vector<std::unique_ptr<Enemy>>& enemies, float delt
         timeSinceLastAttack = 0.0f;
     }
 
-    abilityManager->CheckCollisions(*this, enemies);
+    abilityManager.CheckCollisions(*this, enemies);
 }
 
 void Player::PlayerLevelUp()
@@ -227,7 +222,7 @@ void Player::Draw(const Camera2D& camera) const
         bullet.Draw(camera);
     }
 
-    abilityManager->Draw(*this, camera);
+    abilityManager.Draw(*this, camera);
 
     // Calculate the new width and height (2/3rds of the current size)
     float newWidth = frameRec.width * scale * 2.0f / 3.0f;
@@ -257,7 +252,7 @@ void Player::DrawExp() const
 
 void Player::AddAbility(std::unique_ptr<Ability> ability)
 {
-    abilityManager->AddAbility(std::move(ability));
+    abilityManager.AddAbility(std::move(ability));
 }
 
 Rectangle Player::GetBoundingBox() const

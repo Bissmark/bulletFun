@@ -5,24 +5,22 @@ Blizzard::Blizzard(float radius, int speed, int baseDamage, Color color)
     , speed(speed)
     , baseDamage(baseDamage)
     , color(color)
-    , cooldown(0.0f)
-    , cooldownTime(5.0f)
+    , cooldown(5.0f)
+    , cooldownTime(0.0f)
     , elapsedTime(0.0f)
+    , activeTime(3.0f)
     , isActive(false)
     , name("Blizzard")
+    , castPosition({ 0, 0 })
 {
 }
 
 void Blizzard::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime)
 {
-    elapsedTime += deltaTime;
-
-    if (elapsedTime >= cooldownTime) {
-        isActive = false;
-        elapsedTime = 0.0f;
-    }
-
     if (isActive) {
+        elapsedTime += deltaTime;
+
+        // Apply damage if active
         for (auto& enemy : enemies) {
             if (CheckCollision(player, *enemy)) {
                 enemy->health -= baseDamage;
@@ -31,20 +29,40 @@ void Blizzard::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>&
                 }
             }
         }
+
+        // Deactivate after activeTime expires
+        if (elapsedTime >= activeTime) {
+            isActive = false;
+            cooldownTime = cooldown;  // Start cooldown
+            elapsedTime = 0.0f;       // Reset timer
+        }
+    }
+    else if (cooldownTime > 0.0f) {
+        cooldownTime -= deltaTime; // Reduce cooldown
+        if (cooldownTime < 0.0f) {
+            cooldownTime = 0.0f;
+        }
     }
 }
 
 void Blizzard::Activate()
 {
-    if (elapsedTime >= cooldownTime) {
+    if (cooldownTime <= 0.0f) {
         isActive = true;
+        elapsedTime = 0.0f;
     }
+}
+
+void Blizzard::SetCastPosition(Vector2 position)
+{
+    castPosition = position;
 }
 
 void Blizzard::Draw(const Player& player, const Camera2D& camera) const
 {
     if (isActive) {
-        DrawCircleV(centerPosition, radius, color);
+        Vector2 centerPositionCamera = GetWorldToScreen2D(castPosition, camera);
+        DrawCircleLinesV(centerPositionCamera, radius, Fade(color, 0.5f));
     }
 }
 

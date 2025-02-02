@@ -3,6 +3,10 @@
 #include <vector>
 #include "skillBar.h"
 #include "terrainCollisionDetection.h"
+#include "auraDmg.h"
+#include "fireBreath.h"
+#include "rotatingBalls.h"
+#include "blizzard.h"
 
 class Player;
 
@@ -11,7 +15,7 @@ struct Pickup {
     Rectangle boxCollision;
     bool isActive;
     bool hasSpawned;
-    enum class SkillType { Ring, FireBreath, RotatingBalls } skillType;
+    enum class SkillType { Ring, FireBreath, RotatingBalls, Blizzard } skillType;
 };
 
 class SkillPickup

@@ -2,8 +2,6 @@
 #include <raylib.h>
 #include <vector>
 #include <memory>
-#include "ability.h"
-#include "player.h"
 
 class Player;
 class Enemy;

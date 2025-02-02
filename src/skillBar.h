@@ -5,6 +5,7 @@
 #include "ability.h"
 #include "player.h"
 #include "enemy.h"
+#include "blizzard.h"
 
 class SkillBar
 {

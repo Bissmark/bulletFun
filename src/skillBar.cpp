@@ -1,5 +1,4 @@
 #include "skillBar.h"
-#include "auraDmg.h"
 #include <iostream>
 
 SkillBar::SkillBar()
@@ -12,19 +11,26 @@ void SkillBar::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>&
         skill->Update(player, enemies, deltaTime);
     }
 
-    // Check for skill activation (e.g., pressing keys 1-4)
-    if (IsKeyPressed(KEY_ONE) && skills.size() > 0) {
-        skills[0]->Activate();
-    }
-    if (IsKeyPressed(KEY_TWO) && skills.size() > 1) {
-        skills[1]->Activate();
-    }
-    if (IsKeyPressed(KEY_THREE) && skills.size() > 2) {
-        skills[2]->Activate();
-    }
-    if (IsKeyPressed(KEY_FOUR) && skills.size() > 3) {
-        skills[3]->Activate();
-    }
+    // Function to set Blizzard position before activation
+    auto ActivateSkill = [&](int index) {
+        if (index < skills.size()) {
+            // Check if the skill is a Blizzard instance
+            Blizzard* blizzard = dynamic_cast<Blizzard*>(skills[index].get());
+            if (blizzard) {
+                Vector2 castPos = {
+                    player.playerPosition.x + player.frameRec.width / 2,
+                    player.playerPosition.y + player.frameRec.height / 2
+                };
+                blizzard->SetCastPosition(castPos);
+            }
+            skills[index]->Activate();
+        }
+    };
+
+    if (IsKeyPressed(KEY_ONE))  ActivateSkill(0);
+    if (IsKeyPressed(KEY_TWO))  ActivateSkill(1);
+    if (IsKeyPressed(KEY_THREE)) ActivateSkill(2);
+    if (IsKeyPressed(KEY_FOUR))  ActivateSkill(3);
 }
 
 void SkillBar::Draw(Player& player, Camera2D camera) const

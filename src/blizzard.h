@@ -13,6 +13,7 @@ class Blizzard : public Ability
         std::string GetName() const override;
         int GetDamage() const override;
         void Activate() override;
+        void SetCastPosition(Vector2 position);
 
     private: 
         Vector2 centerPosition;
@@ -23,6 +24,8 @@ class Blizzard : public Ability
         float cooldownTime;
         float elapsedTime;
         bool isActive;
+        float activeTime;
         Color color;
+        Vector2 castPosition;
         std::string name;
 };
