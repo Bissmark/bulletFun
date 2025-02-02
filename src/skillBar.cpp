@@ -12,25 +12,37 @@ void SkillBar::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>&
     }
 
     // Function to set Blizzard position before activation
-    auto ActivateSkill = [&](int index) {
-        if (index < skills.size()) {
-            // Check if the skill is a Blizzard instance
-            Blizzard* blizzard = dynamic_cast<Blizzard*>(skills[index].get());
-            if (blizzard) {
-                Vector2 castPos = {
-                    player.playerPosition.x + player.frameRec.width / 2,
-                    player.playerPosition.y + player.frameRec.height / 2
-                };
-                blizzard->SetCastPosition(castPos);
-            }
-            skills[index]->Activate();
-        }
-    };
+    // auto ActivateSkill = [&](int index) {
+    //     if (index < skills.size()) {
+    //         // Check if the skill is a Blizzard instance
+    //         Blizzard* blizzard = dynamic_cast<Blizzard*>(skills[index].get());
+    //         if (blizzard) {
+    //             //if (!blizzard->IsPositionSet()) {
+    //                 Vector2 castPos = {
+    //                     // player.playerPosition.x + player.frameRec.width / 2,
+    //                     // player.playerPosition.y + player.frameRec.height / 2
+    //                     GetScreenWidth() / 2, GetScreenHeight() / 2
+    //                 };
+    //                 blizzard->SetCastPosition(castPos);
+    //                 //blizzard->SetPositionState(true);
+    //             //}
+    //         }
+    //         skills[index]->Activate();
+    //     }
+    // };
 
-    if (IsKeyPressed(KEY_ONE))  ActivateSkill(0);
-    if (IsKeyPressed(KEY_TWO))  ActivateSkill(1);
-    if (IsKeyPressed(KEY_THREE)) ActivateSkill(2);
-    if (IsKeyPressed(KEY_FOUR))  ActivateSkill(3);
+    if (IsKeyPressed(KEY_ONE)) {
+        if (skills[0]) skills[0]->Activate();
+    }
+    if (IsKeyPressed(KEY_TWO)) {
+        if (skills[1]) skills[1]->Activate();
+    }
+    if (IsKeyPressed(KEY_THREE)) {
+        if (skills[2]) skills[2]->Activate();
+    }
+    if (IsKeyPressed(KEY_FOUR)) {
+        if (skills[3]) skills[3]->Activate();
+    }
 }
 
 void SkillBar::Draw(Player& player, Camera2D camera) const

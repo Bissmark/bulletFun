@@ -42,7 +42,7 @@ void SkillPickup::CheckCollision(Player& player, Pickup& pickup, SkillBar& skill
                 skillBar.AddSkill(std::make_unique<RotatingBalls>(5.0f, 5, 30.0f, 3, 5, RED));
                 break;
             case Pickup::SkillType::Blizzard:
-                skillBar.AddSkill(std::make_unique<Blizzard>(50.0f, 5, 10, BLUE));
+                skillBar.AddSkill(std::make_unique<Blizzard>(100.0f, 5, 1, BLUE));
                 break;
         }
     }

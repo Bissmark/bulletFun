@@ -14,9 +14,14 @@ class Blizzard : public Ability
         int GetDamage() const override;
         void Activate() override;
         void SetCastPosition(Vector2 position);
+        void SetFixedScreenPosition(Vector2 fixedPos);
+        Vector2 GetFixedScreenPosition() const;
+        Shader blizzardShader;
+        Vector2 castPosition;
 
     private: 
         Vector2 centerPosition;
+        Vector2 fixedScreenPosition;
         int speed;
         int baseDamage;
         float radius;
@@ -26,6 +31,7 @@ class Blizzard : public Ability
         bool isActive;
         float activeTime;
         Color color;
-        Vector2 castPosition;
+        float blizzardTime;
+        bool positionSet = false;
         std::string name;
 };

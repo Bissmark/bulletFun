@@ -1,4 +1,5 @@
 #include "blizzard.h"
+#include <iostream>
 
 Blizzard::Blizzard(float radius, int speed, int baseDamage, Color color)
     : radius(radius)
@@ -11,14 +12,19 @@ Blizzard::Blizzard(float radius, int speed, int baseDamage, Color color)
     , activeTime(3.0f)
     , isActive(false)
     , name("Blizzard")
-    , castPosition({ 0, 0 })
 {
+    blizzardShader = LoadShader(0, "shaders/blizzard.fs");
+
+    if (blizzardShader.id == 0) {
+        std::cout << "Failed to load Blizzard shader!" << std::endl;
+    }
 }
 
 void Blizzard::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime)
 {
     if (isActive) {
         elapsedTime += deltaTime;
+        blizzardTime -= deltaTime * speed;
 
         // Apply damage if active
         for (auto& enemy : enemies) {
@@ -35,6 +41,8 @@ void Blizzard::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>&
             isActive = false;
             cooldownTime = cooldown;  // Start cooldown
             elapsedTime = 0.0f;       // Reset timer
+            blizzardTime = 0.0f;     // Reset timer
+            positionSet = false;
         }
     }
     else if (cooldownTime > 0.0f) {
@@ -50,6 +58,13 @@ void Blizzard::Activate()
     if (cooldownTime <= 0.0f) {
         isActive = true;
         elapsedTime = 0.0f;
+        blizzardTime = 0.0f;
+        positionSet = false;
+        
+        if (!positionSet) {
+            SetFixedScreenPosition(Vector2{ (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 });
+            positionSet = true;
+        }
     }
 }
 
@@ -58,17 +73,36 @@ void Blizzard::SetCastPosition(Vector2 position)
     castPosition = position;
 }
 
+void Blizzard::SetFixedScreenPosition(Vector2 fixedPos) {
+    fixedScreenPosition = fixedPos;
+}
+
+Vector2 Blizzard::GetFixedScreenPosition() const {
+    return fixedScreenPosition;
+}
+
 void Blizzard::Draw(const Player& player, const Camera2D& camera) const
 {
     if (isActive) {
-        Vector2 centerPositionCamera = GetWorldToScreen2D(castPosition, camera);
-        DrawCircleLinesV(centerPositionCamera, radius, Fade(color, 0.5f));
+        
+        //castPosition = { GetScreenWidth() / 2, GetScreenHeight() / 2 };
+        Vector2 screenPosition = GetFixedScreenPosition();
+        std::cout << "Screen position: " << screenPosition.x << ", " << screenPosition.y << std::endl;
+
+        // Pass data to the shader
+        SetShaderValue(blizzardShader, GetShaderLocation(blizzardShader, "u_center"), &screenPosition, SHADER_UNIFORM_VEC2);
+        SetShaderValue(blizzardShader, GetShaderLocation(blizzardShader, "u_radius"), &radius, SHADER_UNIFORM_FLOAT);
+        SetShaderValue(blizzardShader, GetShaderLocation(blizzardShader, "u_time"), &blizzardTime, SHADER_UNIFORM_FLOAT);
+
+        BeginShaderMode(blizzardShader);
+        DrawCircleV(screenPosition, radius, Fade(color, 0.2f)); // Base Blizzard effect
+        EndShaderMode();
     }
 }
 
 bool Blizzard::CheckCollision(const Player& player, Enemy& enemy)
 {
-    return CheckCollisionCircleRec(centerPosition, radius, enemy.GetBoundingBox());
+    return CheckCollisionCircleRec(castPosition, radius, enemy.GetBoundingBox());
 }
 
 float Blizzard::GetCooldownTime() const
