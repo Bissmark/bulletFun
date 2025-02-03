@@ -1,5 +1,4 @@
 #include "inGameMenu.h"
-#include <iostream>
 
 InGameMenu::InGameMenu()
 {
@@ -52,7 +51,6 @@ void InGameMenu::Draw(Player& player, SkillBar& skillBar, bool &showStartMenu)
     ImGui::Separator();
 
     for (const auto& ability : skillBar.GetAbilities()) {
-        std::cout << ability->GetName() << std::endl;
         ImGui::Text("%s", ability->GetName().c_str());
         ImGui::Text("Cooldown: %.2f seconds", ability->GetCooldownDuration());
         ImGui::Text("Damage: %d", ability->GetDamage());

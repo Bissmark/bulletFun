@@ -13,7 +13,7 @@ float rand(vec2 co) {
 
 void main()
 {
-    vec2 uv = gl_FragCoord.xy;  // Get screen position
+    vec2 uv = gl_FragCoord.xy; // Get screen position
     float dist = distance(uv, u_center);  // Distance from the center
 
     // Default background: Blizzard mist

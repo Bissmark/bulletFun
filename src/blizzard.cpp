@@ -53,7 +53,7 @@ void Blizzard::Update(const Player& player, std::vector<std::unique_ptr<Enemy>>&
     }
 }
 
-void Blizzard::Activate()
+void Blizzard::Activate(Vector2 playerPosition)
 {
     if (cooldownTime <= 0.0f) {
         isActive = true;
@@ -61,32 +61,19 @@ void Blizzard::Activate()
         blizzardTime = 0.0f;
         positionSet = false;
         
-        if (!positionSet) {
-            SetFixedScreenPosition(Vector2{ (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 });
-            positionSet = true;
-        }
+        castPosition = playerPosition;
     }
 }
 
-void Blizzard::SetCastPosition(Vector2 position)
+void Blizzard::Activate()
 {
-    castPosition = position;
-}
-
-void Blizzard::SetFixedScreenPosition(Vector2 fixedPos) {
-    fixedScreenPosition = fixedPos;
-}
-
-Vector2 Blizzard::GetFixedScreenPosition() const {
-    return fixedScreenPosition;
+    std::cout << "Blizzard requires a position to activate!\n";
 }
 
 void Blizzard::Draw(const Player& player, const Camera2D& camera) const
 {
     if (isActive) {
-        
-        //castPosition = { GetScreenWidth() / 2, GetScreenHeight() / 2 };
-        Vector2 screenPosition = GetFixedScreenPosition();
+        Vector2 screenPosition = GetWorldToScreen2D(castPosition, camera);
         std::cout << "Screen position: " << screenPosition.x << ", " << screenPosition.y << std::endl;
 
         // Pass data to the shader

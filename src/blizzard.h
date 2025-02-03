@@ -13,9 +13,7 @@ class Blizzard : public Ability
         std::string GetName() const override;
         int GetDamage() const override;
         void Activate() override;
-        void SetCastPosition(Vector2 position);
-        void SetFixedScreenPosition(Vector2 fixedPos);
-        Vector2 GetFixedScreenPosition() const;
+        void Activate(Vector2 playerPosition) override;
         Shader blizzardShader;
         Vector2 castPosition;
 
