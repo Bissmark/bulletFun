@@ -1,3 +1,0 @@
-C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/CMakeFiles/BulletFun.dir
-C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/CMakeFiles/edit_cache.dir
-C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/CMakeFiles/rebuild_cache.dir
