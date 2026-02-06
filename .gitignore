@@ -257,8 +257,21 @@ credentials/
 
 # ===== Keep These =====
 # Keep specific important files
-!.gitignore
-!.gitattributes
 !README.md
-!LICENSE
-!CONTRIBUTING.md
+
+BulletFun.wasm
+BulletFun.sln
+BulletFun.js
+BulletFun.html
+BulletFun.data
+
+.ninja_deps
+.ninja_log
+
+Makefile
+ZERO_CHECK.vcxproj
+ZERO_CHECK.vcxproj.filters
+build.ninja
+cmake_install.cmake
+raylib.dll
+main.code-workspace
