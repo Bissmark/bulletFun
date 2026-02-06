@@ -1,11 +1,10 @@
-#include <raylib.h>
+#include "raylib.h"
 #include "enemy.h"
 #include "player.h"
 #include "enemySpawner.h"
 #include "background.h"
 #include "powerup.h"
 #include "characterSelection.h"
-#include "tilemap.h"
 #include "skillPickup.h"
 #include "levelUp.h"
 #include "skillBar.h"
@@ -45,6 +44,9 @@ int main()
     LevelUp levelUp(player);
     SkillBar skillBar;
     Powerup powerup(LoadTexture("Spritesheet/powerup/Health.png"), 0.5f);
+    if (powerup.healthPot.id == 0) {
+        TraceLog(LOG_WARNING, "Failed to load texture: Spritesheet/powerup/Health.png");
+    }
     tileCollision.LoadMap(tmx);
     InGameMenu inGameMenu;
     AbilityManager abilityManager;

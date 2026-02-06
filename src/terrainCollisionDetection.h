@@ -1,6 +1,7 @@
 #pragma once
+
 //#define RAYTMX_IMPLEMENTATION
-#include "raytmx.h"
+#include <raytmx.h>
 #include <vector>
 
 class TerrainCollision

@@ -37,7 +37,7 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #include <stdlib.h> /* atoi(), strtoul() */
 #include <string.h> /* memcpy(), memset(), strcpy(), strcpy_s() strlen(), strncpy(), strncpy_s() */
 
-#include "raylib.h"
+#include <raylib.h>
 #include "rlgl.h"
 
 #ifndef RAYTMX_DEC

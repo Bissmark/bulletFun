@@ -1,3 +1,0 @@
-C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/BulletFun.dir
-C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/build/CMakeFiles/ZERO_CHECK.dir

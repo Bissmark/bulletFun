@@ -52,6 +52,20 @@
                 "miDebuggerPath": "/usr/bin/gdb"
             },
             "preLaunchTask": "build release"
+        },
+        {
+            "name": "Launch WebAssembly",
+            "type": "node",
+            "request": "launch",
+            "program": "C:/emsdk/upstream/emscripten/emrun",
+            "args": [
+                "--no_browser",
+                "--serve_after_close",
+                "${workspaceFolder}/build/Debug/BulletFun.html"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
         }
     ]
 }

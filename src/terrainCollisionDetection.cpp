@@ -82,7 +82,10 @@ bool TerrainCollision::CheckCollisionTiles(const Rectangle& powerupSpawn, TmxObj
     float tileY = tile->y - tile->height;  // Adjust since Tiled places objects at bottom-left
 
     // Create the tile's bounding box
-    Rectangle tileRect = { tileX, tileY, tile->width, tile->height };
+    Rectangle tileRect = { static_cast<float>(tileX), 
+                        static_cast<float>(tileY), 
+                        static_cast<float>(tile->width), 
+                        static_cast<float>(tile->height) };
 
     // Check for intersection with powerup spawn area
     return CheckCollisionRecs(powerupSpawn, tileRect);

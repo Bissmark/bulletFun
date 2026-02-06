@@ -4,9 +4,9 @@
 class Blizzard : public Ability
 {
     public:
-        Blizzard(float radius, int speed, int baseDamage, Color color);
+        Blizzard(float radius, int speed, int baseDamage, Color color, Player& player);
         void Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime) override;
-        void Draw(const Player& player, const Camera2D& camera) const;
+        void Draw(const Player& player, const Camera2D& camera);
         bool CheckCollision(const Player& player, Enemy& enemy);
         float GetCooldownTime() const override;
         float GetCooldownDuration() const override;
@@ -15,9 +15,10 @@ class Blizzard : public Ability
         void Activate() override;
         void Activate(Vector2 playerPosition) override;
         Shader blizzardShader;
+        Shader blizzardShaderVertex;
         Vector2 castPosition;
 
-    private: 
+    private:
         Vector2 centerPosition;
         Vector2 fixedScreenPosition;
         int speed;
@@ -30,6 +31,7 @@ class Blizzard : public Ability
         float activeTime;
         Color color;
         float blizzardTime;
-        bool positionSet = false;
+        bool positionSet;
+        float circleRadius;
         std::string name;
 };

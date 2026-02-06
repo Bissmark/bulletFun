@@ -10,7 +10,7 @@ class RotatingBalls : public Ability
     public:
         RotatingBalls(float cooldown, int baseDamage, float radius, float speed, int numBalls, Color color);
         void Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime) override;
-        void Draw(const Player& player, const Camera2D& camera) const;
+        void Draw(const Player& player, const Camera2D& camera);
         bool CheckCollision(const Player& player, Enemy& enemy) override;
         std::string GetName() const override;
         float GetCooldownTime() const override;

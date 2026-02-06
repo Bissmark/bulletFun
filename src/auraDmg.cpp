@@ -89,7 +89,7 @@ bool AuraDmg::CheckCollision(const Player& player, Enemy& enemy)
     return false;
 }
 
-void AuraDmg::Draw(const Player& player, const Camera2D& camera) const
+void AuraDmg::Draw(const Player& player, const Camera2D& camera)
 {
     if (isActive) {
         Vector2 adjustedCenterPosition = {

@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -101,34 +101,22 @@
       <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_LIBCPP_DISABLE_TZDB;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_LIBCPP_DISABLE_TZDB;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
-    <PostBuildEvent>
-      <Message></Message>
-      <Command>setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/vcpkg/installed/x86-windows/debug/bin/raylib.dll C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/Debug
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-    </PostBuildEvent>
     <Link>
       <AdditionalDependencies>raylib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -145,7 +133,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -159,36 +147,24 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_LIBCPP_DISABLE_TZDB;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_LIBCPP_DISABLE_TZDB;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
-    <PostBuildEvent>
-      <Message></Message>
-      <Command>setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/vcpkg/installed/x86-windows/debug/bin/raylib.dll C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/Release
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-    </PostBuildEvent>
     <Link>
       <AdditionalDependencies>raylib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -205,7 +181,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -219,36 +195,24 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_LIBCPP_DISABLE_TZDB;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_LIBCPP_DISABLE_TZDB;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
-    <PostBuildEvent>
-      <Message></Message>
-      <Command>setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/vcpkg/installed/x86-windows/debug/bin/raylib.dll C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/MinSizeRel
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-    </PostBuildEvent>
     <Link>
       <AdditionalDependencies>raylib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -265,7 +229,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -280,34 +244,22 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_LIBCPP_DISABLE_TZDB;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_LIBCPP_DISABLE_TZDB;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\include;C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
-    <PostBuildEvent>
-      <Message></Message>
-      <Command>setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/vcpkg/installed/x86-windows/debug/bin/raylib.dll C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/RelWithDebInfo
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-    </PostBuildEvent>
     <Link>
       <AdditionalDependencies>raylib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -389,16 +341,17 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\grunt.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\slime.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\abilityManager.cpp" />
-    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\auraDmg.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\background.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\characterSelection.cpp" />
-    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\flamethrower.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\auraDmg.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\fireBreath.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\rotatingBalls.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\blizzard.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\levelUp.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\powerup.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\skillBar.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\skillPickup.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\slash.cpp" />
-    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\tilemap.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\terrainCollisionDetection.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\rlImGui.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui.cpp" />
@@ -406,6 +359,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui_draw.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui_tables.cpp" />
     <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\imgui_demo.cpp" />
+    <ClCompile Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\inGameMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\ZERO_CHECK.vcxproj">

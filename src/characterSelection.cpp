@@ -39,9 +39,9 @@ void CharacterSelection::Draw() const
     DrawRectangleRec(mageButton, mageButtonPressed ? RED : BLUE);
     DrawRectangleRec(archerButton, archerButtonPressed ? RED : BLUE);
 
-    DrawText("W", warriorButton.x + warriorButton.width / 2 - 10, warriorButton.y + warriorButton.height / 2 - 10, 20, WHITE);
-    DrawText("M", mageButton.x + mageButton.width / 2 - 10, mageButton.y + mageButton.height / 2 - 10, 20, WHITE);
-    DrawText("A", archerButton.x + archerButton.width / 2 - 10, archerButton.y + archerButton.height / 2 - 10, 20, WHITE);
+    DrawText("Warrior", warriorButton.x + warriorButton.width / 2 - 10, warriorButton.y + warriorButton.height / 2 - 10, 20, WHITE);
+    DrawText("Mage", mageButton.x + mageButton.width / 2 - 10, mageButton.y + mageButton.height / 2 - 10, 20, WHITE);
+    DrawText("Archer", archerButton.x + archerButton.width / 2 - 10, archerButton.y + archerButton.height / 2 - 10, 20, WHITE);
 }
 
 bool CharacterSelection::IsCharacterSelected() const

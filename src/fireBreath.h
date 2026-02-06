@@ -9,7 +9,7 @@ class FireBreath : public Ability
     public:
         FireBreath(float width, float length, int speed, int baseDamage, Color color);
         void Update(const Player& player, std::vector<std::unique_ptr<Enemy>>& enemies, float deltaTime) override;
-        void Draw(const Player& player, const Camera2D& camera) const;
+        void Draw(const Player& player, const Camera2D& camera);
         bool CheckCollision(const Player& player, Enemy& enemy);
         float GetCooldownTime() const override;
         float GetCooldownDuration() const override;

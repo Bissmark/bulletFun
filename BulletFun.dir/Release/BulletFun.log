@@ -1,0 +1,20 @@
+﻿  Building Custom Rule C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/CMakeLists.txt
+  CMake is re-running because C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/CMakeFiles/generate.stamp dependency file is missing.
+  -- Looking for Raylib in: C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/lib
+  -- Files found in C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/lib: C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/lib/libgcc_s_dw2-1.dll;C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/lib/libraylib.a;C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/lib/libstdc++-6.dll;C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/lib/libtmx.a;C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/lib/libxml2.a;C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/lib/libzlibstatic.a
+  -- RAYLIB_LIB set to: C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/lib/libraylib.a
+  -- Raylib library found at: C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun/lib/libraylib.a
+  -- Configuring done (0.4s)
+  -- Generating done (0.0s)
+  -- Build files have been written to: C:/Users/Gosh_/Desktop/Programming/Projects/C++/Raylib/BulletFun
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(254,5): warning MSB8064: Custom build for item "C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\CMakeLists.txt" succeeded, but specified dependency "c:\users\gosh_\desktop\programming\projects\c++\raylib\bulletfun\cmakefiles\3.30.0-rc1\cmakerccompiler.cmake" does not exist. This may cause incremental build to work incorrectly.
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(254,5): warning MSB8065: Custom build for item "C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\CMakeLists.txt" succeeded, but specified output "c:\users\gosh_\desktop\programming\projects\c++\raylib\bulletfun\cmakefiles\generate.stamp" has not been created. This may cause incremental build to work incorrectly.
+  main.cpp
+  powerup.cpp
+C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\powerup.cpp(47,53): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\powerup.cpp(61,107): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\powerup.cpp(61,65): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\powerup.cpp(62,108): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\src\powerup.cpp(62,65): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  BulletFun.vcxproj -> C:\Users\Gosh_\Desktop\Programming\Projects\C++\Raylib\BulletFun\Release\BulletFun.exe

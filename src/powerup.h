@@ -13,9 +13,9 @@ public:
     void SpawnPowerup(TerrainCollision& terrainCollision);
     void Draw() const;
     void Respawn();
+    Texture2D healthPot;
 
 private:
-    Texture2D healthPot;
     float scale;
     bool isActive;
     bool isCollected;

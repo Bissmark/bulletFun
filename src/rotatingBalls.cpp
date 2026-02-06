@@ -74,7 +74,7 @@ void RotatingBalls::Activate()
     }
 }
 
-void RotatingBalls::Draw(const Player& player, const Camera2D& camera) const
+void RotatingBalls::Draw(const Player& player, const Camera2D& camera)
 {
     for (const auto& ball : balls)
     {

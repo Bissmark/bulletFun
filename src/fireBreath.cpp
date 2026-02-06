@@ -3,7 +3,7 @@
 #include <cmath>
 
 FireBreath::FireBreath(float width, float length, int speed, int baseDamage, Color color)
-    : width(width), length(length), speed(speed), baseDamage(baseDamage), color(color), rotationAngle(0.0f), name("FireBreath"), elapsedTime(0.0f), maxSections(5), isActive(false), cooldown(5.0f), cooldownTime(0.0f)
+    : width(width), length(length), speed(speed), baseDamage(baseDamage), color(color), rotationAngle(0.0f), name("FireBreath"), elapsedTime(0.0f), maxSections(7), isActive(false), cooldown(5.0f), cooldownTime(0.0f)
 {
     centerPosition = { 0.0f, 0.0f };
     numSections = 1; // Start with 1 beam
@@ -40,7 +40,7 @@ void FireBreath::Activate()
     }
 }
 
-void FireBreath::Draw(const Player& player, const Camera2D& camera) const
+void FireBreath::Draw(const Player& player, const Camera2D& camera)
 {
     // Only draw the FireBreath if it is active
     if (!isActive)
