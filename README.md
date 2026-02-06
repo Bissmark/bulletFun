@@ -4,7 +4,7 @@
 
 *A fast-paced bullet hell roguelike with cooldown-based abilities*
 
-[Features](#-features) • [Installation](#-installation) • [Controls](#-controls) • [Development](#-development) • [Roadmap](#-roadmap)
+[Features](#-features) • [Installation](#-installation) • [Controls](#-controls) • [Roadmap](#-roadmap)
 
 </div>
 
@@ -37,21 +37,14 @@ BulletFun is a bullet hell roguelike game inspired by **Vampire Survivors** and 
 
 ## 🚀 Installation
 
-#### Windows
-
-# Clone the repository
 git clone https://github.com/Bissmark/bulletFun.git
 cd bulletFun
 
-# Create build directory
 mkdir build
 cd build
 
-# Generate Visual Studio solution
 cmake ..
 
-# Open BulletFun.sln in Visual Studio and build
-# OR build from command line:
 cmake --build . --config Release
 ```
 
@@ -70,24 +63,6 @@ cmake --build . --config Release
 | Ability 3 | `R` |
 | Ability 4 | `F` |
 | Pause Menu | `ESC` |
-
----
-
-## 💻 Development
-
-### Project Structure
-
-```
-bulletFun/
-├── src/                    # Source files (.cpp)
-├── include/                # Header files (.h)
-├── lib/                    # External libraries
-├── Spritesheet/           # Character and object sprites
-├── Tileset/               # Map tiles and terrain
-├── shaders/               # Custom GLSL shaders
-├── build/                 # Build output (gitignored)
-└── CMakeLists.txt         # CMake configuration
-```
 
 ---
 
@@ -137,9 +112,3 @@ BulletFun is designed around three core principles:
 - All playtesters and contributors!
 
 ---
-
-<div align="center">
-
-**[⬆ Back to Top](#-bulletfun)**
-
-</div>
